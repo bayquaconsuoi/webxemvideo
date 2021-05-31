@@ -1,0 +1,130 @@
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    box-shadow: none !important;
+}
+
+.up_container{
+    padding: 1%;
+    margin: 1%;
+
+    background: #fff;
+    position: relative;
+}
+.up_logo-page{
+    width: 66px;
+    border-radius: 50%;
+}
+.up_logo-name{
+    font-size: 1rem;
+    color: #007bff;
+}
+.up_search-container{
+    display: inline-flex;
+    flex: 1 1 300px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.search_icon{
+    padding: 0.5rem;
+    padding-top: 12px;
+}
+.search_input{
+    border: 0;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    flex: 1;
+}
+.search_input:focus{
+    border: none;
+    outline: none;
+}
+
+.mr-sm-2, .mx-sm-2 {
+    margin-right: 0rem!important;
+}
+.up_create-container{
+    margin: 0 14px;
+    overflow: hidden;
+}
+.up_create-container i {
+    color: blue;
+}
+.up_user-avatar_nav{
+
+}
+.up_user-avatar{
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.up_dropdown-content{
+    margin-top: 10px;
+    display: none;
+    right: 0;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.up_dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.up_dropdown-content a:hover {background-color: #ddd}
+
+.show {display:block;}
+
+.up_user-avatar-dropdown{
+    width: 48px;
+    border-radius: 50%;
+}
+.up_dropdown-userinfo{
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    border-bottom: 1px solid black;
+}
+.up_dropdown-user-name{
+    user-select: none;
+    font-weight: 400;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+}
+.up_dropdown-user-avatar{
+    
+    padding-right: 10px;
+}
+.up_dropdown-options{
+    width: 200px;
+}
+.up_dropdown-options-icon{
+    font-size: 2rem;
+    width: 33px;
+    border-radius: 50%;
+    color: #007bff;
+}
+.up_icon{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+}

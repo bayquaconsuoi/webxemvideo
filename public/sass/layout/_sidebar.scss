@@ -1,0 +1,236 @@
+.sidebar {
+    position: fixed;
+    top: $header-height;
+    bottom: 0;
+    z-index: 999;
+
+    &-container {
+        height: 100%;
+        padding: 0.9rem 0;
+        overflow-y: auto;
+
+        background-color: var(--primary-bgc);
+    }
+
+    .copyright {
+        font-size: 1.2rem;
+        padding: 1.6rem 2.4rem;
+        border-top: 1px solid var(--primary-border-color);
+
+        color: $copyright-color;
+    }
+}
+
+.sidebar-large {
+    width: $sidebar-width;
+}
+
+// sidebar options
+.sidebar-options {
+    .selected {
+        background-color: var(--sidebar-selected-bgc);
+
+        .bx {
+            color: var(--selected-icon-color);
+        }
+    }
+
+    .selected &__name {
+        @include sidebar-name-color(500);
+    }
+
+    &-first {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--primary-border-color);
+    }
+
+    &-second {
+        padding: 1rem 0;
+    }
+
+    &__item:hover {
+        background-color: var(--siderbar-hover-bgc);
+    }
+
+    &__link {
+        @include align-center;
+
+        height: 4rem;
+        padding: 0 2rem;
+
+        .bx {
+            font-size: 2.3rem;
+            padding: 0rem 0.45rem;
+
+            color: var(--unselected-icon-color);
+        }
+    }
+
+    &__icon {
+        margin-right: 2rem;
+    }
+
+    &__name {
+        @include sidebar-name-color;
+    }
+}
+
+// sidebar subscriptions
+.sidebar-subs-list {
+    padding: 1rem 0;
+    border-top: 1px solid var(--primary-border-color);
+}
+
+.sidebar-subs-title {
+    padding: 1rem 1.2rem 1rem 2.4rem;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    color: var(--sidebar-title-color);
+}
+
+.sidebar-sub {
+    &-link {
+        @include align-center;
+
+        height: 4rem;
+        padding: 0 2rem;
+
+        &:hover {
+            background-color: var(--siderbar-hover-bgc);
+        }
+    }
+
+    &-icon {
+        width: 2.4rem;
+        margin: 0 2.4rem 0 0.4rem;
+        border-radius: 50%;
+    }
+
+    &-name {
+        @include sidebar-name-color;
+    }
+}
+
+// sidebar more from youtube
+.sidebar-more-list {
+    padding: 1rem 0;
+    border-top: 1px solid var(--primary-border-color);
+
+    &-title {
+        @extend .sidebar-subs-title;
+    }
+}
+
+.sidebar-more {
+    &-link {
+        @include align-center;
+
+        height: 4rem;
+        padding: 0 2rem;
+
+        &:hover {
+            background-color: var(--siderbar-hover-bgc);
+        }
+    }
+
+    .bx {
+        font-size: 2rem;
+
+        color: var(--unselected-icon-color);
+    }
+
+    &__icon {
+        margin-right: 2rem;
+    }
+
+    &__name {
+        @include sidebar-name-color;
+    }
+}
+
+// sidebar functions
+.sidebar-functions {
+    padding: 1rem 0;
+    border-top: 1px solid var(--primary-border-color);
+}
+
+.sidebar-function {
+    &-link {
+        @include align-center;
+
+        padding: 0 2rem;
+
+        .bx {
+            color: var(--unselected-icon-color);
+        }
+
+        &:hover {
+            background-color: var(--siderbar-hover-bgc);
+        }
+    }
+
+    &__icon {
+        margin-right: 2rem;
+    }
+
+    &__name {
+        @include sidebar-name-color;
+    }
+}
+
+// small sidebar
+.sidebar-small {
+    width: 7.2rem;
+
+    .sidebar-options {
+        height: 100%;
+
+        background-color: var(--primary-bgc);
+    }
+
+    .selected {
+        background-color: transparent;
+    }
+
+    .selected .sidebar-options__name {
+        color: var(--selected-name-color);
+    }
+
+    .sidebar-options__item {
+        height: 7.5rem;
+
+        &:hover {
+            background-color: var(--siderbar-hover-bgc);
+        }
+    }
+
+    .sidebar-options__link {
+        @include align-justify-center();
+
+        height: 100%;
+        flex-direction: column;
+    }
+
+    .sidebar-options__icon {
+        margin: 0 0 0.4rem;
+    }
+
+    .sidebar-options__name {
+        font-size: 1.05rem;
+        font-weight: 400;
+        margin-top: 0.05rem;
+
+        color: var(--primary-text-color);
+    }
+
+    & .bx {
+        padding: 0;
+        font-size: 2.3rem;
+    }
+}
+
+.closed {
+    display: none;
+}

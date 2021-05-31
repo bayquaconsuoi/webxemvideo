@@ -1,0 +1,83 @@
+.toggle {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+    
+    opacity: 0;
+    transform: translateX(calc(100% + 10px));
+    
+    transition: transform 0.3s;
+
+    &-wrapper {
+        position: relative;
+        
+        display: block;
+        height: 3.4rem;
+        width: 6rem;
+
+        cursor: pointer;
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__bar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+
+        border-radius: 34px;
+        overflow: hidden;
+
+        background-color: $inactive-animated-btn-color;
+
+        transition: 0.4s;
+    }
+
+    &__bar:before {
+        position: absolute;
+        content: "";
+        bottom: 4px;
+        left: 4px;
+
+        height: 2.6rem;
+        width: 2.6rem;
+        border-radius: 50%;
+
+        background-color: white;
+
+        transition: 0.4s;
+    }
+
+    &__bar:after {
+        position: absolute;
+        content: "";
+        bottom: 4px;
+        left: 4px;
+
+        height: 2.6rem;
+        width: 2.6rem;
+        border-radius: 50%;
+        transform: translateX(50px);
+
+        background-color: $inactive-animated-btn-color;
+
+        transition: 0.4s;
+    }
+
+    &__input:checked + &__bar {
+        background-color: $active-animated-btn-color;
+    }
+
+    &__input:checked + &__bar:before {
+        transform: translateX(-50px);
+    }
+
+    &__input:checked + &__bar:after {
+        transform: translateX(0px);
+    }
+}

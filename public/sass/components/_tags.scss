@@ -1,0 +1,99 @@
+.tags-container {
+    position: fixed;
+    top: $header-height;
+    left: $sidebar-width;
+    z-index: 900;
+
+    width: 100% - $sidebar-width;
+    height: $header-height;
+    overflow: hidden;
+    border-top: 1px solid var(--primary-border-color);
+    border-bottom: 1px solid var(--primary-border-color);
+
+    background-color: var(--primary-bgc);
+
+    .next-btn,
+    .prev-btn {
+        position: absolute;
+        z-index: 500;
+
+        width: 4.5%;
+        height: calc(100% - 5px);
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--primary-bgc);
+
+        .bx {
+            font-size: 1.3rem;
+
+            color: var(--tags-btn-color);
+        }
+    }
+    $white: var(--primary-bgc);
+    .prev-btn {
+        left: 0;
+        
+        box-shadow: var(--tags-left-btn-boxshadow-color);
+    }
+
+    .next-btn {
+        right: 0;
+        
+        box-shadow: var(--tags-right-btn-boxshadow-color);
+    }
+}
+
+.tags-container-small {
+    left: $small-sidebar-width;
+    width: calc(100% - #{$small-sidebar-width});
+}
+
+.tags {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    display: flex;
+    height: inherit;
+    padding: 0 1.5rem;
+    align-items: center;
+    list-style: none;
+
+    transition-duration: 0.15s;
+    transition-timing-function: cubic-bezier(0.05, 0, 0, 1);
+    will-change: transition;
+}
+
+.tag {
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.tag-link {
+    display: block;
+    margin: auto 0.6rem;
+    line-height: 3rem;
+    padding: 0 1.2rem;
+    border-radius: 16px;
+    font-size: 1.4rem;
+    border: 1px solid var(--primary-border-color);
+    
+    color: var(--primary-text-color);
+    background-color: var(--tag-bgc);
+
+    transition: 0.15s ease;
+
+    &:hover {
+        background-color: var(--tag-hover-bgc);
+    }
+}
+
+.selected-tag {
+    background-color: var(--selected-tag-bgc);
+    color: var(--selected-text-color);
+
+    &:hover {
+        background-color: $selected-tag-hover-bgc;
+    }
+}

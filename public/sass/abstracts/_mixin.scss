@@ -1,0 +1,31 @@
+@mixin align-center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin align-justify-center() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin align-center-with-justifies($justify-content-value: unset) {
+    display: flex;
+    align-items: center;
+    justify-content: $justify-content-value;
+}
+
+@mixin sidebar-name-color($font-weight: 400) {
+    font-size: 1.4rem;
+    font-weight: $font-weight;
+
+    color: var(--primary-text-color);
+}
+
+@mixin overflow-lines($line-number) {
+    overflow: hidden;
+	display: block;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $line-number;
+}

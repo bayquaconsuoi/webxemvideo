@@ -1,0 +1,40 @@
+I. Admin
+	- Thiet ke database
+	- Phát triển quản lý video
+	- Phát triển quản lý user
+II. Frontend
+	- Home
+	- Danh mục video
+	- Chi tiết user
+III. Toi uu code
+IV. Tối ưu giao diện (UI & UX)
+
+=================================================
+Video 1: Phát triển phần I.Admin
+- Table Category
+
+create table account (
+	id int primary key auto_increment,
+	username varchar(200) not null,
+	password varchar(20) not null,
+	email varchar(200) not null,
+	phone int not null,
+)
+
+create table video (
+	id int primary key auto_increment,
+	UserId int not null,
+	VideoName varchar(50) not null,
+	MoTa varchar(200) not null,
+	View int ,
+	Like int ,
+	Comment
+)
+
+Phát triển chức năng của admin
+- Quản Lý Danh Mục
+	- Hiển thị video
+	- Thêm/Sửa/Xoá
+- Quản Lý video
+	- Hiển thị video
+	

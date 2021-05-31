@@ -1,0 +1,354 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 999;
+}
+  
+  /* Modal Content/Box */
+.modal-content {
+  min-width: 450px;
+  min-height: 400px;
+  max-width: 450px;
+  max-height: 400px;
+  background-color: #fff;
+  margin: 15% auto; /* 15% from the top and centered */
+  
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 30%; /* Could be more or less, depending on screen size */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.img-content{
+    max-height: 200px;
+    max-width: 240px;
+    padding: 10px;
+    border-radius: 50%;
+}
+.img_hide{
+  display: none;
+}
+.img_hide,
+.img_current{
+  margin: 20px;
+  border-radius: 50%;
+  background-color: none;
+
+}
+.form_options{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.form-group{
+    padding: 6px 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.form_button{
+    padding: 2px 18px;
+    background-color: #fff;
+    padding: 8px;
+    margin: 4px;
+    opacity: 0.8;
+}
+.form_options button{
+    font-size: 18px;
+    text-transform: uppercase;
+}
+  /* The Close Button */
+.close {
+    color: rgb(51, 51, 51);
+    float: right;
+    font-weight: 400;
+    /* font-size: 28px;
+    font-weight: bold; */
+}
+.custom-file-upload {
+  border: 2px solid #555555;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(44, 44, 44);
+}
+input[type="file"] {
+  display: none;
+}
+.hide{
+  display: none;
+}
+.unhide{
+  display: block;
+}
+.form_button{
+  background-color: #f44336;
+  border: none;
+  color: #fff;
+  padding: 7px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.close_btn{
+  background-color: #f44336; 
+  color: #fff; 
+  border: 2px solid #f44336;
+}
+.accept_btn{
+  background-color: #4CAF50; 
+  color: #fff; 
+  border: 2px solid #4CAF50;
+  
+}
+.close_btn:hover,
+.close_btn:focus{
+  background-color: #f44336;
+  color: white;
+}
+.accept_btn:hover,
+.accept_btn:focus {
+  background-color: #4CAF50;
+  color: white;
+}
+.not_allow{
+  cursor: not-allowed;
+}
+/* Style the Image Used to Trigger the Modal */
+#current {
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#current:hover {opacity: 0.7;}
+
+#hide {
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#hide:hover {opacity: 0.7;}
+/* The Modal (background) */
+.modal_img {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  padding: 5%;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+
+}
+
+/* Modal Content (Image) */
+.modal_img-content {
+  margin: auto;
+  display: block;
+  max-width: 900px;
+  
+}
+
+
+/* Add Animation - Zoom in the Modal */
+.modal_img-content {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close-img_btn {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close-img_btn:hover,
+.close-img_btn:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal_img-content {
+    width: 100%;
+  }
+}
+
+/* UPLOAD VIDEO MODAL */
+
+/* The Modal (background) */
+.upload-video_modal {
+  display: none; 
+  position: fixed; 
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+  z-index: 999;
+}
+
+/* Modal Content/Box */
+.upload-video_modal-content {
+  min-width: 450px;
+  min-height: 400px;
+  max-width: 450px;
+  max-height: 400px;
+  background-color: #fff;
+  margin: 7% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 30%; /* Could be more or less, depending on screen size */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+}
+
+/* The Close Button */
+.upload-video_close{
+  position: absolute;
+  right: 0;
+  top: -14px;
+  font-size: 48px;
+  opacity: 0.3;
+  cursor: pointer;
+  user-select: none;
+}
+.upload-video_close:hover{
+  opacity: 1;
+}
+
+.upload-video_title{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.upload-video_modal-content{
+  font-family: "Roboto", "Noto", sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  font-size: 20px;
+  line-height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 675px;
+}
+.btn_primary{
+  display: inline-flex;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 2px;
+    min-width: 36px;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 8px;
+    margin: 0;
+    position: relative;
+    background-color: #065fd4;
+    font-family: "Roboto", "Noto", sans-serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: 14px;
+    line-height: 20px;
+    align-items: center;
+}
+.btn_primary div{
+  color: #fff;
+}
+.modal_need_login{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 17px;
+  right: -13px;
+  width: 240px;
+  height: auto;
+  overflow: auto;
+  border: 1px solid var(--channel-tab-current);
+  background-color: var(--modal-need-login);
+}
+.modal-text-title{
+  color: var(--primary-text-color);
+  display: block;
+  margin-bottom: 16px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.2rem;
+  letter-spacing: .1px;
+  padding: 20px 20px 0 20px;
+}
+.modal-text-content{
+  color: var(--modal-ofc);
+  display: block;
+  margin: 4px 0 22px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2rem;
+  letter-spacing: .2px;
+  padding: 0 20px;
+}
+.modal-button{
+  padding: 20px
+}
+.modal-button a{
+  padding: 5px 8px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--video-des-link)!important;
+}
+.modal_light{
+  box-shadow: 1px 4px 13px 1px #303030; 
+  opacity: 0.98;
+  display: block;
+}
+/* label{
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 150px;
+  text-align: left; /*Change to right here if you want it close to the inputs*/
+/* }
+input {
+display: inline-block;
+float: left;
+} */ 
