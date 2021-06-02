@@ -2,12 +2,12 @@
 // session_start();
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
-}
+} 
 ?>
 <head>
-<title>Channel</title>
+<title>Search</title>
 <link rel="icon"
-        href="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png">
+        href="../../img/icon_page/icon_page.png">
 </head>
 <section id="sidebar" class="sidebar sidebar-large ">
     <div class="sidebar-container">
@@ -54,7 +54,7 @@ if (!empty($_SESSION['user'])) {
                     </li>
 
                     <li class="sidebar-options__item">
-                        <a href="./../common/channel_user/videos.php?id=$user" class="sidebar-options__link">
+                        <a href="../../common/channel_user/videos.php?id=$user" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-play-circle"></i>
                             </span>
@@ -63,7 +63,7 @@ if (!empty($_SESSION['user'])) {
                     </li>
 
                     <li class="sidebar-options__item">
-                        <a href="#" class="sidebar-options__link">
+                        <a href="../../common/history.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-history"></i>
                             </span>
@@ -75,7 +75,7 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-clock"></i>
                             </span>
-                            <span class="sidebar-options__name">Xem sau</span>
+                            <span class="sidebar-options__name">Video đã lưu</span>
                         </a>
                     </li>
 
@@ -95,8 +95,8 @@ if (!empty($_SESSION['user'])) {
                 $Un_user_sidebar = <<< EOD
                 <ul class="sidebar-options-second">
                     <li class="sidebar-options-item__unlogin">
-                        <div class="sidebar-options-name__unlogin">Hãy đăng nhập để thích video, bình luận và đăng ký
-                            kênh.
+                        <div class="sidebar-options-name__unlogin">Hãy đăng nhập để thích video, lưu lại video yêu thích và đăng ký
+                        kênh.
                             <a type="button" class="sidebar-options-login-link" href="../common/account_manage/manage.php">
                                 <div class="sidebar-options-login-link_out-container">
                                     <div class="sidebar-options-login-link_container">

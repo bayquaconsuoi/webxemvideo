@@ -38,7 +38,7 @@ if (!empty($_SESSION['user'])) {
     </button>
     <div class="icon_page">
       <a href="../../main">
-        <img src="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png"
+        <img src="../../img/icon_page/icon_page.png"
           alt="" class="header-logo">
         <div class="icon_page-name">
           <span>Clone YOUTUBE</span>
@@ -76,7 +76,7 @@ if (!empty($_SESSION['user'])) {
               </a>
 
               <div class="dropdown">
-                <img onclick="avatar_dropDown()" src="../../img/$useravatar" alt="" class="dropbtn circular_image"
+                <img onclick="avatar_dropDown()" src="../../img/$useravatar" alt="" class="dropbtn circular_image" id="user_avatar"
                 style="margin-right: 8px;">
                 <div class="dropdown-content dropdown-content_header" id="avatar_dropdown_container">
                 <div class="dropdown-content_inner">
@@ -266,7 +266,7 @@ if (!empty($_SESSION['user'])) {
                     <!-- {{#each courses}} -->
                     <?php
                         if(isset($_GET['id'])){
-                            $sql = "SELECT * FROM video WHERE video.user_id = ".$account['id'];
+                            $sql = "SELECT * FROM video WHERE !deleted_at AND video.user_id = ".$account['id'];
                             $sql .= " ORDER BY created_at DESC";
                             $video = executeResult($sql);
                             $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
@@ -314,7 +314,7 @@ if (!empty($_SESSION['user'])) {
                                                                                 <span class="sidebar-options__icon">
                                                                                     <i class="fas fa-stream"></i>
                                                                                 </span>
-                                                                                <span class="sidebar-options__name">Thêm vào Video xem sau</span>
+                                                                                <span class="sidebar-options__name">Thêm vào Video đã lưu</span>
                                                                             </a>
                                                                         </li>
                                                                     </ul>
@@ -354,7 +354,7 @@ if (!empty($_SESSION['user'])) {
                                 }
                             } else {
                                 $isNull = <<< EOD
-                                <div class="center">
+                                <div >
                                     Kênh này chưa đăng video nào.
                                 </div>
                             EOD;
@@ -501,7 +501,14 @@ $('a.communication').click(function() { return false; });
 </script>
 <script>
     window.onclick = function (event) {
+        if(!event.target.matches('#user_avatar')){
+            document.getElementById("avatar_dropdown_container").classList.remove("show");
+        }
 
+        if(event.target.matches('#avatar-Modal')){
+            var modal = document.getElementById("avatar-Modal");
+            modal.style.display = "none";
+        }
         // if (!event.target.matches('.dropdown')) {
         //     var dropdowns = document.getElementsByClassName("dropdown-content");
 

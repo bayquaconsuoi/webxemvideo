@@ -22,7 +22,9 @@ if (!empty($_POST)) {
 
 	$user_avatar = "119227496_1315363328795495_3486268309184032416_n.jpg";
 	if (!empty($user_name)) {
+		date_default_timezone_set('Asia/Ho_Chi_Minh');
 		$created_at = $updated_at = date('Y-m-d H:s:i');
+		$password = md5($password);
 			$sql = 'insert into account(user_name,user_avatar, email, password, phone, created_at, updated_at) values ("'.$user_name.'","'.$user_avatar.'", "'.$email.'", "'.$password.'", "'.$phone.'", "'.$created_at.'", "'.$updated_at.'")';
 		execute($sql);
 

@@ -25,14 +25,12 @@ if (!empty($_SESSION['user'])) {
     $sql = "select * from account where id = '$user'";
     $info_user = executeSingleResult($sql);
     if ($info_user != null) {
-    $id = $info_user['id'];  
-    $username = $info_user['user_name'];
-    $email   = $info_user['email'];
-    $phone = $info_user['phone'];
-    $useravatar = $info_user['user_avatar'];
-    }
-}  else {
-
+      $id = $info_user['id'];  
+      $username = $info_user['user_name'];
+      $email   = $info_user['email'];
+      $phone = $info_user['phone'];
+      $useravatar = $info_user['user_avatar'];
+    } 
 }
 ?>
 <header class="header">
@@ -154,14 +152,16 @@ if (!empty($_SESSION['user'])) {
         <div class="side_container-main">
           <div class="side-video_main" style="overflow: hidden;">
           <?php
-            $sql ='SELECT watch_later.video_id_later, video.video_id FROM ((watch_later INNER JOIN video ON watch_later.video_id_later = video.id) INNER JOIN account ON watch_later.user_id_later = account.id) WHERE watch_later.user_id_later = '.$id;
-            $sql .= ' ORDER BY watch_later.created_at_later DESC LIMIT 1';
+            $sql ='SELECT history.video_id_his, video.video_id FROM ((history INNER JOIN video ON history.video_id_his = video.id) INNER JOIN account ON history.user_id_his = account.id) WHERE history.user_id_his = '.$id;
+            $sql .= ' ORDER BY history.created_at_his desc LIMIT 1';
             $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
             $rs = mysqli_query($db,$sql);
             if (mysqli_num_rows($rs) > 0) {
             $top_video = executeSingleResult($sql);
               $top =<<<EOD
+              <a href="./../common/main/watch_video.php?id={$top_video['video_id_his']}">
                 <img src="https://img.youtube.com/vi/{$top_video['video_id']}/sddefault.jpg" class="side-video_main-img" >
+              </a>
               EOD;
             echo $top;
             } else {
@@ -179,22 +179,13 @@ if (!empty($_SESSION['user'])) {
           <div class="side-video_info">
             <div class="side-video_info-title">
               <div class="side-video_info-title_link">
-                <a href="">Video đã lưu</a>
+                <a href="">Lịch sử xem của bạn</a>
               </div>
             </div>
             <div class="side-video_info-stats">
               <div class="side-video_info-stats_inner">
                 <span style="color: #7a7a7a;">
-                  • Số video đã lưu là
-                  <?php 
-                  $sql = 'SELECT count(*) as count FROM ((watch_later INNER JOIN video ON watch_later.video_id_later = video.id) 
-                  INNER JOIN account ON watch_later.user_id_later = account.id) WHERE watch_later.user_id_later = '.$id;
-                  $count_video = executeSingleResult($sql); 
-                  $count = $count_video['count'];
-                  echo $count;
-                  ?> 
-                  video 
-                  •
+                  Lịch sử xem lưu trữ tối đa 30 video
                 </span>
               </div>
             </div>
@@ -204,23 +195,26 @@ if (!empty($_SESSION['user'])) {
               </div>
             </div>
             <div class="side-video_info-options">
+              <!-- <div>
+                <i class="fas fa-random" style="cursor: pointer;"></i>
+              </div> -->
               <div class="video_info-drop">
-                  <i class="fas fa-ellipsis-h" onclick="video_info_options_dropdown()"
-                    style="padding-left: 20px; cursor: pointer;"></i>
-                  <div id="video_info-dropdown" class="video_info-dropdown-content">
-                    <div class="video_info-dropdown-text" style="cursor: pointer;">
-                      <div class="video_info-dropdown-text_container" id="modal_delete_all">
-                        <div>
-                          <i class="fas fa-trash-alt"></i>
-                        </div>
-                        <div class="video_info-dropdown_text">
-                          Xóa tất cả video đã lưu
-                        </div>
+                <i class="fas fa-ellipsis-h" onclick="video_info_options_dropdown()"
+                  style="padding-left: 20px; cursor: pointer;"></i>
+                <div id="video_info-dropdown" class="video_info-dropdown-content">
+                  <a href="./../common/main/progressHistory.php?type=deleteAll" class="video_info-dropdown-text">
+                    <div class="video_info-dropdown-text_container">
+                      <div>
+                        <i class="fas fa-trash-alt"></i>
+                      </div>
+                      <div class="video_info-dropdown_text">
+                        Xóa tất cả lịch sử xem
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
+            </div>
             <div class="side-video_user">
               <div class="side-video_user-inner">
                 <div class="side-video_user-avatar_container">
@@ -242,21 +236,21 @@ if (!empty($_SESSION['user'])) {
                 $success = $_SESSION['success'];
               }
               if (isset($_SESSION['success'])) {
-                $watch_later_success_notify = <<< EOD
+                $history_success_notify = <<< EOD
                   <div class="alert">
                       $success
                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                   </div>
                 EOD;
-                echo $watch_later_success_notify;
+                echo $history_success_notify;
                 unset($_SESSION['success']);
               }
 
           ?>
         <div class="main-videos_content-container">
           <?php 
-              $sql = 'SELECT watch_later.video_id_later, video.video_id, video.id, video.tenvideo, video.user_name, video.created_at FROM ((watch_later INNER JOIN video ON watch_later.video_id_later = video.id) INNER JOIN account ON watch_later.user_id_later = account.id) WHERE watch_later.user_id_later ='.$id;
-              $sql .= " ORDER BY watch_later.created_at_later DESC";
+              $sql = 'SELECT history.video_id_his, video.video_id, video.id, video.tenvideo, video.user_name, video.created_at FROM ((history INNER JOIN video ON history.video_id_his = video.id) INNER JOIN account ON history.user_id_his = account.id) WHERE history.user_id_his ='.$id;
+              $sql .= " ORDER BY history.created_at_his desc";
               $video = executeResult($sql);
               $i = 0;
               foreach ($video as $item) {
@@ -270,7 +264,7 @@ if (!empty($_SESSION['user'])) {
                         </div>
                       </div>
                     
-                      <a href="./../common/main/watch_video.php?id={$item['video_id_later']}">
+                      <a href="./../common/main/watch_video.php?id={$item['video_id_his']}">
                         <div class="main-video_main-info">
                     
                           <div class="main-video_img">
@@ -300,12 +294,12 @@ if (!empty($_SESSION['user'])) {
                           <div id="main-video_dropdown" class="main-viddeo_dropdown-content">
                             <ul class="main-video_sidebar-options">
                               <li class="main-video_sidebar-options__item">
-                                <div class="sidebar-options__link open_modal_btn" data-user_id="$id" data-video_id="{$item['id']}" style="cursor: pointer;">
+                                <a href="./../common/main/progressHistory.php?user_id=$id&video_id={$item['id']}&type=delete" class="sidebar-options__link">
                                   <span class="sidebar-options__icon">
                                     <i class="fas fa-trash"></i>
                                   </span>
-                                  <span class="sidebar-options__name">Xóa khỏi Video xem sau</span>
-                                </div>
+                                  <span class="sidebar-options__name">Xóa video khỏi lịch sử</span>
+                                </a>
                               </li>
                             </ul>
                           </div>
@@ -335,27 +329,6 @@ if (!empty($_SESSION['user'])) {
   </label>
 </div>
 
-<div class="modal_delete" id="delete">
-
-    <div class="modal_delete_content">
-        <div class="modal_delete_text">
-          <h1>
-            Thông báo
-          </h1>
-        </div>
-        <div class="modal_delete_text" id="text_all">
-          Bạn có chắc chắn muốn xóa video khỏi danh sách Video đã lưu?
-        </div>
-        <div class="form_options">
-            <button type="submit" class="form_button close accept_btn" id="modal_delete_btn">Xác
-                nhận</button>
-            <button type="button" class="form_button close close_btn" id="modal_delete_close">Hủy</button>
-        </div>
-    </div>
-</div>
-
-<a href="" id="middle_man"></a>
-<a href="" id="middle_man_all"></a>
 <script>
   function video_info_options_dropdown() {
     document.getElementById("video_info-dropdown").classList.toggle("flex_show");
@@ -420,58 +393,3 @@ if (!empty($_SESSION['user'])) {
     }, 10000);
 </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var middle_man = document.getElementById('middle_man');
-        var middle_man_all = document.getElementById('middle_man_all');
-        var btn_open_delete_modal = document.querySelectorAll(".open_modal_btn");
-        var btn_open_deleteAll_modal = document.querySelector("#modal_delete_all");
-        var modal = document.getElementById('delete');
-        var all = document.getElementById('text_all');
-        all.innerText = "Bạn có chắc chắn muốn xóa video khỏi danh sách Video đã lưu?";
-        [].forEach.call(btn_open_delete_modal, function(el) {
-          el.onclick = function() {
-              modal.style.display = "block";
-              let data = $(el);
-              user_id = data.data('user_id');
-              video_id = data.data('video_id');
-          }
-            var btn_confirm_delete = document.getElementById('modal_delete_btn');
-            btn_confirm_delete.onclick = function () {
-                middle_man.href = './../common/main/progressLater.php?user_id='+ user_id +'&video_id='+ video_id +'&type=delete';
-                middle_man.click();
-            }
-        })
-        btn_open_deleteAll_modal.onclick =function(){
-
-            all.innerText = "Bạn có chắc chắn muốn xóa TẤT CẢ video khỏi Video đã lưu?";
-            modal.style.display = "block";
-            var btn_confirm_delete = document.getElementById('modal_delete_btn');
-            btn_confirm_delete.onclick = function () {
-                middle_man_all.href = "./../common/main/progressLater.php?type=deleteAll" ;
-                middle_man_all.click();
-            }
-        }
-        var modal_close_btn = document.getElementById('modal_delete_close');
-        modal_close_btn.onclick = function(){
-          modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-          if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-
-          }
-        }
-    });
-</script>

@@ -22,10 +22,10 @@ if ($page <= 0) {
 }
 $firstIndex = ($page-1)*$limit;
 
-$sql = "SELECT * FROM video ORDER BY created_at desc".' limit '.$firstIndex.', '.$limit;;
+$sql = "SELECT * FROM video WHERE !deleted_at ORDER BY created_at desc".' limit '.$firstIndex.', '.$limit;;
 $video = executeResult($sql);
 
-$sql         = 'select count(id) as total from video where 1 ';
+$sql         = 'select count(id) as total from video where 1 and !deleted_at';
 $countResult = executeSingleResult($sql);
 $number      = 0;
 if ($countResult != null) {
@@ -229,6 +229,9 @@ if (isset($_SESSION['success'])) {
 
 <script>
     window.onclick = function (event) {
+        if(!event.target.matches('#user_avatar')){
+            document.getElementById("avatar_dropdown_container").classList.remove("show");
+        }
         // if (!event.target.matches('.dropdown')) {
         //     var dropdowns = document.getElementsByClassName("dropdown-content");
 

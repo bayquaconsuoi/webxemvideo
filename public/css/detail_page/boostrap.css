@@ -2,12 +2,19 @@ body{
     /* background: -webkit-linear-gradient(left, #3931af, #00c6ff); */
 }
 .emp-profile{
-    padding: 3%;
+    /* padding: 3%;
     margin: 3% auto;
     border-radius: 0.5rem;
     background: #8adaf9a3;
     position: relative;
     min-height: 620px;
+    max-width: 565px; */
+    padding: 3%;
+    margin: 3% auto;
+    border-radius: 0.5rem;
+    background: #8adaf9a3;
+    position: relative;
+    min-height: 575px;
     max-width: 565px;
 }
 .profile-img{

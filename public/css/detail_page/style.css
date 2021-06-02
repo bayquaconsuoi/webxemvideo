@@ -618,3 +618,53 @@ ul>li{
 #isCheckedLength{
   cursor: auto;
 }
+.m_close:focus {
+  outline:  none!important;
+
+}
+.user-avatar_container{
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+.user-avatar_container:hover .avatar_hover{
+  opacity: 1;
+}
+.avatar_hover{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+#update_avatar{
+  background-color: inherit!important;
+  margin: 0;
+  padding: 0;
+  border: none!important;
+  cursor: pointer;
+}
+#update_avatar:focus{
+  border: none!important;
+  outline: none!important;
+}
+.fa-camera{
+  font-size: 32px;
+  color: #202020;
+  opacity: 0.8;
+  /* padding: 12px; */
+  border-radius: 50%;
+}
+.form_title{
+  display: flex;
+  
+}

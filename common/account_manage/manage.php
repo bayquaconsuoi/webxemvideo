@@ -130,7 +130,7 @@ if (!empty($_SESSION['fail'])) {
     errorSelector: '.form__input-error-message',
     rules: [
       Validator.isRequired('#username'),
-      Validator.minLength('#username', 8),
+      Validator.minLength('#username', 5),
       Validator.isRequired('#email'),
       Validator.isEmail('#email'),
       Validator.minLength('#phone', 9),
@@ -152,7 +152,7 @@ if (!empty($_SESSION['fail'])) {
     errorSelector: '.form__input-error-message',
     rules: [
       Validator.isRequired('#usernameLogin'),
-      Validator.minLength('#usernameLogin', 8),
+      Validator.minLength('#usernameLogin', 5),
       Validator.isRequired('#passwordLogin'),
       Validator.minLength('#passwordLogin', 8),
     ],

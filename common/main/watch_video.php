@@ -3,10 +3,12 @@ require_once ('../../db/dbhelper.php');
         $id = '';
         if (isset($_GET['id'])) {
             $id      = $_GET['id'];
-            $sql     = 'select * from video where id = '.$id;
+            $sql     = 'select * from video where !deleted_at and id = '.$id;
             $item = executeSingleResult($sql);
-
-            $sql = 'UPDATE video SET view_count = view_count+1 WHERE id = '.$id;
+            if($item == NULL) {
+                header("location: ../../main/");
+            }
+            $sql = 'UPDATE video SET view_count = view_count+1 WHERE !deleted_at id = '.$id;
             execute($sql);
         }
 ?>
@@ -34,7 +36,27 @@ if (!empty($_SESSION['user'])) {
         $phone = $info_user['phone'];
         $useravatar = $info_user['user_avatar'];
     }
-
+    $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
+    $sql = 'select * from history where user_id_his=("'.$_SESSION['user'].'") and video_id_his=("'.$_GET['id'].'")';
+    execute($sql);
+    $is_have = mysqli_query($db,$sql);
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $created_at = date("Y-m-d H:i:s");
+    if (mysqli_num_rows($is_have) > 0) {
+        $sql = 'UPDATE history SET created_at_his=("'.$created_at.'") where user_id_his=("'.$_SESSION['user'].'") and video_id_his=("'.$_GET['id'].'")';
+        execute($sql);
+    } else {
+        $sql = 'insert into history(user_id_his, video_id_his, created_at_his) values ("'.$_SESSION['user'].'","'.$_GET['id'].'", "'.$created_at.'")';
+        execute($sql);
+    }
+    $sql = 'select * from history';
+    execute($sql);
+    $limit = mysqli_query($db,$sql);
+    if (mysqli_num_rows($limit) > 30) {
+        $sql = "DELETE FROM history ORDER BY created_at_his ASC LIMIT 1";
+        execute($sql);
+        echo $sql;
+    }
 }
 ?>
 <header class="header">
@@ -279,27 +301,50 @@ if (!empty($_SESSION['user'])) {
         if (mysqli_num_rows($save) > 0) {
         $saved =<<<EOD
             <div id="save">
-                <a href="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add" class="video-link isLike video-link-sp">
+                <a rel="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add" class="video-link isLike video-link-sp" id="fool-save">
                     <div><i class="video-icon fa-2x fas fa-save"></i></div>
                     <div>Lưu</div>
                 </a>
-            </div>
+
         EOD;
         echo $saved;
         } else {
         $saved =<<<EOD
             <div id="save">
-                <a href="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add" class="video-link video-link-sp">
+                <a rel="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add" class="video-link video-link-sp" id="fool-save">
                     <div><i class="video-icon fa-2x fas fa-save"></i></div>
                     <div>Lưu</div>
                 </a>
-            </div>
+
         EOD;
         echo $saved;
         }
+        $modal_save = <<< EOD
+                <div class="modal_need_login" id="modal_save">
+                    <div class="modal_need_login-content">
+                        <div class="modal-text-container">
+                            <div class="modal-text-title">
+                                Bạn muốn lưu video này?
+                            </div>
+                            <div class="modal-text-content">
+                                Đăng nhập để lưu những video yêu thích của bạn
+                            </div>
+                        </div>
+                        <div style="width: auto; display: block; border-top: 1px solid #e0e0e0;">
+                            <button class="modal-button">
+                                <a href="../../common/account_manage/manage.php">Đăng nhập</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            EOD;
+            echo $modal_save;
     ?>
     <?php 
+
         $watch_video2 =<<< EOD
+        
             </div>
             </div>
             <hr>
@@ -341,7 +386,7 @@ if (!empty($_SESSION['user'])) {
     ?>
     <div class="secondary">
         <?php
-        $sql = 'SELECT * FROM video ORDER BY rand() LIMIT 30';
+        $sql = 'SELECT * FROM video WHERE !deleted_at ORDER BY rand() LIMIT 30';
         $items = executeResult($sql);
         foreach ($items as $item_mini) {
             $items = <<<EOD
@@ -496,11 +541,14 @@ if (!empty($_SESSION['user'])) {
         var value='<?php echo $session_value;?>';
         let like_btn = document.getElementById('fool-like'),
             dlike_btn = document.getElementById('fool-dlike'),
+            save_btn = document.getElementById('fool-save'),
             likeCount = document.getElementById('Lcount'),
             disCount = document.getElementById('Dcount'),
             notify_box = document.getElementById('notification'),
             modal_like = document.getElementById('modal_like'),
             modal_dislike = document.getElementById('modal_dislike');
+            modal_dislike = document.getElementById('modal_dislike');
+            modal_save = document.getElementById('modal_save');
 
         var isLiked = "false",
             isDliked = "false",
@@ -621,13 +669,14 @@ if (!empty($_SESSION['user'])) {
             } else {
                 if (!modal_dislike.classList.contains("modal_light")) {
                     modal_like.classList.toggle("modal_light");
+                    modal_save.classList.remove("modal_light");
                 } else {
                     modal_dislike.classList.remove("modal_light");
+                    modal_save.classList.remove("modal_light");
                     modal_like.classList.add("modal_light");
                 }
             }
         })
-
 
         dlike_btn.addEventListener('click', () => {
             if (value) {
@@ -731,9 +780,38 @@ if (!empty($_SESSION['user'])) {
             } else {
                 if (!modal_like.classList.contains("modal_light")) {
                     modal_dislike.classList.toggle("modal_light");
+                    modal_save.classList.remove("modal_light");
                 } else {
                     modal_like.classList.remove("modal_light");
+                    modal_save.classList.remove("modal_light");
                     modal_dislike.classList.add("modal_light");
+                }
+            }
+        })
+
+        save_btn.addEventListener('click', () => {
+            if (value) {
+                startTimer();
+                if (save_btn.classList.contains("isLike")) {
+                    document.getElementById('notify_text').innerText = "Đã xóa video khỏi danh sách Video đã lưu";
+                    notify_box.classList.add("appear");
+                    save_btn.classList.remove('isLike');
+                    clearTimeout(g_timer); startTimer();
+                } else {
+                    document.getElementById('notify_text').innerText = "Đã lưu video này vào danh sách Video đã lưu";
+                    notify_box.classList.add("appear");
+                    save_btn.classList.add('isLike');
+                    clearTimeout(g_timer); startTimer();
+                }
+            } else {
+                if (!modal_save.classList.contains("modal_light")) {
+                    modal_dislike.classList.remove("modal_light");
+                    modal_like.classList.remove("modal_light");
+                    modal_save.classList.toggle("modal_light");
+                } else {
+                    modal_dislike.classList.remove("modal_light");
+                    modal_like.classList.remove("modal_light");
+                    modal_save.classList.remove("modal_light");
                 }
             }
         })

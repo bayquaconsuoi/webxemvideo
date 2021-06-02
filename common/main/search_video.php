@@ -31,7 +31,7 @@ if (!empty($_SESSION['user'])) {
     </button>
     <div class="icon_page">
       <a href="../../main">
-        <img src="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png"
+        <img src="../../img/icon_page/icon_page.png"
           alt="" class="header-logo">
         <div class="icon_page-name">
           <span>Clone YOUTUBE</span>
@@ -68,7 +68,7 @@ if (!empty($_SESSION['user'])) {
                 <i class="fas header-icon fa-bell"></i>
               </button>
               <div class="dropdown">
-                <img onclick="avatar_dropDown()" src="../../img/$useravatar" alt="" class="dropbtn circular_image"
+                <img onclick="avatar_dropDown()" src="../../img/$useravatar" alt="" class="dropbtn circular_image" id="user_avatar"
                 style="margin-right: 8px;">
                 <div class="dropdown-content dropdown-content_header" id="avatar_dropdown_container">
                 <div class="dropdown-content_inner">
@@ -379,5 +379,9 @@ slider();
             z[i].innerHTML = a;
         }
     });
-
+    window.onclick = function (event) {
+        if(!event.target.matches('#user_avatar')){
+            document.getElementById("avatar_dropdown_container").classList.remove("show");
+        }
+    }
 </script>

@@ -76,12 +76,11 @@ if (!empty($_SESSION['user'])) {
               </a>
 
               <div class="dropdown">
-                <img onclick="avatar_dropDown()" src="../../img/$useravatar" alt="" class="dropbtn circular_image"
+                <img onclick="avatar_dropDown()" src="../../img/$useravatar" alt="" id="user_avatar" class="dropbtn circular_image"
                 style="margin-right: 8px;">
                 <div class="dropdown-content dropdown-content_header" id="avatar_dropdown_container">
                 <div class="dropdown-content_inner">
                   <div class="content_userinfo">
-        
                     <div>
                       <a href="#"><img src="../../img/$useravatar" alt=""
                           class="dropDown-avatar circular_image circular_image-header" style="width: 90px; height: 80px; border-radius: 50%;"></a>
@@ -263,9 +262,9 @@ if (!empty($_SESSION['user'])) {
                     <div class="title-upload crip_animate">
                         Video tải lên
                     </div>
-                    <div class="title-play">
+                    <!-- <div class="title-play">
                         <a href="#"><span>Phát tất cả</span></a>
-                    </div>
+                    </div> -->
                     <div class="title-sort">
                         <div class="fea-dropdown2 vid-dropdown">
                             <div class="title-sort_inner">
@@ -303,7 +302,7 @@ if (!empty($_SESSION['user'])) {
                     <!-- {{!-- wow fadeIn --}} -->
                     <?php
                     if(isset($_GET['id'])){
-                        $sql = "SELECT * FROM video WHERE video.user_id = ".$account['id'];
+                        $sql = "SELECT * FROM video WHERE !deleted_at AND video.user_id = ".$account['id'];
 
                         if(isset($_GET['sort'])) {
                             if($_GET['sort']=="desc"){
@@ -359,7 +358,7 @@ if (!empty($_SESSION['user'])) {
                                                                                     <span class="sidebar-options__icon">
                                                                                         <i class="fas fa-stream"></i>
                                                                                     </span>
-                                                                                    <span class="sidebar-options__name">Thêm vào Video xem sau</span>
+                                                                                    <span class="sidebar-options__name">Thêm vào Video đã lưu</span>
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
@@ -565,4 +564,36 @@ if (!empty($_SESSION['user'])) {
 <script>
 $('a.playlist').click(function() { return false; });
 $('a.communication').click(function() { return false; });
+</script>
+
+<script>
+    window.onclick = function (event) {
+        if(!event.target.matches('#user_avatar')){
+            document.getElementById("avatar_dropdown_container").classList.remove("show");
+        }
+        if(event.target.matches('#avatar-Modal')){
+            var modal = document.getElementById("avatar-Modal");
+            modal.style.display = "none";
+        }  
+        if (!event.target.matches('.fa-ellipsis-v')) {
+            var fea_dropdown = document.getElementsByClassName("fea-dropdown");
+            var j;
+            for (j = 0; j < fea_dropdown.length; j++) {
+                var openDropdown2 = fea_dropdown[j];
+                if (openDropdown2.classList.contains('visible')) {
+                    openDropdown2.classList.remove('visible');
+                    openDropdown2.classList.add('hidden');
+                }
+            }
+            var x = document.getElementsByClassName('vid-video-options');
+            var i;
+            for (i = 0; i < x.length; i++) {
+                var removeDot = x[i];
+                if (removeDot.classList.contains('noHover')) {
+                    removeDot.classList.remove('noHover');
+                }
+            }
+
+        }
+    }
 </script>

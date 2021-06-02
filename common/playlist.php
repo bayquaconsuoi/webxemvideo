@@ -42,7 +42,7 @@ if (!empty($_SESSION['user'])) {
     </button>
     <div class="icon_page">
       <a href="../main">
-        <img src="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png"
+        <img src="./../img/icon_page/icon_page.png"
           alt="" class="header-logo">
         <div class="icon_page-name">
           <span>Clone YOUTUBE</span>
@@ -155,7 +155,7 @@ if (!empty($_SESSION['user'])) {
           <div class="side-video_main" style="overflow: hidden;">
           <?php
             $sql ='SELECT islike.video_id_store, video.video_id FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE islike.user_id_store = '.$id;
-            $sql .= ' ORDER BY video.created_at DESC LIMIT 1';
+            $sql .= ' ORDER BY islike.created_at_like DESC LIMIT 1';
             $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
             $rs = mysqli_query($db,$sql);
             if (mysqli_num_rows($rs) > 0) {
@@ -171,10 +171,10 @@ if (!empty($_SESSION['user'])) {
             echo $no_top;
             }
           ?>
-            <div class="side-video_title">
+            <!-- <div class="side-video_title">
               <i class="fas fa-play"></i>
               <p style="display: inline-block;">Phát tất cả</p>
-            </div>
+            </div> -->
           </div>
           <div class="side-video_info">
             <div class="side-video_info-title">
@@ -198,11 +198,11 @@ if (!empty($_SESSION['user'])) {
                 </span>
               </div>
             </div>
-            <!-- <div class="side-video_info-personal">
+            <div class="side-video_info-personal">
               <div class="side-video_info-personal-box">
                 <i class="fas fa-lock"></i> Riêng tư
               </div>
-            </div> -->
+            </div>
             <div class="side-video_info-options">
               <!-- <div>
                 <i class="fas fa-random" style="cursor: pointer;"></i>
@@ -211,13 +211,13 @@ if (!empty($_SESSION['user'])) {
                 <i class="fas fa-ellipsis-h" onclick="video_info_options_dropdown()"
                   style="padding-left: 20px; cursor: pointer;"></i>
                 <div id="video_info-dropdown" class="video_info-dropdown-content">
-                  <a href="#" class="video_info-dropdown-text">
+                  <a href="./../common/main/progressLike_Dlike.php?type=deleteAll" class="video_info-dropdown-text">
                     <div class="video_info-dropdown-text_container">
                       <div>
-                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-trash-alt"></i>
                       </div>
                       <div class="video_info-dropdown_text">
-                        Hiện những video không xem được
+                        Xóa tất cả video đã thích
                       </div>
                     </div>
                   </a>
@@ -259,7 +259,7 @@ if (!empty($_SESSION['user'])) {
         <div class="main-videos_content-container">
           <?php 
               $sql = 'SELECT islike.video_id_store, video.video_id, video.id, video.tenvideo, video.user_name, video.created_at FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE islike.user_id_store ='.$id;
-              $sql .= " ORDER BY created_at ASC";
+              $sql .= " ORDER BY islike.created_at_like DESC";
               $video = executeResult($sql);
               $i = 0;
               foreach ($video as $item) {

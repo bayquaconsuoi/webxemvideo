@@ -17,8 +17,7 @@
   max-width: 450px;
   max-height: 400px;
   background-color: #fff;
-  margin: 15% auto; /* 15% from the top and centered */
-  
+  margin: 7% auto; /* 15% from the top and centered */
   border: 1px solid #888;
   border-radius: 10px;
   width: 30%; /* Could be more or less, depending on screen size */
@@ -26,6 +25,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  overflow-y: hidden;
 }
 .img-content{
     max-height: 200px;
@@ -115,11 +115,13 @@ input[type="file"] {
 .close_btn:hover,
 .close_btn:focus{
   background-color: #f44336;
+  opacity: 0.7;
   color: white;
 }
 .accept_btn:hover,
 .accept_btn:focus {
   background-color: #4CAF50;
+  opacity: 0.7;
   color: white;
 }
 .not_allow{
@@ -341,14 +343,33 @@ input[type="file"] {
   opacity: 0.98;
   display: block;
 }
-/* label{
-  display: inline-block;
-  float: left;
-  clear: left;
-  width: 150px;
-  text-align: left; /*Change to right here if you want it close to the inputs*/
-/* }
-input {
-display: inline-block;
-float: left;
-} */ 
+.modal_delete{
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  z-index: 999;
+}
+.modal_delete_content{
+  /* min-width: 450px; */
+  /* min-height: 400px; */
+  /* max-width: 450px; */
+  /* max-height: 400px; */
+  background-color: #fff;
+  margin: 15% auto;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;  
+}
+.modal_delete_text{
+  font-size: 1.6rem;
+  color: #373737;
+}

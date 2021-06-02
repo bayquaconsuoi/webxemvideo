@@ -3,11 +3,11 @@
 <link rel="stylesheet" href="../public/css/detail_page/uploaded_page.css">
 <link rel="stylesheet" href="../public/fontawesome-free-5.15.3-web/css/all.min.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+<!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
 <head>
 <title>Manage</title>
 <link rel="icon"
-        href="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png">
+        href="./../img/icon_page/icon_page.png">
 </head>
 <?php 
 require_once ('../db/dbhelper.php');
@@ -27,6 +27,8 @@ if ($info_user != null) {
   $email   = $info_user['email'];
   $phone = $info_user['phone'];
   $created_at = $info_user['created_at'];
+} else {
+  header("location: ../main/");
 }
 
 ?>
@@ -37,7 +39,7 @@ $userdetail = <<< EOD
 
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a href="../main/" class=" navbar-brand ">
-              <img src="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png"
+              <img src="./../img/icon_page/icon_page.png"
                 class="up_logo-page" />
               <div class="up_logo-name">Trung's YOUTUBE</div>
             </a>
@@ -48,9 +50,9 @@ $userdetail = <<< EOD
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <form class="form-inline my-2 my-lg-0">
-                <div class="up_search-container" style="cursor: not-allowed;">
-                  <i class="fas fa-search search_icon"></i>
-                  <input class="form-control mr-sm-2 search_input" type="search" style="border: none; cursor: not-allowed;" placeholder="Tìm kiếm trên kênh của bạn">
+                <div class="up_search-container">
+                  <i class="fas fa-search search_icon" style="cursor: pointer;"></i>
+                  <input class="form-control mr-sm-2 search_input" type="search" style="border: none;" placeholder="Tìm kiếm trên kênh của bạn">
                 </div>
               </form>
               <div class="up_create-container">
@@ -86,7 +88,7 @@ $userdetail = <<< EOD
                       <div class="up_icon">
                         <div>
                           <img
-                            src="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png"
+                            src="./../img/icon_page/icon_page.png"
                             class="up_dropdown-options-icon" />
                         </div>
 
@@ -205,47 +207,14 @@ $userdetail = <<< EOD
                       </div>
                     </div>
                   </div>
-                  <div class="videos-content-header" id="videos-content_actions">
-                    <div class="videos-content-sort_box" id="isCheckedLength">
-                      Đã chọn tất cả
-                    </div>
-                    <div class="videos-content-sort_box">
-                      Chỉnh sửa
-                      <div class="videos-content-sort_icon">
-                        <i class="fas fa-caret-down"></i>
-                      </div>
-                    </div>
-                    <div class="videos-content-sort_box">
-                      Thêm vào danh sách phát
-                      <div class="videos-content-sort_icon">
-                        <i class="fas fa-caret-down"></i>
-                      </div>
-                    </div>
-                    <div class="videos-content-sort_box">
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                          data-toggle="dropdown">
-                          Thao tác khác
-
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="button" class="close">&times;</button>
-                  </div>
+                 
                   <div class="videos-content">
                     <div class="videos-content-title">
-                      <div class="videos-content-box">
-                        <input type="checkbox" id="checkbox-all" name="courseAll">
-                      </div>
+                    <div class="videos-content-box-g title" style="width: 63px;"></div>
                       <div class="videos-content-box-g title video">Video</div>
-                      <div class="videos-content-box title day">Ngày</div>
+                      <div class="videos-content-box title day">Ngày đăng</div>
                       <div class="videos-content-box title view">Số lượt xem</div>
-                      <div class="videos-content-box title comment">Số lượt bình luận</div>
+
                       <div class="videos-content-box title like">Số lượt thích</div>
                     </div>
                     <div>
@@ -266,7 +235,7 @@ $userdetail = <<< EOD
                     $firstIndex = ($page-1)*$limit;
 
                     $sql = "SELECT * FROM video WHERE video.user_id = ".$_SESSION['user'];
-                    $sql .= " ORDER BY created_at DESC".' limit '.$firstIndex.', '.$limit;;
+                    $sql .= " AND !deleted_at ORDER BY created_at DESC".' limit '.$firstIndex.', '.$limit;;
                     $video = executeResult($sql);
 
                     $sql         = 'select count(id) as total from video where 1 ';
@@ -284,8 +253,9 @@ $userdetail = <<< EOD
                         foreach ($video as $item) {
                           $videos = <<< EOD
                             <div class="videos-content-main">
-                            <div class="videos-content-box">
-                              <input type="checkbox" class="checkbox-all" name="courseId[]" value="{$item['id']}">
+                            <div class="videos-content-box videos-content-box-options">
+                              <div class="videos_option_choice"><i class="fas fa-edit"></i> Chỉnh sửa </div>
+                              <div class="videos_option_choice delete_modal_btn" data-user_id="$id" data-video_id="{$item['id']}"><i class="fas fa-trash-alt"></i> Xóa </div>
                             </div>
                             <div class="videos-content-box-g video">
                               <div class="video-content_video">
@@ -293,16 +263,14 @@ $userdetail = <<< EOD
                                 <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="video-content_video-img" alt="404 Not Found">
                               </div>
                               <div class="video-content_name">
-                                <div>
-
-                                </div>
+                                    {$item['tenvideo']}
                               </div>
                               </div>
                             </div>
                             <div class="time" style="display: none;" data-value="{$item['created_at']}"></div>
                             <span class="videos-content-box day createTime"></span>
                             <div class="videos-content-box view">{$item['view_count']}</div>
-                            <div class="videos-content-box comment">Số lượt bình luận</div>
+
                             <div class="videos-content-box like">{$item['like_count']}</div>
                             </div>
                           EOD;
@@ -328,7 +296,23 @@ $div =<<<EOD
 <section class="cards cards_pagination">
     <?=paginarion($number, $page, '')?>
 </section>
-
+<!-- The Delete Modal -->
+<div class="modal fade" id="delete_modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn xóa video này chứ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary " id="delete_modal_close" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-danger" id="delete_modal_confirm">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- The Modal -->
 <div id="upload_modal" class="upload-modal">
 
@@ -400,6 +384,32 @@ $div =<<<EOD
   </div>
 
 </div>
+<a href="" id="middle_man"></a>
+<a href="" id="middle_man_all"></a>
+<!-- Notify Modal -->
+<?php
+if (!empty($_SESSION['success'])) {
+  $success = $_SESSION['success'];
+}
+if (isset($_SESSION['success'])) {
+  $modal =<<< EOD
+    <div class="notify_modal" id="notify_modal_id">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Thông báo</h5>
+          </div>
+          <div class="modal-body">
+            <p>$success</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  EOD;
+  echo $modal;
+  unset($_SESSION['success']);
+}
+?>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="../public/js/info_page.js"></script>
 <script src="../public/js/validate.js"></script>
@@ -409,6 +419,42 @@ $div =<<<EOD
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" 
 crossorigin="anonymous"></script>
+
+<script>
+  var open_delete_modal = document.querySelectorAll(".delete_modal_btn");
+  var delete_modal = document.getElementById("delete_modal");
+  var close_delete_modal = document.getElementById("delete_modal_close");
+  [].forEach.call(open_delete_modal, function(el) {
+    el.onclick = function() {
+      delete_modal.classList.add("show");
+        let data = $(el);
+        user_id = data.data('user_id');
+        video_id = data.data('video_id');
+    }
+    var btn_confirm_delete = document.getElementById('delete_modal_confirm');
+    btn_confirm_delete.onclick = function () {
+      middle_man.href = './../common/main/progressVideo.php?user_id='+ user_id +'&video_id='+ video_id +'&type=delete';
+      middle_man.click();
+    }
+  })
+  
+  close_delete_modal.onclick = function() {
+    delete_modal.classList.remove("show");
+  }
+  window.onclick = function(event) {
+    // if (!event.target.matches('#delete_modal_btn')) {
+    //   delete_modal.classList.remove("show");
+    //   delete_modal.classList.add("fade");
+    // }
+    if (!event.target.matches('.up_user-avatar')) {
+      var drop_down_avatar = document.getElementById("up_dropDown");
+      drop_down_avatar.classList.remove("show");
+    }
+  }
+  setTimeout(function() {
+    $('#notify_modal_id').addClass('notify_modal_hide');
+  }, 3500);
+</script>
 
 <script>
   $(document).ready(function () {
@@ -460,8 +506,8 @@ crossorigin="anonymous"></script>
       Validator.isRequired('#name'),
       Validator.isRequired('#description'),
       Validator.isRequired('#videoId'),
-      Validator.minLength('#name', 12),
-
+      Validator.minLength('#name', 5),
+      Validator.minLength('#description', 5),
 
     ],
 
@@ -472,7 +518,6 @@ crossorigin="anonymous"></script>
   function up_dropDown_nav() {
     document.getElementById("up_dropDown").classList.toggle("show");
   }
-
 </script>
 
 <script>
@@ -487,26 +532,15 @@ crossorigin="anonymous"></script>
   });
 </script>
 
-<script>
+<!-- <script>
   document.addEventListener('DOMContentLoaded', function () {
     var courseId;
     var deleteForm = document.forms['delete-course-form'];
     var checkboxAll = $('#checkbox-all');
+    var checkboxAll2 = $('.checkbox-all');
     var courseItemCheckbox = $('input[name="courseId[]"]')
-    var checkboxDo = $('.btn-check-box');
     var containerForm = document.forms['container-form'];
     var optionsBox = document.getElementById("videos-content_actions");
-
-    $('#delete-course').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget);
-      courseId = button.data('id');
-    });
-
-    // var btnDeleteCourse = document.getElementById('btn-delete-course');
-    // btnDeleteCourse.onclick = function () {
-    //   deleteForm.action = '/courses/' + courseId + '?_method=DELETE';
-    //   deleteForm.submit();
-    // }
 
 
     checkboxAll.change(function () {
@@ -520,9 +554,7 @@ crossorigin="anonymous"></script>
       } else {
         optionsBox.classList.remove("show-options");
       }
-      renderCheckAllSubmitBtn();
     });
-
 
     courseItemCheckbox.change(function () {
       var isCheckedArray = courseItemCheckbox.length === $('input[name="courseId[]"]:checked').length;
@@ -536,28 +568,16 @@ crossorigin="anonymous"></script>
       } else {
         optionsBox.classList.remove("show-options");
       }
-      renderCheckAllSubmitBtn();
     });
-    checkboxDo.click('submit', function (e) {
-      var isSubmittable = !$(this).hasClass('disabled');
-      if (!isSubmittable) {
-        e.preventDefault();
-      }
-    });
-    function renderCheckAllSubmitBtn() {
-      var checkedCount = $('input[name="courseId[]"]:checked').length;
-      if (checkedCount > 0) {
-        checkboxDo.removeClass('disabled');
-      } else {
-        checkboxDo.addClass('disabled');
-      }
-    }
-  });
-</script>
 
-<!-- <script>
-  $('.dropdown-toggle').dropdown()
+    var close_btn = document.getElementById("video_info_page_close");
+    var modal_options = document.getElementById("videos-content_actions");
+    close_btn.onclick = function() {
+      modal_options.classList.remove("show-options");
+      checkboxAll2.prop('checked',false);
+      checkboxAll.prop('checked',false);
+    }  
+  });
 </script> -->
 
-
-<!-- //  https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png  -->
+<!-- //  ./../img/icon_page/icon_page.png  -->

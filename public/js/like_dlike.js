@@ -29,7 +29,7 @@ $(document).ready(function () {
 function startTimer() {
     g_timer = window.setTimeout(function () {
         $('#notification').removeClass('appear');
-    }, 3000);
+    }, 5000);
 }
 
 window.onclick = function (event) {

@@ -12,7 +12,7 @@ if (!empty($_SESSION['user'])) {
 	<title>Trang chủ</title>
 	<!-- Icon -->
 	<link rel="icon"
-        href="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png">
+        href="../img/icon_page/icon_page.png">
 	<!-- Boostrap -->
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
 
@@ -99,7 +99,7 @@ if (!empty($_SESSION['user'])) {
                     </li>
 
                     <li class="sidebar-options__item">
-                        <a href="#" class="sidebar-options__link">
+                        <a href="./../common/history.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-history"></i>
                             </span>
@@ -114,7 +114,7 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-clock"></i>
                             </span>
-                            <span class="sidebar-options__name">Xem sau</span>
+                            <span class="sidebar-options__name">Video đã lưu</span>
                         </a>
                     </li>
 
@@ -134,8 +134,8 @@ if (!empty($_SESSION['user'])) {
                 $Un_user_sidebar = <<< EOD
                 <ul class="sidebar-options-second">
                     <li class="sidebar-options-item__unlogin">
-                        <div class="sidebar-options-name__unlogin">Hãy đăng nhập để thích video, bình luận và đăng ký
-                            kênh.
+                        <div class="sidebar-options-name__unlogin">Hãy đăng nhập để thích video, lưu lại video yêu thích và đăng ký
+                        kênh.
                             <a type="button" class="sidebar-options-login-link" href="../common/account_manage/manage.php">
                                 <div class="sidebar-options-login-link_out-container">
                                     <div class="sidebar-options-login-link_container">
@@ -284,27 +284,6 @@ if (!empty($_SESSION['user'])) {
 
 <script>
 
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
 
 // create dark mode button
 function darkMode() {

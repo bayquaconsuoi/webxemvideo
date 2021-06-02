@@ -76,7 +76,7 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-clock"></i>
                             </span>
-                            <span class="sidebar-options__name">Xem sau</span>
+                            <span class="sidebar-options__name">Video đã lưu</span>
                         </a>
                     </li>
 
@@ -96,7 +96,7 @@ if (!empty($_SESSION['user'])) {
                 $Un_user_sidebar = <<< EOD
                 <ul class="sidebar-options-second">
                     <li class="sidebar-options-item__unlogin">
-                        <div class="sidebar-options-name__unlogin">Hãy đăng nhập để thích video, bình luận và đăng ký
+                        <div class="sidebar-options-name__unlogin">Hãy đăng nhập để thích video, lưu lại video yêu thích và đăng ký
                             kênh.
                             <a type="button" class="sidebar-options-login-link" href="../common/account_manage/manage.php">
                                 <div class="sidebar-options-login-link_out-container">

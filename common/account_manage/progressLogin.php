@@ -2,7 +2,7 @@
 require_once ('../../db/dbhelper.php');
 session_start();
     $u = $_POST['usernameLogin'];
-    $p = $_POST['passwordLogin'];
+    $p = $_POST['passwordLogin']; $p = md5($p);
     
     $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
 
