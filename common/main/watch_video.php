@@ -6,9 +6,9 @@ require_once ('../../db/dbhelper.php');
             $sql     = 'select * from video where !deleted_at and id = '.$id;
             $item = executeSingleResult($sql);
             if($item == NULL) {
-                header("location: ../../main/");
+                header("location: 404.php");
             }
-            $sql = 'UPDATE video SET view_count = view_count+1 WHERE !deleted_at id = '.$id;
+            $sql = 'UPDATE video SET view_count = view_count+1 WHERE !deleted_at AND id = '.$id;
             execute($sql);
         }
 ?>
@@ -36,26 +36,29 @@ if (!empty($_SESSION['user'])) {
         $phone = $info_user['phone'];
         $useravatar = $info_user['user_avatar'];
     }
+
     $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
     $sql = 'select * from history where user_id_his=("'.$_SESSION['user'].'") and video_id_his=("'.$_GET['id'].'")';
     execute($sql);
     $is_have = mysqli_query($db,$sql);
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $created_at = date("Y-m-d H:i:s");
-    if (mysqli_num_rows($is_have) > 0) {
-        $sql = 'UPDATE history SET created_at_his=("'.$created_at.'") where user_id_his=("'.$_SESSION['user'].'") and video_id_his=("'.$_GET['id'].'")';
+    if($item != NULL) {
+        if (mysqli_num_rows($is_have) > 0) {
+            $sql = 'UPDATE history SET created_at_his=("'.$created_at.'") where user_id_his=("'.$_SESSION['user'].'") and video_id_his=("'.$_GET['id'].'")';
+            execute($sql);
+        } else {
+            $sql = 'insert into history(user_id_his, video_id_his, created_at_his) values ("'.$_SESSION['user'].'","'.$_GET['id'].'", "'.$created_at.'")';
+            execute($sql);
+        }
+        $sql = 'select * from history';
         execute($sql);
-    } else {
-        $sql = 'insert into history(user_id_his, video_id_his, created_at_his) values ("'.$_SESSION['user'].'","'.$_GET['id'].'", "'.$created_at.'")';
-        execute($sql);
-    }
-    $sql = 'select * from history';
-    execute($sql);
-    $limit = mysqli_query($db,$sql);
-    if (mysqli_num_rows($limit) > 30) {
-        $sql = "DELETE FROM history ORDER BY created_at_his ASC LIMIT 1";
-        execute($sql);
-        echo $sql;
+        $limit = mysqli_query($db,$sql);
+        if (mysqli_num_rows($limit) > 30) {
+            $sql = "DELETE FROM history ORDER BY created_at_his ASC LIMIT 1";
+            execute($sql);
+            echo $sql;
+        }
     }
 }
 ?>
@@ -301,7 +304,7 @@ if (!empty($_SESSION['user'])) {
         if (mysqli_num_rows($save) > 0) {
         $saved =<<<EOD
             <div id="save">
-                <a rel="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add" class="video-link isLike video-link-sp" id="fool-save">
+                <a rel="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add&where=watch" class="video-link isLike video-link-sp" id="fool-save">
                     <div><i class="video-icon fa-2x fas fa-save"></i></div>
                     <div>Lưu</div>
                 </a>
@@ -311,7 +314,7 @@ if (!empty($_SESSION['user'])) {
         } else {
         $saved =<<<EOD
             <div id="save">
-                <a rel="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add" class="video-link video-link-sp" id="fool-save">
+                <a rel="../../common/main/progressLater.php?user_id=$id&video_id={$item['id']}&type=add&where=watch" class="video-link video-link-sp" id="fool-save">
                     <div><i class="video-icon fa-2x fas fa-save"></i></div>
                     <div>Lưu</div>
                 </a>

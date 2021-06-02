@@ -59,10 +59,10 @@ if (!empty($_SESSION['user'])) {
   <?php 
   if (isset($_SESSION['user'])) {
             $user = <<< EOD
-              <button class="header-create-btn btn-active" href="#" id="myForm">
+              <a class="header-create-btn btn-active" href="../detail_info_page.php?up">
                 <div class="btn-bgc"></div>
                 <i class="fas header-icon fa-video"></i>
-              </button>
+              </a>
               <button class="header-notifications-btn btn-active">
                 <div class="btn-bgc"></div>
                 <i class="fas header-icon fa-bell"></i>

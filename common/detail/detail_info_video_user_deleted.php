@@ -1,17 +1,17 @@
-<link rel="stylesheet" href="../public/css/detail_page/boostrap.css">
-<link rel="stylesheet" href="../public/css/detail_page/style.css">
-<link rel="stylesheet" href="../public/css/detail_page/uploaded_page.css">
-<link rel="stylesheet" href="../public/fontawesome-free-5.15.3-web/css/all.min.css">
+<link rel="stylesheet" href="../../public/css/detail_page/boostrap.css">
+<link rel="stylesheet" href="../../public/css/detail_page/style.css">
+<link rel="stylesheet" href="../../public/css/detail_page/uploaded_page.css">
+<link rel="stylesheet" href="../../public/fontawesome-free-5.15.3-web/css/all.min.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
 <head>
 <title>Manage</title>
 <link rel="icon"
-        href="./../img/icon_page/icon_page.png">
+        href="../../img/icon_page/icon_page.png">
 </head>
 <?php 
-require_once ('../db/dbhelper.php');
-include_once('./../common/utility.php');
+require_once ('../../db/dbhelper.php');
+include_once('../../common/utility.php');
 session_start();
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
@@ -28,7 +28,7 @@ if ($info_user != null) {
   $phone = $info_user['phone'];
   $created_at = $info_user['created_at'];
 } else {
-  header("location: ../main/");
+  header("location: ../../main/");
 }
 
 ?>
@@ -38,8 +38,8 @@ $userdetail = <<< EOD
           <div class="up_container">
 
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="../main/" class=" navbar-brand ">
-              <img src="./../img/icon_page/icon_page.png"
+            <a href="../../main/" class=" navbar-brand ">
+              <img src="../../img/icon_page/icon_page.png"
                 class="up_logo-page" />
               <div class="up_logo-name">Trung's YOUTUBE</div>
             </a>
@@ -62,18 +62,18 @@ $userdetail = <<< EOD
                 </button>
               </div>
               <div class="up_user-avatar_nav">
-                <img src="../img/$useravatar" class="up_user-avatar" alt="" onclick="up_dropDown_nav()">
+                <img src="../../img/$useravatar" class="up_user-avatar" alt="" onclick="up_dropDown_nav()">
                 <div id="up_dropDown" class="up_dropdown-content">
                   <div class="up_dropdown-userinfo">
                     <div class="up_dropdown-user-avatar">
-                      <img src="../img/$useravatar" class="up_user-avatar-dropdown" alt="">
+                      <img src="../../img/$useravatar" class="up_user-avatar-dropdown" alt="">
                     </div>
                     <div class="up_dropdown-user-name">
                       $username
                     </div>
                   </div>
                   <div class="up_dropdown-options">
-                    <a href="../common/channel_user/channel.php?id=$id">
+                    <a href="../../common/channel_user/channel.php?id=$id">
                       <div class="up_icon">
                         <div>
                           <i class="up_dropdown-options-icon far fa-user-circle"></i>
@@ -84,11 +84,11 @@ $userdetail = <<< EOD
                     </a>
                   </div>
                   <div class="up_dropdown-options">
-                    <a href="../main/">
+                    <a href="../../main/">
                       <div class="up_icon">
                         <div>
                           <img
-                            src="./../img/icon_page/icon_page.png"
+                            src="../../img/icon_page/icon_page.png"
                             class="up_dropdown-options-icon" />
                         </div>
 
@@ -97,7 +97,7 @@ $userdetail = <<< EOD
                     </a>
                   </div>
                   <div class="up_dropdown-options">
-                    <a href="../common/account_manage/progressLogout.php">
+                    <a href="../../common/account_manage/progressLogout.php">
                       <div class="up_icon">
                         <div>
                           <i class="up_dropdown-options-icon fas fa-sign-out-alt"></i>
@@ -119,7 +119,7 @@ $userdetail = <<< EOD
                 <div class="side-inner_container">
                   <div class="side-inner_userinfo">
                     <div class="user_avatar">
-                      <a href="../common/channel_user/channel.php?id=$id"><img src="../img/$useravatar" alt=""></a>
+                      <a href="../../common/channel_user/channel.php?id=$id"><img src="../../img/$useravatar" alt=""></a>
                     </div>
                     <div class="user_title">
                       Kênh của bạn
@@ -130,8 +130,8 @@ $userdetail = <<< EOD
                   </div>
                   <div class="side-inner_options">
                     <ul class="sidebar-options-first">
-                      <li class="sidebar-options__item selected">
-                        <a href="" class="sidebar-options__link">
+                      <li class="sidebar-options__item ">
+                        <a href="../../common/detail_info_video_user.php" class="sidebar-options__link">
                           <span class="sidebar-options__icon">
                             <i class="fab fa-youtube"></i>
                           </span>
@@ -139,8 +139,8 @@ $userdetail = <<< EOD
                         </a>
                       </li>
 
-                      <li class="sidebar-options__item">
-                        <a href="detail/detail_info_video_user_deleted.php" class="sidebar-options__link">
+                      <li class="sidebar-options__item selected">
+                        <a href="" class="sidebar-options__link">
                           <span class="sidebar-options__icon">
                             <i class="fas fa-trash"></i>
                           </span>
@@ -193,9 +193,9 @@ $userdetail = <<< EOD
                  
                   <div class="videos-content">
                     <div class="videos-content-title">
-                    <div class="videos-content-box-g title" style="width: 63px;"></div>
+                    <div class="videos-content-box-g title" style="width: 76px;"></div>
                       <div class="videos-content-box-g title video">Video</div>
-                      <div class="videos-content-box title day">Ngày đăng</div>
+                      <div class="videos-content-box title day">Ngày xóa</div>
                       <div class="videos-content-box title view">Số lượt xem</div>
 
                       <div class="videos-content-box title like">Số lượt thích</div>
@@ -218,7 +218,7 @@ $userdetail = <<< EOD
                     $firstIndex = ($page-1)*$limit;
 
                     $sql = "SELECT * FROM video WHERE video.user_id = ".$_SESSION['user'];
-                    $sql .= " AND !deleted_at ORDER BY created_at DESC".' limit '.$firstIndex.', '.$limit;;
+                    $sql .= " AND deleted_at ORDER BY created_at DESC".' limit '.$firstIndex.', '.$limit;;
                     $video = executeResult($sql);
 
                     $sql         = 'select count(id) as total from video where 1 ';
@@ -237,8 +237,8 @@ $userdetail = <<< EOD
                           $videos = <<< EOD
                             <div class="videos-content-main">
                             <div class="videos-content-box videos-content-box-options">
-                              <div class="videos_option_choice text-warning"><i class="fas fa-edit"></i> Chỉnh sửa </div>
-                              <div class="videos_option_choice delete_modal_btn text-danger" data-user_id="$id" data-video_id="{$item['id']}"><i class="fas fa-trash-alt"></i> Xóa </div>
+                              <div class="videos_option_choice text-primary"><a href ="../../common/main/progressVideo.php?user_id=$user&video_id={$item['id']}&type=restore"><i class="fas fa-edit"></i> Khôi phục </a> </div>
+                              <div class="videos_option_choice delete_modal_btn text-danger" data-user_id="$id" data-video_id="{$item['id']}"><i class="fas fa-trash-alt"></i> Xóa vĩnh viễn </div>
                             </div>
                             <div class="videos-content-box-g video">
                               <div class="video-content_video">
@@ -250,7 +250,7 @@ $userdetail = <<< EOD
                               </div>
                               </div>
                             </div>
-                            <div class="time" style="display: none;" data-value="{$item['created_at']}"></div>
+                            <div class="time" style="display: none;" data-value="{$item['deleted_at']}"></div>
                             <span class="videos-content-box day createTime"></span>
                             <div class="videos-content-box view">{$item['view_count']}</div>
 
@@ -286,12 +286,15 @@ $div =<<<EOD
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
       </div>
-      <div class="modal-body">
-        Bạn chắc chắn muốn xóa video này chứ?
+      <div class="modal-body" style="text-align: center;">
+        <p class="text-danger">
+        Bạn chắc chắn muốn xóa VĨNH VIỄN video này chứ? <br>
+        <-- Một khi đã xóa sẽ không khôi phục được  -->
+        </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary " id="delete_modal_close" data-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-danger" id="delete_modal_confirm">Xóa</button>
+        <button type="button" class="btn btn-danger" id="delete_modal_confirm"> Chắc chắn Xóa</button>
       </div>
     </div>
   </div>
@@ -312,7 +315,7 @@ $div =<<<EOD
       </div>
       <div class="upload-modal-main">
 
-        <form class="mt-4" method="POST" id="submit_form" action="channel_user/progressUp.php">
+        <form class="mt-4" method="POST" id="submit_form" action="../channel_user/progressUp.php">
           <div id="main_form">
             <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id;?>">
             <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $username;?>">
@@ -394,9 +397,9 @@ if (isset($_SESSION['success'])) {
 }
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="../public/js/info_page.js"></script>
-<script src="../public/js/validate.js"></script>
-<script src="../public/js/moment.js"></script>
+<script src="../../public/js/info_page.js"></script>
+<script src="../../public/js/validate.js"></script>
+<script src="../../public/js/moment.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src='https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
@@ -416,7 +419,7 @@ crossorigin="anonymous"></script>
     }
     var btn_confirm_delete = document.getElementById('delete_modal_confirm');
     btn_confirm_delete.onclick = function () {
-      middle_man.href = './../common/main/progressVideo.php?user_id='+ user_id +'&video_id='+ video_id +'&type=fake_delete';
+      middle_man.href = '../../common/main/progressVideo.php?user_id='+ user_id +'&video_id='+ video_id +'&type=real_delete';
       middle_man.click();
     }
   })

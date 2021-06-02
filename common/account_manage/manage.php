@@ -38,8 +38,8 @@ if (!empty($_SESSION['fail'])) {
         <div class="input-field">
           <i class="fas fa-user"></i>
           <div style="position: relative;">
-            <input type="text" id="usernameLogin" name="usernameLogin" placeholder="Tên đăng nhập" />
-            <label for="usernameLogin">Tên đăng nhập</label>
+            <input type="text" id="emailLogin" name="emailLogin" placeholder="Email đăng nhập" />
+            <label for="emailLogin">Email đăng nhập</label>
             <div class="form__input-error-message"></div>
           </div>
         </div>
@@ -59,8 +59,8 @@ if (!empty($_SESSION['fail'])) {
         <div class="input-field">
           <i class="fas fa-user"></i>
           <div style="position: relative;">
-            <input type="text" id="username" name="username" placeholder="Tên đăng nhập" />
-            <label for="username">Tên đăng nhập</label>
+            <input type="text" id="username" name="username" placeholder="Tên tài khoản" />
+            <label for="username">Tên tài khoản</label>
             <div class="form__input-error-message"></div>
           </div>
         </div>
@@ -151,8 +151,8 @@ if (!empty($_SESSION['fail'])) {
     formGroupSelector: '.input-field',
     errorSelector: '.form__input-error-message',
     rules: [
-      Validator.isRequired('#usernameLogin'),
-      Validator.minLength('#usernameLogin', 5),
+      Validator.isRequired('#emailLogin'),
+      Validator.isEmail('#emailLogin'),
       Validator.isRequired('#passwordLogin'),
       Validator.minLength('#passwordLogin', 8),
     ],

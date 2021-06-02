@@ -6,10 +6,10 @@
 <head>
 <title>Manage</title>
 <link rel="icon"
-        href="./../img/icon_page/icon_page.png">
+        href="../img/icon_page/icon_page.png">
 </head>
 <?php
-require_once ('../db/dbhelper.php');
+require_once ('./../db/dbhelper.php');
 session_start();
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
@@ -26,7 +26,7 @@ if ($info_user != null) {
   $phone = $info_user['phone'];
   $created_at = $info_user['created_at'];
 } else {
-  header("location: ../main/");
+  header("location: ./../main/");
 }
 
 ?>
@@ -41,11 +41,11 @@ if (isset($_SESSION['user'])) {
           <div class="icon_page-container">
             <div>
               <a href="./../common/channel_user/channel.php?id=$id">
-                <img src="./../img/$useravatar" class="icon" alt="">
+                <img src="../img/$useravatar" class="icon" alt="">
               </a>
             </div>
             <div>
-              <h5> $username </h5>
+              <h5 style="text-align: center;"> $username </h5>
             </div>
           </div>
 
@@ -53,8 +53,8 @@ if (isset($_SESSION['user'])) {
       </div>
       <div class="row">
         <div class="outBtn">
-          <a href="../main">
-            <img src="./../img/icon_page/icon_page.png"
+          <a href="./../main">
+            <img src="../img/icon_page/icon_page.png"
               alt="" style="width: 48px; border-radius: 50%;">
             <div class="up_logo-name">Clone Youtube</div>
           </a>
@@ -99,7 +99,7 @@ if (isset($_SESSION['user'])) {
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <label>Điện thoại :</label>
+                  <label>Tên tài khoản :</label>
                 </div>
                 <div class="col-md-6">
                   <p> $username </p>
@@ -153,11 +153,11 @@ if (isset($_SESSION['user'])) {
         </button>
       </div>
       <div class="modal-body">
-        <form action="account_manage/progressEdit.php?id=<?php echo $id ?>" id="edit_form" method="POST" enctype="multipart/form-data">
+        <form action="../common/account_manage/progressEdit.php?id=<?php echo $id ?>" id="edit_form" method="POST" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="file_upload">
                   <div class="user-avatar_container">
-                    <img class="icon" id="blah" src="./../img/<?php echo $useravatar ?>"/>
+                    <img class="icon" id="blah" src="../img/<?php echo $useravatar ?>"/>
                       <div class="avatar_hover">
                         <i class="fas fa-camera "></i>
                       </div>
@@ -206,7 +206,7 @@ if (isset($_SESSION['user'])) {
       </div>
       <div class="upload-modal-main">
 
-        <form class="mt-4" method="POST" id="submit_form" action="channel_user/progressUp.php">
+        <form class="mt-4" method="POST" id="submit_form" action="../common/channel_user/progressUp.php">
           <div id="main_form">
             <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id;?>">
             <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $username;?>">

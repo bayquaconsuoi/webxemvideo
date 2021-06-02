@@ -206,6 +206,8 @@ body {
 #featured{
   background-color: var(--channel-bgc);
   padding-top: 20px;
+  min-height: 510px;
+
 }
 .fea-title{
 
@@ -450,6 +452,9 @@ body {
 #video {
   background-color: var(--channel-bgc);
   padding-top: 20px;
+
+  min-height: 510px;
+
 }
 .vid-mini-video{
     min-width: 0;

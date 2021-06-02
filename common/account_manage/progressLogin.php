@@ -1,12 +1,12 @@
 <?php
 require_once ('../../db/dbhelper.php');
 session_start();
-    $u = $_POST['usernameLogin'];
+    $u = $_POST['emailLogin'];
     $p = $_POST['passwordLogin']; $p = md5($p);
     
     $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
 
-    $sql = "select * from account where user_name='$u' and password='$p'";
+    $sql = "select * from account where email='$u' and password='$p'";
 
     //Truy van
     $rs = mysqli_query($db,$sql);

@@ -99,4 +99,10 @@
       height: 186px;
     }
   }
-  
+.page_404{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+

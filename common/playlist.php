@@ -154,7 +154,25 @@ if (!empty($_SESSION['user'])) {
         <div class="side_container-main">
           <div class="side-video_main" style="overflow: hidden;">
           <?php
-            $sql ='SELECT islike.video_id_store, video.video_id FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE islike.user_id_store = '.$id;
+          if(isset($_GET['see'])){
+            $sql ='SELECT islike.video_id_store, video.video_id FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE video.deleted_at AND islike.user_id_store = '.$id;
+            $sql .= ' ORDER BY islike.created_at_like DESC LIMIT 1';
+            $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
+            $rs = mysqli_query($db,$sql);
+            if (mysqli_num_rows($rs) > 0) {
+              $top_video = executeSingleResult($sql);
+                $top =<<<EOD
+                  <img src="https://img.youtube.com/vi/{$top_video['video_id']}/sddefault.jpg" class="side-video_main-img" >
+                EOD;
+              echo $top;
+              } else {
+                $no_top = <<<EOD
+                  <img src="https://img.youtube.com/vi/404/sddefault.jpg" class="side-video_main-img" >
+                EOD;
+              echo $no_top;
+              }
+          } else {
+            $sql ='SELECT islike.video_id_store, video.video_id FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE !video.deleted_at AND islike.user_id_store = '.$id;
             $sql .= ' ORDER BY islike.created_at_like DESC LIMIT 1';
             $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
             $rs = mysqli_query($db,$sql);
@@ -170,6 +188,7 @@ if (!empty($_SESSION['user'])) {
               EOD;
             echo $no_top;
             }
+          }
           ?>
             <!-- <div class="side-video_title">
               <i class="fas fa-play"></i>
@@ -188,7 +207,7 @@ if (!empty($_SESSION['user'])) {
                   • Số video đã thích là
                   <?php 
                   $sql = 'SELECT count(*) as count FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) 
-                  INNER JOIN account ON islike.user_id_store = account.id) WHERE islike.user_id_store = '.$id;
+                  INNER JOIN account ON islike.user_id_store = account.id) WHERE !video.deleted_at AND islike.user_id_store = '.$id;
                   $count_video = executeSingleResult($sql); 
                   $count = $count_video['count'];
                   echo $count;
@@ -202,7 +221,27 @@ if (!empty($_SESSION['user'])) {
               <div class="side-video_info-personal-box">
                 <i class="fas fa-lock"></i> Riêng tư
               </div>
+              <div class="side-video_info-personal-box">
+                <div class="video_info-drop">
+                  <i class="fas fa-eye see_icon" onclick="video_info_see_dropdown()"></i>
+                  <div id="video_see-dropdown" class="video_info-dropdown-content">
+                    <div class="video_info-dropdown-text" style="cursor: pointer;">
+                      <a href="?see=not">
+                        <div class="video_info-dropdown-text_container">
+                          <div>
+                            <i class="fas fa-eye"></i>
+                          </div>
+                          <div class="video_info-dropdown_text">
+                            Hiện những video không xem được
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            
             <div class="side-video_info-options">
               <!-- <div>
                 <i class="fas fa-random" style="cursor: pointer;"></i>
@@ -258,7 +297,71 @@ if (!empty($_SESSION['user'])) {
           ?>
         <div class="main-videos_content-container">
           <?php 
-              $sql = 'SELECT islike.video_id_store, video.video_id, video.id, video.tenvideo, video.user_name, video.created_at FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE islike.user_id_store ='.$id;
+          if(isset($_GET['see'])) {
+            $sql = 'SELECT islike.video_id_store, video.video_id, video.id, video.tenvideo, video.user_name, video.created_at FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE video.deleted_at AND islike.user_id_store ='.$id;
+            $sql .= " ORDER BY islike.created_at_like DESC";
+            $video = executeResult($sql);
+            $i = 0;
+            foreach ($video as $item) {
+              $i = $i + 1 ;
+              $playlist_video = <<< EOD
+                <div class="main-video_content-container">
+                  <div class="main-video_content-container_inner">
+                    <div class="main-video_index">
+                      <div class="main-video_index-content">
+                        $i
+                      </div>
+                    </div>
+                  
+                    <a href="./../common/main/watch_video.php?id={$item['video_id_store']}">
+                      <div class="main-video_main-info">
+                  
+                        <div class="main-video_img">
+                          <div class="main-video_img-content">
+                            <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="main-video_image">
+                          </div>
+                        </div>
+                  
+                        <div class="main-video_info">
+                          <div class="main-video_title-container">
+                            <div class="main-video_title">
+                              {$item['tenvideo']}
+                            </div>
+                          </div>
+                          <div class="main-video_username-container">
+                            <div class="main-video_username">
+                              {$item['user_name']}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  
+                    <div class="main-video-options">
+                      <div class="main-video_dropdown">
+                        <button class="main-video_dropdown-btn"><i class="fas fa-ellipsis-v"></i></i></button>
+                        <div id="main-video_dropdown" class="main-viddeo_dropdown-content">
+                          <ul class="main-video_sidebar-options">
+                            <li class="main-video_sidebar-options__item">
+                              <a href="./../common/main/progressLike_Dlike.php?user_id=$id&video_id={$item['id']}&type=p_dislike" class="sidebar-options__link">
+                                <span class="sidebar-options__icon">
+                                  <i class="fas fa-trash"></i>
+                                </span>
+                                <span class="sidebar-options__name">Xóa khỏi Video đã thích</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              EOD;
+              echo $playlist_video;
+            }
+          } else {
+              $sql = 'SELECT islike.video_id_store, video.video_id, video.id, video.tenvideo, video.user_name, video.created_at FROM ((islike INNER JOIN video ON islike.video_id_store = video.id) INNER JOIN account ON islike.user_id_store = account.id) WHERE !video.deleted_at AND islike.user_id_store ='.$id;
               $sql .= " ORDER BY islike.created_at_like DESC";
               $video = executeResult($sql);
               $i = 0;
@@ -320,6 +423,7 @@ if (!empty($_SESSION['user'])) {
                 EOD;
                 echo $playlist_video;
               }
+          }
           ?>
         </div>
       </div>
@@ -339,10 +443,10 @@ if (!empty($_SESSION['user'])) {
 </div>
 
 <script>
-  function video_info_options_dropdown() {
-    document.getElementById("video_info-dropdown").classList.toggle("flex_show");
-  }
 
+  function video_info_see_dropdown() {
+    document.getElementById("video_see-dropdown").classList.toggle("flex_show");
+  }
 </script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="../public/js/moment.js"></script>

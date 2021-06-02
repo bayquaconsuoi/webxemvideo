@@ -199,7 +199,7 @@ if (!empty($_SESSION['user'])) {
                 <i class="fas fa-random" style="cursor: pointer;"></i>
               </div> -->
               <div class="video_info-drop">
-                <i class="fas fa-ellipsis-h" onclick="video_info_options_dropdown()"
+                <i class="fas fa-trash-alt" onclick="video_info_options_dropdown()"
                   style="padding-left: 20px; cursor: pointer;"></i>
                 <div id="video_info-dropdown" class="video_info-dropdown-content">
                   <a href="./../common/main/progressHistory.php?type=deleteAll" class="video_info-dropdown-text">
