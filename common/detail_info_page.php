@@ -70,10 +70,7 @@ if (isset($_SESSION['user'])) {
                 <a class="nav-link" id="create-tab" href="detail_info_video_user.php">
                 Quản lý video đã đăng</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" id="save-tab" data-toggle="tab" href="#save" role="tab" aria-controls="save"
-                  aria-selected="false">Quản lý video đã lưu</a>
-              </li>
+              
             </ul>
           </div>
         </div>
@@ -167,8 +164,8 @@ if (isset($_SESSION['user'])) {
                 <div><?php echo $username ?></div>
               </div>
               <div class="form-group">
-                <label class="form_title" for="name">Tên tài khoản</label>
-                <input type="text" class="form-control" id="name" name="name" value="<?php echo $username ?>">
+                <label class="form_title" for="username">Tên tài khoản</label>
+                <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>">
                 <div class="form__input-error-message"></div>
               </div>
               <div class="form-group">
@@ -213,17 +210,23 @@ if (isset($_SESSION['user'])) {
             <input type="hidden" class="form-control" id="useravatar" name="useravatar" value="<?php echo $useravatar;?>">
             <div class="form-group">
               <label for="name">Tiêu đề</label>
-              <textarea class="form-control" id="name" name="name"></textarea>
+              <textarea class="form-control" id="name" maxlength="100" name="name"></textarea>
+              <div id="name_count">
+
+              </div>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
               <label for="description">Mô tả</label>
-              <textarea class="form-control" id="description" name="description"></textarea>
+              <textarea class="form-control" id="description" maxlength="5000" name="description"></textarea>
+              <div id="description_count">
+                
+              </div>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
               <label for="videoId">VideoID</label>
-              <textarea class="form-control" id="videoId" name="videoId"></textarea>
+              <textarea class="form-control" id="videoId" maxlength="32" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
             <div class="col text-center">
@@ -261,6 +264,7 @@ if (isset($_SESSION['user'])) {
   </div>
 
 </div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="../public/js/info_page.js"></script>
 <script src="../public/js/validate.js"></script>
@@ -299,10 +303,12 @@ crossorigin="anonymous"></script>
     $("#name").keyup(function () {
       var nam_value = $(this).val();
       $("#p_name").text(nam_value);
+      $("#name_count").text($(this).val().length + "/100");
     });
     $("#description").keyup(function () {
       var des_value = $(this).val();
       $("#p_description").text(des_value);
+      $("#description_count").text($(this).val().length + "/5000");
     });
 
   });
@@ -341,9 +347,6 @@ crossorigin="anonymous"></script>
        });
        $("#submit_video_form").click(function() {
         validVideoId(add);
-        //  if(x) {
-        //    $("#submit_form").submit();
-        //  }
        });
     });
 </script>
@@ -368,10 +371,10 @@ crossorigin="anonymous"></script>
     formGroupSelector: '.form-group',
     errorSelector: '.form__input-error-message',
     rules: [
-      Validator.isRequired('#name'),
+      Validator.isRequired('#username'),
       Validator.isRequired('#email'),
       Validator.isRequired('#phone'),
-      Validator.minLength('#name', 5),
+      Validator.minLength('#username', 5),
       Validator.minLength('#email', 12),
       Validator.minLength('#phone', 9),
       Validator.isEmail('#email'),
@@ -390,12 +393,14 @@ crossorigin="anonymous"></script>
 </script>
 
 <script>
+  
 $("textarea").each(function () {
   this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
 }).on("input", function () {
   this.style.height = "auto";
   this.style.height = (this.scrollHeight) + "px";
 });
+
 
 function validVideoId(id) {
 		var img = new Image();
@@ -405,7 +410,7 @@ function validVideoId(id) {
 		}
 	}
 
-	function checkThumbnail(width) {
+function checkThumbnail(width) {
 		//HACK a mq thumbnail has width of 320.
 		//if the video does not exist(therefore thumbnail don't exist), a default thumbnail of 120 width is returned.
 		if (width === 120) {
@@ -413,6 +418,7 @@ function validVideoId(id) {
 		} else {
       $("#submit_form").submit();
     }
-	}
+}
+
 </script>
 <!-- //  https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png  -->

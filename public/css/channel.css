@@ -251,8 +251,8 @@ body {
 
 }
 .fea-video-img{
-  width: 246px;
-  height: 168px;
+  width: 250px;
+  height: 150px;
 }
 .fea-video-link{
   display: flex;
@@ -494,8 +494,8 @@ body {
   flex-direction: row;
 }
 .vid-video-img{
-  width: 246px;
-  height: 168px;
+  width: 250px;
+  height: 150px;
 }
 .vid-video-link{
   display: flex;

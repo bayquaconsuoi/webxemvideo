@@ -73,7 +73,7 @@ if (!empty($_SESSION['user'])) {
         <img src="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png"
           alt="" class="header-logo">
         <div class="icon_page-name">
-          <span>Clone YOUTUBE</span>
+          <span>Trung's YOUTUBE</span>
         </div>
       </a>
     </div>

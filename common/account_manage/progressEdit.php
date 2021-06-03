@@ -3,8 +3,8 @@ require_once ('../../db/dbhelper.php');
 session_start();
 if (!empty($_POST)) {
 
-	if (isset($_POST['name'])) {
-		$user_name = $_POST['name'];
+	if (isset($_POST['username'])) {
+		$user_name = $_POST['username'];
 		$user_name = str_replace('"', '\\"', $user_name);
 	}
 	if (isset($_POST['email'])) {

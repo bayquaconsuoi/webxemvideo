@@ -677,10 +677,24 @@ ul>li{
 .delete_modal_btn:hover{
   opacity: 0.7;
 }
+.side_video_thumbnail {
+  position: relative;
+
+}
 .side_video_thumbnail img{
   width: 240px;
   height: 120px;
-  padding-top: 4px;
+  /* padding-top: 4px; */
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.side_video_thumbnail:hover img {
+  opacity: 0.6;
+}
+.side_video_thumbnail:hover .middle {
+  opacity: 1;
 }
 .video_title{
   overflow: visible;
@@ -703,7 +717,7 @@ ul>li{
   letter-spacing: 0.011em;
   font-size: 12px;
   line-height: 16px;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   overflow: hidden;
   text-overflow: ellipsis;
   color: #606060;
@@ -789,6 +803,7 @@ ul>li{
   flex-direction: column;
   min-width: 640px;
   max-width: 640px;
+  padding-bottom: 15px;
 }
 .form_content-input-container{
   border: 1px solid #aaa;
@@ -889,12 +904,73 @@ textarea{
   color: #065fd4; */
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.side-main_save:hover .tooltiptext{
+.side-main_cancel button{
+  background: none;
+  color: #CCCCCC;
+}
+.enable_btn button{
+  background: none;
+  color: #065fd4;
+  cursor: pointer;
+}
+/* .side-main_save_error:hover .tooltiptext{
   visibility: visible;
   opacity: 1;
-}
+} */
 .form_content-preview-container{
   padding-left: 24px;
   display: flex;
   flex-direction: column;
+}
+.iframe_title_title{
+  font-size: 14px!important;
+}
+.iframe_title_title, .iframe_title_description{
+  font-family: "Roboto", "Noto", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.011em;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 8px;
+  color: rgba(0, 0, 0, 0.55);
+  /* padding: 0 16px 0 12px; */
+  margin-top: 12px; 
+  white-space: pre-line;
+  word-break: break-word; 
+}
+
+#videoname_edit_count, #description_edit_count, #name_count, #description_count{
+  position: absolute;
+  bottom: 0;
+  right: 6;
+}
+.middle{
+  opacity: 0;
+  position: absolute;
+  width: fit-content;
+  top: 25%;
+  right: 25%;
+  left: 15%;
+  bottom: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+.side_video_thumbnail a{
+  color: #fff;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 4px;
+}
+.middle_link:hover {
+  color: #fff!important;
+}
+.super_mini{
+  width: 30px!important;
+  height: 30px!important;
+  border-radius: 50%;
+
+}
+.middle_text div{
+  background-color: rgba(0, 0, 0, 0.55);
 }

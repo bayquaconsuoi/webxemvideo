@@ -51,9 +51,14 @@ $userdetail = <<< EOD
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <form class="form-inline my-2 my-lg-0">
                 <div class="up_search-container">
-                  <i class="fas fa-search search_icon" style="cursor: pointer;"></i>
-                  <input class="form-control mr-sm-2 search_input" type="search" style="border: none;" placeholder="Tìm kiếm trên kênh của bạn">
+                  <i class="fas fa-search search_icon" style="cursor: default;"></i>
+                  <div class="search_content">
+                    <input class="form-control mr-sm-2 search_input" id="search_input" name="search_input" type="search" style="border: none;" placeholder="Tìm kiếm trên kênh của bạn">
+
+                  </div>
                 </div>
+                <div class="list-group" id="result"></div>
+
               </form>
               <div class="up_create-container">
                 <button class=" btn-active crip_animate" id="modal_btn" style="position: relative;">
@@ -242,12 +247,15 @@ $userdetail = <<< EOD
                             </div>
                             <div class="videos-content-box-g video">
                               <div class="video-content_video">
-                              <div class="video-content_thumbnail">
-                                <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="video-content_video-img" alt="404 Not Found">
-                              </div>
-                              <div class="video-content_name">
-                                    {$item['tenvideo']}
-                              </div>
+                              <a href="main/watch_video.php?id={$item['id']}" style="display: flex;
+                              align-items: center;">
+                                <div class="video-content_thumbnail">
+                                  <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="video-content_video-img" alt="404 Not Found">
+                                </div>
+                                <div class="video-content_name">
+                                      {$item['tenvideo']}
+                                </div>
+                              </a>
                               </div>
                             </div>
                             <div class="time" style="display: none;" data-value="{$item['created_at']}"></div>
@@ -319,17 +327,23 @@ $div =<<<EOD
             <input type="hidden" class="form-control" id="useravatar" name="useravatar" value="<?php echo $useravatar;?>">
             <div class="form-group">
               <label for="name">Tiêu đề</label>
-              <textarea class="form-control" id="name" name="name"></textarea>
+              <textarea class="form-control" id="name" maxlength="100" name="name"></textarea>
+              <div id="name_count">
+
+              </div>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
               <label for="description">Mô tả</label>
-              <textarea class="form-control" id="description" name="description"></textarea>
+              <textarea class="form-control" id="description" maxlength="5000" name="description"></textarea>
+              <div id="description_count">
+                
+              </div>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
               <label for="videoId">VideoID</label>
-              <textarea class="form-control" id="videoId" name="videoId"></textarea>
+              <textarea class="form-control" id="videoId" maxlength="32" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
             <div class="col text-center">
@@ -407,6 +421,8 @@ crossorigin="anonymous"></script>
   var open_delete_modal = document.querySelectorAll(".delete_modal_btn");
   var delete_modal = document.getElementById("delete_modal");
   var close_delete_modal = document.getElementById("delete_modal_close");
+  var search_field = document.getElementById("result");
+
   [].forEach.call(open_delete_modal, function(el) {
     el.onclick = function() {
       delete_modal.classList.add("show");
@@ -437,7 +453,12 @@ crossorigin="anonymous"></script>
     if (event.target == modal) {
       modal.style.display = "none";
     }
+
+    if(!event.target.matches('#search_input')){
+      search_field.style.display = "none";
+    }
   }
+
   setTimeout(function() {
     $('#notify_modal_id').addClass('notify_modal_hide');
   }, 3500);
@@ -449,10 +470,12 @@ crossorigin="anonymous"></script>
     $("#name").keyup(function () {
       var nam_value = $(this).val();
       $("#p_name").text(nam_value);
+      $("#name_count").text($(this).val().length + "/100");
     });
     $("#description").keyup(function () {
       var des_value = $(this).val();
       $("#p_description").text(des_value);
+      $("#description_count").text($(this).val().length + "/5000");
     });
 
   });
@@ -547,52 +570,42 @@ crossorigin="anonymous"></script>
     }
 	}
 </script>
-<!-- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var courseId;
-    var deleteForm = document.forms['delete-course-form'];
-    var checkboxAll = $('#checkbox-all');
-    var checkboxAll2 = $('.checkbox-all');
-    var courseItemCheckbox = $('input[name="courseId[]"]')
-    var containerForm = document.forms['container-form'];
-    var optionsBox = document.getElementById("videos-content_actions");
+<!-- SEARCH AJAX -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
 
+ load_data();
 
-    checkboxAll.change(function () {
-      var isCheckedAll = $(this).prop('checked');
-      courseItemCheckbox.prop('checked', isCheckedAll);
-      var IsChecked = $('input[name="courseAll"]:checked').length > 0;
-      var IsCheckedLength = document.getElementById("isCheckedLength");
-      if (IsChecked) {
-        optionsBox.classList.add("show-options");
-        IsCheckedLength.innerText = "Đã chọn tất cả video";
-      } else {
-        optionsBox.classList.remove("show-options");
-      }
-    });
-
-    courseItemCheckbox.change(function () {
-      var isCheckedArray = courseItemCheckbox.length === $('input[name="courseId[]"]:checked').length;
-      checkboxAll.prop('checked', isCheckedArray);
-
-      var atLeastOneIsChecked = $('input[name="courseId[]"]:checked').length > 0;
-      var IsCheckedLength = document.getElementById("isCheckedLength");
-      if (atLeastOneIsChecked) {
-        optionsBox.classList.add("show-options");
-        IsCheckedLength.innerText = "Đã chọn " + $('input[name="courseId[]"]:checked').length;
-      } else {
-        optionsBox.classList.remove("show-options");
-      }
-    });
-
-    var close_btn = document.getElementById("video_info_page_close");
-    var modal_options = document.getElementById("videos-content_actions");
-    close_btn.onclick = function() {
-      modal_options.classList.remove("show-options");
-      checkboxAll2.prop('checked',false);
-      checkboxAll.prop('checked',false);
-    }  
+ function load_data(query)
+ {
+  $.ajax({
+   url:"ajaxliveSearch.php",
+   method:"POST",
+   data:{query:query},
+   success:function(data)
+   {
+    $('#result').html(data);
+   }
   });
-</script> -->
+ }
+ $('#search_input').keyup(function(){
+  var search = $(this).val();
+  if($(this).val().length > 0){
+    search_field.style.display = "block";
+  }
+
+  if(search != '')
+  {
+   load_data(search);
+  }
+  else
+  {
+   load_data();
+  }
+ });
+});
+</script>
+
 
 <!-- //  ./../img/icon_page/icon_page.png  -->

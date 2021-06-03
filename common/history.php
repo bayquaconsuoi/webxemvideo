@@ -43,7 +43,7 @@ if (!empty($_SESSION['user'])) {
         <img src="./../img/icon_page/icon_page.png"
           alt="" class="header-logo">
         <div class="icon_page-name">
-          <span>Clone YOUTUBE</span>
+          <span>Trung's YOUTUBE</span>
         </div>
       </a>
     </div>

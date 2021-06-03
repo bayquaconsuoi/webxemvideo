@@ -27,7 +27,7 @@ if (!empty($_SESSION['user'])) {
         <img src="../img/icon_page/icon_page.png"
           alt="" class="header-logo">
         <div class="icon_page-name">
-          <span>Clone YOUTUBE</span>
+          <span>Trung's YOUTUBE</span>
         </div>
       </a>
     </div>
@@ -36,7 +36,7 @@ if (!empty($_SESSION['user'])) {
   <div class="header-center">
     <form method="GET" action="./../common/main/search_video.php">
       <div class="header-search">
-        <input class="header-search-input" type="search" placeholder="Tìm kiếm" aria-label="Search" name="name"
+        <input class="header-search-input" id="search_input" type="search" placeholder="Tìm kiếm" aria-label="Search" name="name"
           required>
         <select name="action" class="header-search-input_options">
           <option value="videoName" class="header-search-btn">Tìm theo tên video</option>
@@ -127,4 +127,40 @@ if (!empty($_SESSION['user'])) {
   function avatar_dropDown() {
     document.getElementById("avatar_dropdown_container").classList.toggle("show");
   }
+</script>
+<!-- SEARCH AJAX -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+ load_data();
+
+ function load_data(query)
+ {
+  $.ajax({
+   url:"ajaxliveSearch.php?where=any",
+   method:"POST",
+   data:{query:query},
+   success:function(data)
+   {
+    $('#result').html(data);
+   }
+  });
+ }
+ $('#search_input').keyup(function(){
+  var search = $(this).val();
+  if($(this).val().length > 0){
+    search_field.style.display = "block";
+  }
+
+  if(search != '')
+  {
+   load_data(search);
+  }
+  else
+  {
+   load_data();
+  }
+ });
+});
 </script>

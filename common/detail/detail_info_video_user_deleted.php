@@ -49,12 +49,17 @@ $userdetail = <<< EOD
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <form class="form-inline my-2 my-lg-0">
-                <div class="up_search-container">
-                  <i class="fas fa-search search_icon" style="cursor: pointer;"></i>
-                  <input class="form-control mr-sm-2 search_input" type="search" style="border: none;" placeholder="Tìm kiếm trên kênh của bạn">
+            <form class="form-inline my-2 my-lg-0">
+              <div class="up_search-container">
+                <i class="fas fa-search search_icon" style="cursor: default;"></i>
+                <div class="search_content">
+                  <input class="form-control mr-sm-2 search_input" id="search_input" name="search_input" type="search" style="border: none;" placeholder="Tìm kiếm trên kênh của bạn">
+      
                 </div>
-              </form>
+              </div>
+              <div class="list-group" id="result"></div>
+      
+            </form>
               <div class="up_create-container">
                 <button class=" btn-active crip_animate" id="modal_btn" style="position: relative;">
                   <i class="fas fa-video bx"></i>
@@ -322,17 +327,23 @@ $div =<<<EOD
             <input type="hidden" class="form-control" id="useravatar" name="useravatar" value="<?php echo $useravatar;?>">
             <div class="form-group">
               <label for="name">Tiêu đề</label>
-              <textarea class="form-control" id="name" name="name"></textarea>
+              <textarea class="form-control" id="name" maxlength="100" name="name"></textarea>
+              <div id="name_count">
+                
+              </div>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
               <label for="description">Mô tả</label>
-              <textarea class="form-control" id="description" name="description"></textarea>
+              <textarea class="form-control" id="description" maxlength="5000" name="description"></textarea>
+              <div id="description_count">
+                
+              </div>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
               <label for="videoId">VideoID</label>
-              <textarea class="form-control" id="videoId" name="videoId"></textarea>
+              <textarea class="form-control" id="videoId" maxlength="32" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
             <div class="col text-center">
@@ -428,6 +439,7 @@ crossorigin="anonymous"></script>
     delete_modal.classList.remove("show");
   }
   window.onclick = function(event) {
+
     // if (!event.target.matches('#delete_modal_btn')) {
     //   delete_modal.classList.remove("show");
     //   delete_modal.classList.add("fade");
@@ -452,10 +464,12 @@ crossorigin="anonymous"></script>
     $("#name").keyup(function () {
       var nam_value = $(this).val();
       $("#p_name").text(nam_value);
+      $("#name_count").text($(this).val().length + "/100");
     });
     $("#description").keyup(function () {
       var des_value = $(this).val();
       $("#p_description").text(des_value);
+      $("#description_count").text($(this).val().length + "/5000");
     });
 
   });
@@ -549,6 +563,43 @@ $("#submit_video_form").click(function() {
       $("#submit_form").submit();
     }
 	}
+</script>
+<!-- SEARCH AJAX -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+ load_data();
+
+ function load_data(query)
+ {
+  $.ajax({
+   url:"../ajaxliveSearch.php?where=delete",
+   method:"POST",
+   data:{query:query},
+   success:function(data)
+   {
+    $('#result').html(data);
+   }
+  });
+ }
+ $('#search_input').keyup(function(){
+  var search = $(this).val();
+  var search_field = document.getElementById("result");
+  if($(this).val().length > 0){
+    search_field.style.display = "block";
+  }
+
+  if(search != '')
+  {
+   load_data(search);
+  }
+  else
+  {
+   load_data();
+  }
+ });
+});
 </script>
 <!-- <script>
   document.addEventListener('DOMContentLoaded', function () {
