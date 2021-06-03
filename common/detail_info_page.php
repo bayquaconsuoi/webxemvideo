@@ -185,7 +185,7 @@ if (isset($_SESSION['user'])) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" id="submit_edit_form">Lưu thay đổi</button>
+        <button type="button" class="btn btn-primary" id="submit_edit_form" >Lưu thay đổi</button>
       </div>
     </div>
   </div>
@@ -206,14 +206,14 @@ if (isset($_SESSION['user'])) {
       </div>
       <div class="upload-modal-main">
 
-        <form class="mt-4" method="POST" id="submit_form" action="../common/channel_user/progressUp.php">
+        <form class="mt-4" method="POST" id="submit_form" action="./../common/channel_user/progressUp.php">
           <div id="main_form">
             <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id;?>">
             <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $username;?>">
             <input type="hidden" class="form-control" id="useravatar" name="useravatar" value="<?php echo $useravatar;?>">
             <div class="form-group">
-              <label for="name">Tên video</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <label for="name">Tiêu đề</label>
+              <textarea class="form-control" id="name" name="name"></textarea>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
@@ -223,7 +223,7 @@ if (isset($_SESSION['user'])) {
             </div>
             <div class="form-group">
               <label for="videoId">VideoID</label>
-              <input type="text" class="form-control" id="videoId" name="videoId">
+              <textarea class="form-control" id="videoId" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
             <div class="col text-center">
@@ -251,7 +251,7 @@ if (isset($_SESSION['user'])) {
 
           <div class="p_button_container">
             <button class="return_button btn btn-primary btn-warning" id="back_button">CHỈNH SỬA</button>
-            <button type="submit" class="submit_button btn btn-primary" form="submit_form">LƯU</button>
+            <button type="submit" class="submit_button btn btn-primary" id="submit_video_form">LƯU</button>
           </div>
         </div>
       </div>
@@ -313,6 +313,7 @@ crossorigin="anonymous"></script>
     e.preventDefault();
     $('#preview_form').show();
     add = $('#videoId').val();
+
     $('#p_videoId').empty().text(add);
     var x = document.getElementById("p_videoId").innerHTML;
 
@@ -336,7 +337,13 @@ crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(document).ready(function() {
        $("#submit_edit_form").click(function() {
-           $("#edit_form").submit();
+          $("#edit_form").submit();
+       });
+       $("#submit_video_form").click(function() {
+        validVideoId(add);
+        //  if(x) {
+        //    $("#submit_form").submit();
+        //  }
        });
     });
 </script>
@@ -382,4 +389,30 @@ crossorigin="anonymous"></script>
   }
 </script>
 
+<script>
+$("textarea").each(function () {
+  this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+}).on("input", function () {
+  this.style.height = "auto";
+  this.style.height = (this.scrollHeight) + "px";
+});
+
+function validVideoId(id) {
+		var img = new Image();
+		img.src = "http://img.youtube.com/vi/" + id + "/mqdefault.jpg";
+		img.onload = function () {
+			checkThumbnail(this.width);
+		}
+	}
+
+	function checkThumbnail(width) {
+		//HACK a mq thumbnail has width of 320.
+		//if the video does not exist(therefore thumbnail don't exist), a default thumbnail of 120 width is returned.
+		if (width === 120) {
+			alert("Error: ID video không hợp lệ");
+		} else {
+      $("#submit_form").submit();
+    }
+	}
+</script>
 <!-- //  https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png  -->

@@ -114,7 +114,7 @@ $userdetail = <<< EOD
           </nav>
 
           <div class="main-content_container container-fluid">
-            <div class="row">
+            <div class="row m_row">
               <div class="side_container col-xl-2 col-sm-1">
                 <div class="side-inner_container">
                   <div class="side-inner_userinfo">
@@ -144,7 +144,7 @@ $userdetail = <<< EOD
                           <span class="sidebar-options__icon">
                             <i class="fas fa-trash"></i>
                           </span>
-                          <span class="sidebar-options__name">Thùng rác</span>
+                          <span class="sidebar-options__name">Video đã xóa</span>
                         </a>
                       </li>
                       <li class="sidebar-options__item">
@@ -243,7 +243,7 @@ $userdetail = <<< EOD
                             <div class="videos-content-box-g video">
                               <div class="video-content_video">
                               <div class="video-content_thumbnail">
-                                <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="video-content_video-img" alt="404 Not Found">
+                                <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="video-content_video-img" alt="404 Not Found">
                               </div>
                               <div class="video-content_name">
                                     {$item['tenvideo']}
@@ -321,8 +321,8 @@ $div =<<<EOD
             <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $username;?>">
             <input type="hidden" class="form-control" id="useravatar" name="useravatar" value="<?php echo $useravatar;?>">
             <div class="form-group">
-              <label for="name">Tên video</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <label for="name">Tiêu đề</label>
+              <textarea class="form-control" id="name" name="name"></textarea>
               <div class="form__input-error-message"></div>
             </div>
             <div class="form-group">
@@ -332,7 +332,7 @@ $div =<<<EOD
             </div>
             <div class="form-group">
               <label for="videoId">VideoID</label>
-              <input type="text" class="form-control" id="videoId" name="videoId">
+              <textarea class="form-control" id="videoId" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
             <div class="col text-center">
@@ -360,7 +360,7 @@ $div =<<<EOD
 
           <div class="p_button_container">
             <button class="return_button btn btn-primary btn-warning" id="back_button">CHỈNH SỬA</button>
-            <button type="submit" class="submit_button btn btn-primary" form="submit_form">LƯU</button>
+            <button type="submit" class="submit_button btn btn-primary" id="submit_video_form">LƯU</button>
           </div>
         </div>
       </div>
@@ -522,6 +522,34 @@ crossorigin="anonymous"></script>
   });
 </script>
 
+<script>
+$("textarea").each(function () {
+  this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+}).on("input", function () {
+  this.style.height = "auto";
+  this.style.height = (this.scrollHeight) + "px";
+});
+$("#submit_video_form").click(function() {
+    validVideoId(add)
+  });
+  function validVideoId(id) {
+      var img = new Image();
+      img.src = "http://img.youtube.com/vi/" + id + "/mqdefault.jpg";
+      img.onload = function () {
+        checkThumbnail(this.width);
+      }
+	  }    
+
+	function checkThumbnail(width) {
+		//HACK a mq thumbnail has width of 320.
+		//if the video does not exist(therefore thumbnail don't exist), a default thumbnail of 120 width is returned.
+		if (width === 120) {
+			alert("Error: ID video không hợp lệ");
+		} else {
+      $("#submit_form").submit();
+    }
+	}
+</script>
 <!-- <script>
   document.addEventListener('DOMContentLoaded', function () {
     var courseId;

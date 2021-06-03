@@ -41,7 +41,7 @@ foreach ($video as $item) {
     <div class="card-thumbnail">
         <a href="./../common/main/watch_video.php?id={$item['id']}">
             <div style="overflow: hidden;">
-                <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="card-img" style="margin: -10% 0; width: 100%;" alt="">
+                <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="card-img" style="margin: 0 0; width: 100%;" alt="">
             </div>
         </a>
     </div>

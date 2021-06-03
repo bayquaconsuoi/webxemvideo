@@ -326,7 +326,7 @@ if (!empty($_SESSION['user'])) {
                                                 <a href="../../common/main/watch_video.php?id={$item['id']}">
                                                     <div class="vid-video-link">
                                                         <div class="vid-mini-video-watch" style="overflow: hidden;">
-                                                            <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="vid-video-img" style="margin: -10% 0" alt="">
+                                                            <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="vid-video-img" style="margin: -2% 0" alt="">
                                                         </div>
                                                     </div>
                                                 </a>

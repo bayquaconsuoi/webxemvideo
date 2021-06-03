@@ -162,12 +162,12 @@ if (!empty($_SESSION['user'])) {
             if (mysqli_num_rows($rs) > 0) {
               $top_video = executeSingleResult($sql);
                 $top =<<<EOD
-                  <img src="https://img.youtube.com/vi/{$top_video['video_id']}/sddefault.jpg" class="side-video_main-img" >
+                  <img src="https://img.youtube.com/vi/{$top_video['video_id']}/mqdefault.jpg" class="side-video_main-img" >
                 EOD;
               echo $top;
               } else {
                 $no_top = <<<EOD
-                  <img src="https://img.youtube.com/vi/404/sddefault.jpg" class="side-video_main-img" >
+                  <img src="https://img.youtube.com/vi/404/mqdefault.jpg" class="side-video_main-img" >
                 EOD;
               echo $no_top;
               }
@@ -179,12 +179,12 @@ if (!empty($_SESSION['user'])) {
             if (mysqli_num_rows($rs) > 0) {
             $top_video = executeSingleResult($sql);
               $top =<<<EOD
-                <img src="https://img.youtube.com/vi/{$top_video['video_id']}/sddefault.jpg" class="side-video_main-img" >
+                <img src="https://img.youtube.com/vi/{$top_video['video_id']}/mqdefault.jpg" class="side-video_main-img" >
               EOD;
             echo $top;
             } else {
               $no_top = <<<EOD
-                <img src="https://img.youtube.com/vi/404/sddefault.jpg" class="side-video_main-img" >
+                <img src="https://img.youtube.com/vi/404/mqdefault.jpg" class="side-video_main-img" >
               EOD;
             echo $no_top;
             }
@@ -318,7 +318,7 @@ if (!empty($_SESSION['user'])) {
                   
                         <div class="main-video_img">
                           <div class="main-video_img-content">
-                            <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="main-video_image">
+                            <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="main-video_image">
                           </div>
                         </div>
                   
@@ -381,7 +381,7 @@ if (!empty($_SESSION['user'])) {
                     
                           <div class="main-video_img">
                             <div class="main-video_img-content">
-                              <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="main-video_image">
+                              <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="main-video_image">
                             </div>
                           </div>
                     

@@ -44,6 +44,10 @@ div img{
 .row{
   justify-content: center;
   height: auto;
+  /* height: 100%; */
+}
+.m_row{
+  height: 100%;
 }
 input{
   height: 40px;
@@ -139,17 +143,17 @@ a{
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  overflow: auto;
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   /* overflow-y:hidden; */
-  overflow-x:hidden;
+  /* overflow-x:hidden; */
 }
 
 /* Modal Content/Box */
 .upload-modal-content {
   background-color: #fefefe;
-  margin: 5% 15%; /* 15% from the top and centered */
+  margin: 1% 15%; /* 15% from the top and centered */
   /* padding: 20px; */
   border: 1px solid #888;
   min-width: 960px;
@@ -325,7 +329,7 @@ ul>li{
 .main-content_container{
   display: flex;
   flex-direction: column;
-
+  height: 100%;
 }
 .side_container{
   padding-right: 15px;
@@ -341,6 +345,7 @@ ul>li{
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 .user_avatar{
   width: 112px;
@@ -351,6 +356,7 @@ ul>li{
 }
 .user_avatar img{
   width: 100%;
+  height: 100%;
 }
 .user_title{
   overflow: visible;
@@ -667,4 +673,228 @@ ul>li{
 .form_title{
   display: flex;
   
+}
+.delete_modal_btn:hover{
+  opacity: 0.7;
+}
+.side_video_thumbnail img{
+  width: 240px;
+  height: 120px;
+  padding-top: 4px;
+}
+.video_title{
+  overflow: visible;
+  font-family: "YT Sans", "Roboto", "Arial", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #0d0d0d;
+  max-width: 256px;
+  padding-top: calc(31px - 17px);
+  width: 100%;
+}
+.video_name{
+  font-family: "Roboto", "Noto", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.011em;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #606060;
+  padding-top: calc(21px - 12px - 7px);
+  width: 100%;
+}
+.side-inner_back_btn{
+  color: #606060;
+  padding: 12px 20px 12px 16px;
+  cursor: pointer;
+  --paper-item-selected-weight: normal;  
+  display: flex;
+  flex-direction: row;
+}
+.side-inner_back-button{
+  display: inline-flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  vertical-align: middle;
+  fill: currentColor;
+  stroke: none;
+  width: 24px;
+  height: 24px;
+}
+.side-inner_back-title{
+  font-family: "YT Sans", "Roboto", "Arial", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  color: var(--ytcp-text-primary);
+  line-height: 18px;
+  max-height: 48px;
+  display: flex;
+  align-items: center;
+  -webkit-line-clamp: 2;
+}
+.side-inner_back_btn:hover{
+  background-color: #f2f2f2;
+}
+.edit-main-container{
+  height: 70px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  max-width: calc( 1120px - 48px );
+  min-width: 0;
+}
+.side_main_options{
+  display: flex;
+  align-items: center;
+}
+.side-main_cancel{
+  padding-right: 20px;
+  min-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  flex: 1 1;
+  padding: 0 calc(24px - 15px) 0 calc(12px - 5px);
+}
+.edit-video_form{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.form-container{
+  display: flex;
+  flex-direction: row;
+}
+.form_content-main-container{
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 640px;
+  max-width: 640px;
+}
+.form_content-input-container{
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding:  0 12px 8px;
+  position: relative;  
+}
+.form_content-input-inner{
+  display: flex;
+  flex-direction: column;
+}
+textarea{
+  resize: none !important;;
+  overflow: hidden !important;;
+  border: none;
+  font-size:15px;
+  height:2em;
+  padding:2px;
+}
+#description_edit{
+  min-height: 250px;
+}
+#name{
+  min-height: 50px;
+}
+#description{
+  min-height: 250px;
+}
+#videoId{
+  min-height: 50px;
+}
+.form_content-input-inner label {
+  font-family: "Roboto", "Noto", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.011em;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: calc(20px - 12px);
+  color: rgba(0, 0, 0, 0.55);
+  margin-bottom: 3px;
+  position: relative;
+}
+.side-main-save {
+  position: relative;
+  display: inline-block;
+}
+.tooltiptext {
+  visibility: hidden;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #0d0d0d;
+  position: absolute;
+  z-index: 1;
+  bottom: 88%;
+  left: 79%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 10%)
+}
+.side-main_cancel button, .side-main_save button{
+  color: inherit;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 2px;
+  min-width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 0 8px;
+  margin: 0;
+  position: relative;
+  color: #ffffff;
+  font-family: "Roboto", "Noto", sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  align-items: center;
+  border: none;
+  background-color: #CCCCCC;
+  cursor: default;
+  /* background: none;
+  color: #065fd4; */
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.side-main_save:hover .tooltiptext{
+  visibility: visible;
+  opacity: 1;
+}
+.form_content-preview-container{
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
 }

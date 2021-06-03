@@ -434,8 +434,8 @@ input::placeholder{
 }
 .invalid{
   color: #f33a58;
-  border: solid;
-  border-color: #f33a58;
+  border: solid!important;
+  border-color: #f33a58!important;
 }
 .alert{
   max-width: 390px;

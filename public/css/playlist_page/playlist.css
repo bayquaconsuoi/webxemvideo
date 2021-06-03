@@ -268,7 +268,7 @@
 }
 .main-video_image{
     width: 120px;
-    margin: -10% 0;
+    /* margin: -10% 0; */
     object-fit: cover;
 }
 .main-video_info div{

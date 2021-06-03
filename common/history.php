@@ -160,13 +160,13 @@ if (!empty($_SESSION['user'])) {
             $top_video = executeSingleResult($sql);
               $top =<<<EOD
               <a href="./../common/main/watch_video.php?id={$top_video['video_id_his']}">
-                <img src="https://img.youtube.com/vi/{$top_video['video_id']}/sddefault.jpg" class="side-video_main-img" >
+                <img src="https://img.youtube.com/vi/{$top_video['video_id']}/mqdefault.jpg" class="side-video_main-img" >
               </a>
               EOD;
             echo $top;
             } else {
               $no_top = <<<EOD
-                <img src="https://img.youtube.com/vi/404/sddefault.jpg" class="side-video_main-img" >
+                <img src="https://img.youtube.com/vi/404/mqdefault.jpg" class="side-video_main-img" >
               EOD;
             echo $no_top;
             }
@@ -269,7 +269,7 @@ if (!empty($_SESSION['user'])) {
                     
                           <div class="main-video_img">
                             <div class="main-video_img-content">
-                              <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="main-video_image">
+                              <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="main-video_image">
                             </div>
                           </div>
                     

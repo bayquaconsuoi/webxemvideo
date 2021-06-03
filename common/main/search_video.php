@@ -144,9 +144,9 @@ if (isset ($_GET['name'])) {
   $key = addslashes ($_GET['name']);
   $type = ($_GET['action']);
   if($type == "videoName"){
-    $sql = "SELECT * FROM video WHERE (tenvideo LIKE '%$key%')";
+    $sql = "SELECT * FROM video WHERE !deleted_at AND (tenvideo LIKE '%$key%')";
   } else {
-    $sql = "SELECT * FROM video WHERE (user_name LIKE '%$key%')";
+    $sql = "SELECT * FROM video WHERE !deleted_at AND (user_name LIKE '%$key%')";
   }
   
   $video = executeResult($sql);
@@ -159,7 +159,7 @@ if (isset ($_GET['name'])) {
             <div class="card-thumbnail">
                 <a href="../main/watch_video.php?id={$item['id']}">
                     <div style="overflow: hidden;">
-                        <img src="https://img.youtube.com/vi/{$item['video_id']}/sddefault.jpg" class="card-img" style="height: auto; margin: -10% 0; width: 100%;" alt="">
+                        <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" class="card-img" style="height: auto; margin: 0 0; width: 100%;" alt="">
                     </div>
                 </a>
             </div>

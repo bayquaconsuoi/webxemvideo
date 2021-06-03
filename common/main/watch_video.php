@@ -397,7 +397,7 @@ if (!empty($_SESSION['user'])) {
                     <a href="watch_video.php?id={$item_mini['id']}">
                         <div class="mini-videoWatch  fea-mini-video_container">
                             <div style="overflow: hidden;">
-                                <img src="https://img.youtube.com/vi/{$item_mini['video_id']}/sddefault.jpg" class="card-img2" style="margin: -11% 0; " alt="">
+                                <img src="https://img.youtube.com/vi/{$item_mini['video_id']}/mqdefault.jpg" class="card-img2" style="margin: 0 0; width:240px; " alt="">
                             </div>
                         </div>
                         <div class="mini-videoDetail  fea-mini-video_container">
