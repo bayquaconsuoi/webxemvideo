@@ -1,5 +1,8 @@
 <?php
 include 'header.php';
+if (empty($_SESSION['admin'])) {
+  header("location: ../main/");
+}
 ?>
 
 
@@ -15,10 +18,9 @@ include 'header.php';
                         <a href="video_listing.php">Quản lý video người dùng</a>
                     </div>
                     <div class="web_option_button">
-                        <a href="category_listing.php"> Quản lý danh mục</a>
+                        <a href="category_listing.php"> Quản lý thể loại</a>
                     </div>
                     <div class="web_option_button">
-                        <a href="notify.php">Đăng thông báo</a>
                 </div>
             </div>
             <div class="side_icon_page_container">

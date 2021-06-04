@@ -28,7 +28,7 @@
         ?>
         <div id="user_logout" class="box-content">
             <h1>Đăng xuất tài khoản thành công</h1>
-            <a href="index.php">Đăng nhập lại</a>
+            <a href="../common/account_manage/progressLogin.php">Đăng nhập lại</a>
         </div>
     </body>
 </html>

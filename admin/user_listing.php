@@ -26,6 +26,9 @@ if (!empty($_SESSION['admin'])) {
     }
     
     $index = 1;
+} 
+if (empty($_SESSION['admin'])) {
+  header("location: ../main/");
 }
 ?>
 
@@ -41,11 +44,9 @@ if (!empty($_SESSION['admin'])) {
                         <a href="video_listing.php">Quản lý video người dùng</a>
                     </div>
                     <div class="web_option_button">
-                        <a href="category_listing.php"> Quản lý danh mục</a>
+                        <a href="category_listing.php"> Quản lý thể loại</a>
                     </div>
-                    <div class="web_option_button">
-                        <a href="notify.php">Đăng thông báo</a>
-                </div>
+
             </div>
             <div class="side_icon_page_container">
                 <a href="../main/">
@@ -63,8 +64,7 @@ if (!empty($_SESSION['admin'])) {
     <table class="table">
         <thead>
             <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Id</th>
+            <th scope="col">ID</th>
             <th scope="col">Tên người dùng</th>
             <th scope="col">Avatar</th>
             <th scope="col">Email</th>
@@ -75,12 +75,9 @@ if (!empty($_SESSION['admin'])) {
         </thead>
         <tbody>
             <?php 
-                $i = 0;
-                foreach ($account as $item) {  
-                    $i++;             
+                foreach ($account as $item) {          
                     $account = <<< EOD
                     <tr>
-                    <th scope="row">$i</th>
                         <td>{$item['id']}</td>
                         <td>{$item['user_name']}</td>
                         <td><img src="../img/{$item['user_avatar']}" alt="" class="info_user_avatar"></td>
@@ -184,6 +181,7 @@ if (!empty($_SESSION['admin'])) {
 
 <a href="" id="middle_man"></a>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
 <script>
         file_upload.onchange = evt => {
             const [file] = file_upload.files
@@ -192,6 +190,7 @@ if (!empty($_SESSION['admin'])) {
             }
         }
 </script>
+
 <script>
 
     var btn_open_delete_modal = document.querySelectorAll(".delete_modal_open");
@@ -237,6 +236,7 @@ if (!empty($_SESSION['admin'])) {
 
   });
 </script>
+
 <?php
 include './footer.php';
 ?>
