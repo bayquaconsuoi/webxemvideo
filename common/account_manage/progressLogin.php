@@ -12,8 +12,13 @@ session_start();
     $rs = mysqli_query($db,$sql);
     if (mysqli_num_rows($rs) > 0) {
         $info_user = executeSingleResult($sql);
+        if($info_user['id'] == 1) {
+            $_SESSION['admin'] = 1;
+            header('Location: ../../admin/index.php');
+        } else {
         $_SESSION['user'] = $info_user['id'];
         header('Location: ../../main/index.php');
+        }           
     } else {
         $_SESSION['fail'] = "Sai thông tin tài khoản";
         header('Location: manage.php');
