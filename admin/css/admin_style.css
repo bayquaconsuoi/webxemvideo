@@ -278,12 +278,12 @@ a {
     padding: 20px;
 }
 .pagination {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     position: absolute;
     right: 0;
     left: 0;
-    bottom: 0;
+    bottom: 0; */
 }
   
 .pagination a {
@@ -302,7 +302,11 @@ a {
 }
   
 .pagination a:hover:not(.active) {background-color: #ddd;}
-
+.page_container{
+    display: flex;
+    justify-content: center;
+    flex: 2;
+}
 #content {
     display: flex;
 }

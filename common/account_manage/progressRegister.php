@@ -20,7 +20,7 @@ if (!empty($_POST)) {
 		$phone = str_replace('"', '\\"', $phone);
 	}
 
-	$user_avatar = "119227496_1315363328795495_3486268309184032416_n.jpg";
+	$user_avatar = "default.jpg";
 	if (!empty($user_name)) {
 		date_default_timezone_set('Asia/Ho_Chi_Minh');
 		$created_at = $updated_at = date('Y-m-d H:s:i');
