@@ -17,7 +17,7 @@ require_once ('../../db/dbhelper.php');
                     execute($sql);
                         
                     $_SESSION['success'] = 'Đã xóa video khỏi danh sách video của bạn';
-                    header("location: ../../common/detail_info_video_user.php");
+                    header("location: ../../common/detail/detail_info_video_user.php");
                 }
                 if($type == "real_delete") {
                     $sql = "delete from video WHERE id = '$video_id'";
@@ -31,7 +31,7 @@ require_once ('../../db/dbhelper.php');
                     execute($sql);
                         
                     $_SESSION['success'] = 'Đã khôi phục video của bạn';
-                    header("location: ../../common/detail_info_video_user.php");
+                    header("location: ../../common/detail/detail_info_video_user.php");
                 }
             }
 

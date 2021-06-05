@@ -265,6 +265,14 @@ if (isset($_SESSION['success'])) {
             }
 
         }
+        
+        var advancedmodal = document.getElementById("advancedModal");
+        if (event.target == modal) {
+            advancedmodal.style.display = "none";
+            $('#action option').prop('selected', function() {
+                return this.defaultSelected;
+            });
+        }
     }
     setTimeout(function(){
         $('#notification').remove();

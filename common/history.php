@@ -31,6 +31,8 @@ if (!empty($_SESSION['user'])) {
       $phone = $info_user['phone'];
       $useravatar = $info_user['user_avatar'];
     } 
+} else {
+  header("location: ../../main/");
 }
 ?>
 <header class="header">
@@ -50,13 +52,14 @@ if (!empty($_SESSION['user'])) {
   </div>
 
   <div class="header-center">
-    <form method="GET" action="../common/main/search_video.php">
+    <form method="GET" action="../common/main/progressSearch.php">
       <div class="header-search">
-        <input class="header-search-input" type="search" placeholder="Tìm kiếm" aria-label="Search" name="name"
+        <input class="header-search-input search_input" id="search_input" type="search" placeholder="Tìm kiếm" aria-label="Search" name="name"
           required>
-        <select name="action" class="header-search-input_options">
+        <select name="action" id="action" class="header-search-input_options">
           <option value="videoName" class="header-search-btn">Tìm theo tên video</option>
           <option value="userName" class="header-search-btn">Tìm theo tên người đăng</option>
+          <option value="advanced" class="header-search-btn">Tìm kiếm nâng cao</option>
         </select>
         <button class="header-search-btn" type="submit"><i class="fas header-icon fa-search"></i></button>
       </div>
@@ -329,6 +332,63 @@ if (!empty($_SESSION['user'])) {
   </label>
 </div>
 
+<!-- advanced search modal -->
+<div id="advancedModal" class="advancedModal">
+
+  <!-- Modal content -->
+  <div class="advancedModal-content">
+    <span class="advancedClose">&times;</span>
+    <h1>Tìm kiếm nâng cao</h1>
+    <form action="./../common/main/progressSearch.php?action=advanced" method="GET">
+        <div class="advancedFormContainer">
+
+          <input class="header-search-input search_input" id="advancedsearch_input" name="advancedsearch_input" type="search" placeholder="Tìm kiếm" autocomplete="off" aria-label="Search"
+          required>
+          Tìm theo:
+          <select name="advancedAction" id="advancedAction" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <option value="Tìm theo tên video" class="header-search-btn">Tìm theo tên video</option>
+            <option value="Tìm theo tên người đăng" class="header-search-btn">Tìm theo tên người đăng</option>
+          </select>
+          Thể loại:   
+          <select id="category" name="category" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <?php 
+              $sql = "select * from category";
+              $category = executeResult($sql);
+              foreach ($category as $category_mini) {         
+              $category_content = <<< EOD
+              <option value="{$category_mini['category_name']}">{$category_mini['category_name']}</option>
+              EOD;
+              echo $category_content;
+              }
+            ?>
+          </select>
+          Ngày đăng:
+          <select id="date_up" name="date_up" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <option value="Một giờ qua">Một giờ qua</option>
+            <option value="Hôm nay">Hôm nay</option>
+            <option value="Tuần này">Tuần này</option>
+            <option value="Tháng này">Tháng này</option>
+            <option value="Năm nay">Năm nay</option>
+          </select>  
+          Sắp xếp theo:
+          <select id="sort" name="sort" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <option value="Ngày tải lên">Ngày tải lên</option>
+            <option value="Lượt xem">Lượt xem</option>
+            <option value="Lượt thích">Lượt thích</option>
+          </select>  
+          <div class="advancedFormButton">
+            <button class="header-search-btn" type="submit"><i class="fas advanced-icon fa-search"></i>Tìm kiếm</button>
+          </div>
+        </div>
+    </form>
+  </div>
+
+</div>
+
 <script>
   function video_info_options_dropdown() {
     document.getElementById("video_info-dropdown").classList.toggle("flex_show");
@@ -339,9 +399,11 @@ if (!empty($_SESSION['user'])) {
 <script src="../public/js/moment.js"></script>
 <script src="../public/js/w3s.js"></script>
 <script src='https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js'></script>
+
 <script>
         new WOW().init();
 </script>
+
 <script>
   $(document).ready(function () {
 
@@ -393,3 +455,23 @@ if (!empty($_SESSION['user'])) {
     }, 10000);
 </script>
 
+<script>
+  var span = document.getElementsByClassName("advancedClose")[0];
+  var modal = document.getElementById("advancedModal");
+
+  $("#action").on("change", function () {        
+      if($(this).val() === 'advanced'){
+        modal.style.display = "block";
+      }
+  });
+
+
+
+  span.onclick = function() {
+    modal.style.display = "none";
+    $('#action option').prop('selected', function() {
+          return this.defaultSelected;
+    });
+  }
+
+</script>

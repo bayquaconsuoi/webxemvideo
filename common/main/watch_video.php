@@ -358,11 +358,10 @@ if (!empty($_SESSION['user'])) {
             </div>
             <div id="user-name" style="display: inline;">
                 <h2><a href="../../common/channel_user/channel.php?id={$item['user_id']}">{$item['user_name']}</a></h2>
-                <span>10,7 N người đăng ký</span>
             </div>
 
             <div id="subscribe-button">
-                <a href="#" class="subscribe-text" style="color: #fff;">Đăng ký</a>
+                <a href="../category.php?category={$item['category']}" class="subscribe-text" style="color: #fff;">{$item['category']}</a>
             </div>
             </div>
             <div class="user-description_container">

@@ -85,7 +85,7 @@ if (empty($_SESSION['admin'])) {
                                          $sql = "select * from category";
                                          $category = executeResult($sql);
                                          $category_selected = <<< EOD
-                                            <option value="{$data_video['category']}" selected >{$data_video['category']}</option>
+                                            <option value="{$data_video['category']}" selected disabled hidden>{$data_video['category']}</option>
                                          EOD;
                                          echo $category_selected;
                                          foreach ($category as $category_mini) {         

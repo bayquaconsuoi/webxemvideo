@@ -218,14 +218,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
             
-                    <li class="sidebar-options__item">
-                        <a href="#" class="sidebar-options__link" style="padding: 0!important;">
-                            <div class="sidebar-options__icon">
-                                <i class="bx fab fa-youtube"></i>
-                            </div>
-                            <div class="sidebar-options__name">Kênh đăng ký</div>
-                        </a>
-                    </li>
+
                 EOD;
                 echo $isUser;
             }

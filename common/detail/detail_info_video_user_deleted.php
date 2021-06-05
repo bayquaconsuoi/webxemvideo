@@ -11,10 +11,11 @@
 </head>
 <?php 
 require_once ('../../db/dbhelper.php');
-include_once('../../common/utility.php');
 session_start();
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
+} else {
+  header("location: ../../main/");
 }
 
 //Truy van database
@@ -136,7 +137,7 @@ $userdetail = <<< EOD
                   <div class="side-inner_options">
                     <ul class="sidebar-options-first">
                       <li class="sidebar-options__item ">
-                        <a href="../../common/detail_info_video_user.php" class="sidebar-options__link">
+                        <a href="detail_info_video_user.php" class="sidebar-options__link">
                           <span class="sidebar-options__icon">
                             <i class="fab fa-youtube"></i>
                           </span>
@@ -212,29 +213,11 @@ $userdetail = <<< EOD
 ?>
                 <?php
                   if (isset($_SESSION['user'])) {
-                    $limit = 30;
-                    $page  = 1;
-                    if (isset($_GET['page'])) {
-                      $page = $_GET['page'];
-                    }
-                    if ($page <= 0) {
-                      $page = 1;
-                    }
-                    $firstIndex = ($page-1)*$limit;
 
                     $sql = "SELECT * FROM video WHERE video.user_id = ".$_SESSION['user'];
-                    $sql .= " AND deleted_at ORDER BY created_at DESC".' limit '.$firstIndex.', '.$limit;;
+                    $sql .= " AND deleted_at ORDER BY created_at DESC";
                     $video = executeResult($sql);
 
-                    $sql         = 'select count(id) as total from video where 1 ';
-                    $countResult = executeSingleResult($sql);
-                    $number      = 0;
-                    if ($countResult != null) {
-                      $count  = $countResult['total'];
-                      $number = ceil($count/$limit);
-                    }
-
-                    $index = 1;
                     $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
                     $rs = mysqli_query($db,$sql);
                     if (mysqli_num_rows($rs) > 0) {
@@ -281,9 +264,6 @@ $div =<<<EOD
 ?>
 
 
-<section class="cards cards_pagination">
-    <?=paginarion($number, $page, '')?>
-</section>
 <!-- The Delete Modal -->
 <div class="modal fade" id="delete_modal">
   <div class="modal-dialog" role="document">
@@ -346,6 +326,25 @@ $div =<<<EOD
               <textarea class="form-control" id="videoId" maxlength="32" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
+
+            <div class="form-group">
+              <label for="category">Thể loại</label>
+              <select name="category" id="category" required>
+              <option value="" selected disabled hidden>Chọn thể loại</option>
+              <?php 
+                  $sql = "select * from category";
+                  $data_category = executeResult($sql);
+                  foreach($data_category as $category_mini) {
+                      $category = <<<EOD
+                        <option value="{$category_mini['category_name']}">{$category_mini['category_name']}</option>
+                      EOD;
+                      echo $category;
+                  }
+              ?>
+              </select>
+              <div class="form__input-error-message"></div>
+            </div>
+
             <div class="col text-center">
               <button type="button" class="preview_button btn btn-primary" id="preview">PREVIEW</button>
             </div>
@@ -510,6 +509,7 @@ crossorigin="anonymous"></script>
       Validator.isRequired('#name'),
       Validator.isRequired('#description'),
       Validator.isRequired('#videoId'),
+      Validator.isRequired('#category'),
       Validator.minLength('#name', 5),
       Validator.minLength('#description', 5),
 
@@ -574,7 +574,7 @@ $(document).ready(function(){
  function load_data(query)
  {
   $.ajax({
-   url:"../ajaxliveSearch.php?where=delete",
+   url:"../ajaxliveSearch.php?where=edit",
    method:"POST",
    data:{query:query},
    success:function(data)

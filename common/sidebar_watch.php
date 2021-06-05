@@ -115,6 +115,7 @@ if (!empty($_SESSION['user'])) {
                 }
                 ?>   
             </div>
+
             <!-- <ul class="sidebar-more-list">
                 <h3 class="sidebar-more-list-title">Dịch vụ khác của Clone YOUTUBE</h3>
                 <li class="sidebar-more">
@@ -143,9 +144,9 @@ if (!empty($_SESSION['user'])) {
                         <span class="sidebar-more__name">Sports</span>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
 
-            <ul class="sidebar-functions">
+            <!-- <ul class="sidebar-functions">
                 <li class="sidebar-function">
                     <a href="#" class="sidebar-function-link">
                         <span class="sidebar-function__icon">

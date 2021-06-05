@@ -11,10 +11,12 @@
 </head>
 <?php 
 require_once ('../../db/dbhelper.php');
-include_once('../../common/utility.php');
+
 session_start();
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
+} else {
+  header("location: ../../main/");
 }
 
 //Truy van database
@@ -122,13 +124,13 @@ if ($info_user != null) {
 <?php
   $sql = "select * from video where !deleted_at and id =".$_GET['video_id'];
   $item = executeSingleResult($sql);
-  $main = <<< EOD
+?>
     <div class="main-content_container container-fluid">
     <div class="row m_row">
       <div class="side_container col-xl-2 col-sm-1">
         <div class="side-inner_container">
         <div class="side-inner_back_btn">
-          <a href="../../common/detail_info_video_user.php" style="display: flex;">
+          <a href="detail_info_video_user.php" style="display: flex;">
             <div class="side-inner_back-button">
               <i class="fas fa-arrow-left"></i>
             </div> 
@@ -139,8 +141,8 @@ if ($info_user != null) {
         </div>
           <div class="side-inner_userinfo">
             <div class="side_video_thumbnail">
-            <a class="middle_link" href="../main/watch_video.php?id={$item['id']}">
-              <img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" alt="">
+            <a class="middle_link" href="../main/watch_video.php?id=<?php echo $item['id'] ?>">
+              <img src="https://img.youtube.com/vi/<?php echo $item['video_id'] ?>/mqdefault.jpg" alt="">
               <div class="middle">
                 <div class="middle_text"><img class="super_mini" src="../../img/icon_page/icon_page.png" alt=""><div>Xem trên Trung's YOUTUBE</div></div>
               </div>
@@ -150,16 +152,16 @@ if ($info_user != null) {
               Video của bạn
             </div>
             <div class="video_name">
-              {$item['tenvideo']}
+              <?php echo $item['tenvideo'] ?>
             </div>
             <div class="video_name">
-              Ngày đăng: {$item['created_at']}
+              Ngày đăng: <?php echo $item['created_at'] ?>
             </div>
             <div class="video_name">
-              Lượt xem: {$item['view_count']}
+              Lượt xem: <?php echo $item['view_count'] ?>
             </div>
             <div class="video_name">
-              Lượt thích: {$item['like_count']}
+              Lượt thích: <?php echo $item['like_count'] ?>
             </div>
           </div>
 
@@ -185,12 +187,12 @@ if ($info_user != null) {
         </div>
         <div class="main_title-container  edit-main-container">
             <div class="form-container">
-              <form action="progressEditVideo.php?id={$item['id']}" method="POST" id="edit-video_form" class="edit-video_form">
+              <form action="progressEditVideo.php?id=<?php echo $item['id'] ?>" method="POST" id="edit-video_form" class="edit-video_form">
                 <div class="form_content-main-container">
                   <div class="form_content-input-container">
 
                       <label for="videoname_edit">Tiêu đề</label>
-                      <textarea name="videoname_edit" id="videoname_edit" maxlength="100" placeholder="Thêm tiêu đề để mô tả video của bạn">{$item['tenvideo']}</textarea>
+                      <textarea name="videoname_edit" id="videoname_edit" maxlength="100" placeholder="Thêm tiêu đề để mô tả video của bạn"><?php echo $item['tenvideo'] ?></textarea>
                       <div id="videoname_edit_count">
 
                       </div>
@@ -200,22 +202,44 @@ if ($info_user != null) {
                   <div class="form_content-input-container" style="margin-top: 10px;">
 
                       <label for="description_edit">Mô tả</label>
-                      <textarea name="description_edit" id="description_edit" maxlength="5000" placeholder="Giúp người xem nắm được thông tin về video của bạn">{$item['mota']}</textarea>
+                      <textarea name="description_edit" id="description_edit" maxlength="5000" placeholder="Giúp người xem nắm được thông tin về video của bạn"><?php echo $item['mota'] ?></textarea>
                       <div id="description_edit_count">
                         
                       </div>
                       <div class="form__input-error-message"></div>
 
                   </div>
+
+                  <div class="form_content-input-container" style="margin-top: 4px;">
+
+                    <label for="category_edit">Thể loại</label>       
+                        <select id="category_edit" name="category_edit" required>
+                                    <?php 
+                                         $sql = "select * from category";
+                                         $category = executeResult($sql);
+                                         $category_selected = <<< EOD
+                                            <option value="{$item['category']}" selected hidden>{$item['category']}</option>
+                                         EOD;
+                                         echo $category_selected;
+                                         foreach ($category as $category_mini) {         
+                                           $category_content = <<< EOD
+                                             <option value="{$category_mini['category_name']}">{$category_mini['category_name']}</option>
+                                           EOD;
+                                           echo $category_content;
+                                         }
+                                    ?>
+                        </select>
+                      <div class="form__input-error-message"></div>
+                  </div>
                 </div>
               </form>
                 <div class="form_content-preview-container">
                   <div class="iframe">
-                    <iframe width="352" height="198" src="https://www.youtube.com/embed/{$item['video_id']}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="352" height="198" src="https://www.youtube.com/embed/<?php echo $item['video_id'] ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
                   <div class="iframe_info">
-                      <div class="iframe_title_title" id="iframe_title_title">{$item['tenvideo']}</div>
-                      <div class="iframe_title_description" id="iframe_title_description">{$item['mota']}</div>
+                      <div class="iframe_title_title" id="iframe_title_title"><?php echo $item['tenvideo'] ?></div>
+                      <div class="iframe_title_description" id="iframe_title_description"><?php echo $item['mota'] ?></div>
                   </div>
                 </div>
             </div>      
@@ -224,9 +248,7 @@ if ($info_user != null) {
 
     </div>
   </div>
-  EOD;
-  echo $main;
-?>
+
 
 </div>
 
@@ -252,6 +274,7 @@ if ($info_user != null) {
             <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id;?>">
             <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $username;?>">
             <input type="hidden" class="form-control" id="useravatar" name="useravatar" value="<?php echo $useravatar;?>">
+            
             <div class="form-group">
               <label for="name">Tiêu đề</label>
               <textarea class="form-control" id="name" maxlength="100" name="name"></textarea>
@@ -260,6 +283,7 @@ if ($info_user != null) {
               </div>
               <div class="form__input-error-message"></div>
             </div>
+
             <div class="form-group">
               <label for="description">Mô tả</label>
               <textarea class="form-control" id="description" maxlength="5000" name="description"></textarea>
@@ -268,11 +292,31 @@ if ($info_user != null) {
               </div>
               <div class="form__input-error-message"></div>
             </div>
+
             <div class="form-group">
               <label for="videoId">VideoID</label>
               <textarea class="form-control" id="videoId" maxlength="32" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
+
+            <div class="form-group">
+              <label for="category">Thể loại</label>
+              <select name="category" id="category" required>
+              <option value="" selected disabled hidden>Chọn thể loại</option>
+              <?php 
+                  $sql = "select * from category";
+                  $data_category = executeResult($sql);
+                  foreach($data_category as $category_mini) {
+                      $category = <<<EOD
+                        <option value="{$category_mini['category_name']}">{$category_mini['category_name']}</option>
+                      EOD;
+                      echo $category;
+                  }
+              ?>
+              </select>
+              <div class="form__input-error-message"></div>
+            </div>
+
             <div class="col text-center">
               <button type="button" class="preview_button btn btn-primary" id="preview">PREVIEW</button>
             </div>
@@ -337,7 +381,7 @@ crossorigin="anonymous"></script>
       modal.style.display = "none";
     }
 
-    if(event.target.matches('#videoname_edit')||event.target.matches('#description_edit')){
+    if(event.target.matches('#videoname_edit')||event.target.matches('#description_edit')||event.target.matches('#category_edit')){
         $('#videoname_edit').on('input', function() {
           $('#side-main_cancel').addClass("enable_btn");
           $('#side-main_cancel button').attr('disabled', false);
@@ -351,6 +395,18 @@ crossorigin="anonymous"></script>
         });
 
         $('#description_edit').on('input', function() {
+          $('#side-main_cancel').addClass("enable_btn");
+          $('#side-main_cancel button').attr('disabled', false);
+          if($('#description_edit').val().length < 5 || $('#videoname_edit').val().length < 5){
+            $('#side-main_save').removeClass("enable_btn");
+            $('#side-main_save button').attr('disabled', true);
+          } else {
+            $('#side-main_save').addClass("enable_btn");
+            $('#side-main_save button').attr('disabled', false);
+          }
+        });
+
+        $('#category_edit').on('input', function() {
           $('#side-main_cancel').addClass("enable_btn");
           $('#side-main_cancel button').attr('disabled', false);
           if($('#description_edit').val().length < 5 || $('#videoname_edit').val().length < 5){
@@ -434,6 +490,7 @@ crossorigin="anonymous"></script>
       Validator.isRequired('#name'),
       Validator.isRequired('#description'),
       Validator.isRequired('#videoId'),
+      Validator.isRequired('#category'),
       Validator.minLength('#name', 5),
       Validator.minLength('#description', 5),
 

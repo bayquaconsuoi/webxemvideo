@@ -33,7 +33,7 @@
     <div id="login-notify" class="box-content">
         Xin chào Admin<br/>
         <a href="./user_listing.php">Quản lý người dùng</a><br/>
-        <a href="./user_video_listing.php">Quản lý video người dùng</a><br/>
+        <a href="./video_listing.php">Quản lý video người dùng</a><br/>
         <a href="./category_listing.php">Quản lý danh mục</a><br/>
         <a href="../main/">Trung's YOUTUBE</a> <br/>
         <a href="logout.php">Đăng xuất</a>

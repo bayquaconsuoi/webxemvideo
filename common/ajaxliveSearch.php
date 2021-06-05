@@ -5,9 +5,11 @@ $output = '';
 if (!empty($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
+if (isset($_GET['where'])) {
+    $where = $_GET['where'];
+}
 $db = mysqli_connect("localhost", "root", "", "cloneyoutube");
-if(isset($_POST["query"]))
-{
+if(isset($_POST["query"])&&$where=="edit") {
 
  $sql = " SELECT tenvideo,video_id,id FROM video WHERE !deleted_at AND user_id = $user AND LOWER(tenvideo) LIKE LOWER('%".$_POST['query']."%') ";
  $items = executeResult($sql);

@@ -13,6 +13,8 @@ require_once ('./../db/dbhelper.php');
 session_start();
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
+} else {
+  header("location: ../../main/");
 }
 
 //Truy van database
@@ -67,7 +69,7 @@ if (isset($_SESSION['user'])) {
                   aria-controls="home" aria-selected="true">Thông tin tài khoản</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="create-tab" href="detail_info_video_user.php">
+                <a class="nav-link" id="create-tab" href="detail/detail_info_video_user.php">
                 Quản lý video đã đăng</a>
               </li>
               
@@ -208,6 +210,7 @@ if (isset($_SESSION['user'])) {
             <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id;?>">
             <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $username;?>">
             <input type="hidden" class="form-control" id="useravatar" name="useravatar" value="<?php echo $useravatar;?>">
+            
             <div class="form-group">
               <label for="name">Tiêu đề</label>
               <textarea class="form-control" id="name" maxlength="100" name="name"></textarea>
@@ -224,11 +227,31 @@ if (isset($_SESSION['user'])) {
               </div>
               <div class="form__input-error-message"></div>
             </div>
+
             <div class="form-group">
               <label for="videoId">VideoID</label>
               <textarea class="form-control" id="videoId" maxlength="32" name="videoId"></textarea>
               <div class="form__input-error-message"></div>
             </div>
+
+            <div class="form-group">
+              <label for="category">Thể loại</label>
+              <select name="category" id="category" required>
+              <option value="" selected disabled hidden>Chọn thể loại</option>
+              <?php 
+                  $sql = "select * from category";
+                  $data_category = executeResult($sql);
+                  foreach($data_category as $category_mini) {
+                      $category = <<<EOD
+                        <option value="{$category_mini['category_name']}">{$category_mini['category_name']}</option>
+                      EOD;
+                      echo $category;
+                  }
+              ?>
+              </select>
+              <div class="form__input-error-message"></div>
+            </div>
+
             <div class="col text-center">
               <button type="button" class="preview_button btn btn-primary" id="preview">PREVIEW</button>
             </div>
@@ -360,6 +383,7 @@ crossorigin="anonymous"></script>
       Validator.isRequired('#name'),
       Validator.isRequired('#description'),
       Validator.isRequired('#videoId'),
+      Validator.isRequired('#category'),
       Validator.minLength('#name', 5),
       Validator.minLength('#description', 5),
 

@@ -14,7 +14,7 @@ if (!empty($_SESSION['admin'])) {
     }
     $firstIndex = ($page-1)*$limit;
     
-    $sql = "SELECT * FROM video ORDER BY created_at asc".' limit '.$firstIndex.', '.$limit;;
+    $sql = "SELECT * FROM video ORDER BY created_at desc".' limit '.$firstIndex.', '.$limit;;
     $video = executeResult($sql);
     
     $sql         = 'select count(id) as total from video where 1 ';
@@ -73,6 +73,7 @@ if (empty($_SESSION['admin'])) {
             <th scope="col">User_Id</th>
             <th scope="col">Ngày đăng</th>
             <th scope="col">Ngày cập nhật</th>
+            
             </tr>
         </thead>
         <tbody>
@@ -82,8 +83,8 @@ if (empty($_SESSION['admin'])) {
                     <tr>
                         <td>{$item['id']}</td>
                         <td>{$item['video_id']}</td>
-                        <td class="video_title"><div class="info_video_title">{$item['tenvideo']}</div></td>
-                        <td><img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" alt="" class="info_video_thumbnail"></td>
+                        <td class="video_title"><div class="info_video_title"><a href="editVideo.php?video_id={$item['id']}">{$item['tenvideo']}</a></div></td>
+                        <td><a href="editVideo.php?video_id={$item['id']}"><img src="https://img.youtube.com/vi/{$item['video_id']}/mqdefault.jpg" alt="" class="info_video_thumbnail"></a></td>
                         <td>{$item['category']}</td>
                         <td>{$item['user_name']}</td>
                         <td>{$item['user_id']}</td>

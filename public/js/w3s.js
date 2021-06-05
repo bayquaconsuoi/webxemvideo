@@ -156,6 +156,13 @@ window.onclick = function (event) {
     if (event.target == upload_video_modal) {
         upload_video_modal.style.display = "none";
     }
+    var advancedmodal = document.getElementById("advancedModal");
+    if (event.target == advancedmodal) {
+        advancedmodal.style.display = "none";
+        $('#action option').prop('selected', function() {
+            return this.defaultSelected;
+        });
+    }
 
 
 }

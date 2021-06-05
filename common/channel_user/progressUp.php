@@ -23,6 +23,10 @@ if (!empty($_POST)) {
 		$user_avatar = $_POST['useravatar'];
 		$user_avatar = str_replace('"', '\\"', $user_avatar);
 	}
+	if (isset($_POST['category'])) {
+		$category = $_POST['category'];
+		$category = str_replace('"', '\\"', $category);
+	}
 	if (isset($_POST['id'])) {
 		$user_id = $_POST['id'];
 		$user_id = str_replace('"', '\\"', $user_id);
@@ -31,7 +35,7 @@ if (!empty($_POST)) {
 	if (!empty($tenvideo)) {
 			date_default_timezone_set('Asia/Ho_Chi_Minh');
 			$created_at = $updated_at = date("Y-m-d H:i:s");
-				$sql = 'insert into video(video_id, tenvideo, mota, user_id, user_name, user_avatar, created_at, updated_at) values ("'.$videoId.'", "'.$tenvideo.'", "'.$mota.'", "'.$user_id.'", "'.$user_name.'", "'.$user_avatar.'", "'.$created_at.'", "'.$updated_at.'")';
+				$sql = 'insert into video(video_id, tenvideo, mota, user_id, user_name, user_avatar, category, created_at, updated_at) values ("'.$videoId.'", "'.$tenvideo.'", "'.$mota.'", "'.$user_id.'", "'.$user_name.'", "'.$user_avatar.'", "'.$category.'", "'.$created_at.'", "'.$updated_at.'")';
 			execute($sql);
 
 			header("Location: ../../common/channel_user/channel.php?id=".$user_id);
