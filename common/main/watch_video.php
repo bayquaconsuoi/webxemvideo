@@ -80,13 +80,15 @@ if (!empty($_SESSION['user'])) {
   </div>
 
   <div class="header-center">
-    <form method="GET" action="search_video.php">
+    <form method="GET" action="progressSearch.php">
       <div class="header-search">
-        <input class="header-search-input" type="search" placeholder="Tìm kiếm" aria-label="Search" name="name"
+        <input class="header-search-input search_input" id="search_input" type="search" placeholder="Tìm kiếm" autocomplete="off" aria-label="Search" name="name"
           required>
-        <select name="action" class="header-search-input_options">
+
+        <select name="action" id="action" class="header-search-input_options">
           <option value="videoName" class="header-search-btn">Tìm theo tên video</option>
           <option value="userName" class="header-search-btn">Tìm theo tên người đăng</option>
+          <option value="advanced" class="header-search-btn">Tìm kiếm nâng cao</option>
         </select>
         <button class="header-search-btn" type="submit"><i class="fas header-icon fa-search"></i></button>
       </div>
@@ -438,6 +440,64 @@ if (!empty($_SESSION['user'])) {
         <div class="notify_text" id="notify_text">some text</div>
     </div>
 </div>
+
+<!-- advanced search modal -->
+<div id="advancedModal" class="advancedModal">
+
+  <!-- Modal content -->
+  <div class="advancedModal-content">
+    <span class="advancedClose">&times;</span>
+    <h1>Tìm kiếm nâng cao</h1>
+    <form action="progressSearch.php?action=advanced" method="GET">
+        <div class="advancedFormContainer">
+
+          <input class="header-search-input search_input" id="advancedsearch_input" name="advancedsearch_input" type="search" placeholder="Tìm kiếm" autocomplete="off" aria-label="Search"
+          required>
+          Tìm theo:
+          <select name="advancedAction" id="advancedAction" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <option value="Tìm theo tên video" class="header-search-btn">Tìm theo tên video</option>
+            <option value="Tìm theo tên người đăng" class="header-search-btn">Tìm theo tên người đăng</option>
+          </select>
+          Thể loại:   
+          <select id="category" name="category" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <?php 
+              $sql = "select * from category";
+              $category = executeResult($sql);
+              foreach ($category as $category_mini) {         
+              $category_content = <<< EOD
+              <option value="{$category_mini['category_name']}">{$category_mini['category_name']}</option>
+              EOD;
+              echo $category_content;
+              }
+            ?>
+          </select>
+          Ngày đăng:
+          <select id="date_up" name="date_up" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <option value="Một giờ qua">Một giờ qua</option>
+            <option value="Hôm nay">Hôm nay</option>
+            <option value="Tuần này">Tuần này</option>
+            <option value="Tháng này">Tháng này</option>
+            <option value="Năm nay">Năm nay</option>
+          </select>  
+          Sắp xếp theo:
+          <select id="sort" name="sort" class="header-search-input_options" required>
+            <option value="" selected disabled hidden>--Lựa chọn--</option>
+            <option value="Ngày tải lên">Ngày tải lên</option>
+            <option value="Lượt xem">Lượt xem</option>
+            <option value="Lượt thích">Lượt thích</option>
+          </select>  
+          <div class="advancedFormButton">
+            <button class="header-search-btn" type="submit"><i class="fas advanced-icon fa-search"></i>Tìm kiếm</button>
+          </div>
+        </div>
+    </form>
+  </div>
+
+</div>
+
 <?php $session_value=(isset($_SESSION['user']))?$_SESSION['user']:''; ?>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -844,5 +904,26 @@ if (!empty($_SESSION['user'])) {
 
         });
     }
+
+</script>
+
+<script>
+  var span = document.getElementsByClassName("advancedClose")[0];
+  var modal = document.getElementById("advancedModal");
+
+  $("#action").on("change", function () {        
+      if($(this).val() === 'advanced'){
+        modal.style.display = "block";
+      }
+  });
+
+
+
+  span.onclick = function() {
+    modal.style.display = "none";
+    $('#action option').prop('selected', function() {
+          return this.defaultSelected;
+    });
+  }
 
 </script>

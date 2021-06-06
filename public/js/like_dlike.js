@@ -52,4 +52,12 @@ window.onclick = function (event) {
         modal_dislike.classList.remove("modal_light");
     }
 
+    var advancedmodal = document.getElementById("advancedModal");
+    if (event.target == advancedmodal) {
+        advancedmodal.style.display = "none";
+        $('#action option').prop('selected', function() {
+            return this.defaultSelected;
+        });
+    }
+
 }

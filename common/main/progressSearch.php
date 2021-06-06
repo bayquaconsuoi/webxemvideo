@@ -21,6 +21,7 @@ if (!empty($_SESSION['user'])) {
 <link rel="stylesheet" href="../../public/fontawesome-free-5.15.3-web/css/all.min.css">
 <link rel="stylesheet" href="../../public/css/header.css">
 <link rel="stylesheet" href="../../public/css/404.css">
+<link rel='stylesheet' href='https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css'>
 <?php include('../sidebar_search.php'); ?>
 <!-- #Header -->
 <header class="header">
@@ -167,7 +168,7 @@ if (isset ($_GET['name'])) {
   if (mysqli_num_rows($rs) > 0) {
       foreach ($video as $item) {
         $video = <<<EOD
-        <div class="card">
+        <div class="card wow fadeIn">
             <div class="card-thumbnail">
                 <a href="../main/watch_video.php?id={$item['id']}">
                     <div style="overflow: hidden;">
@@ -480,6 +481,11 @@ if (isset ($_GET['name'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="../../public/js/moment.js"></script>
+<script src='https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js'></script>
+
+<script>
+        new WOW().init();
+</script>
 <!-- <script src="../../public/js/404.js"></script> -->
 <script>
 function avatar_dropDown() {

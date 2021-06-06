@@ -246,9 +246,9 @@ if (!empty($_SESSION['user'])) {
                     <li class="tag">
                         <a href="#" class="tag-link communication">Thảo luận</a>
                     </li> -->
-                    <li class="tag">
+                    <!-- <li class="tag">
                         <a href="#" class="tag-link about">Giới thiệu</a>
-                    </li>
+                    </li> -->
                 </ul>
 
 
@@ -660,18 +660,18 @@ if (!empty($_SESSION['user'])) {
 
 <script>
     var span = document.getElementsByClassName("advancedClose")[0];
-    var modal = document.getElementById("advancedModal");
+    var advancedmodal = document.getElementById("advancedModal");
 
     $("#action").on("change", function () {        
         if($(this).val() === 'advanced'){
-        modal.style.display = "block";
+            advancedmodal.style.display = "block";
         }
     });
 
 
 
     span.onclick = function() {
-    modal.style.display = "none";
+        advancedmodal.style.display = "none";
     $('#action option').prop('selected', function() {
             return this.defaultSelected;
     });

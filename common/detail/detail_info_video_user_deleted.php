@@ -153,24 +153,6 @@ $userdetail = <<< EOD
                           <span class="sidebar-options__name">Video đã xóa</span>
                         </a>
                       </li>
-                      <li class="sidebar-options__item">
-                        <a href="#" class="sidebar-options__link">
-                          <span class="sidebar-options__icon">
-                            <i class="fas fa-address-card"></i>
-                          </span>
-                          <span class="sidebar-options__name">Thống kê</span>
-                        </a>
-                      </li>
-                    </ul>
-                    <ul style="padding: 0;">
-                      <li class="sidebar-options__item">
-                        <a href="#" class="sidebar-options__link">
-                          <span class="sidebar-options__icon">
-                            <i class="fas fa-gavel"></i>
-                          </span>
-                          <span class="sidebar-options__name">Gửi phản hồi</span>
-                        </a>
-                      </li>
                     </ul>
                   </div>
                 </div>
@@ -178,24 +160,11 @@ $userdetail = <<< EOD
               <div class="main_container col-xl-10 col-sm-11">
                 <div class="main_title-container">
                   <div class="main_title">
-                    Nội dung của kênh
+                    Danh sách video đã xóa
                   </div>
                 </div>
                 <div class="main_videos">
-                  <div class="videos_sort">
-                    <div class="videos_sort-container">
-                      <div class="videos_sort-icon">
-                        <button>
-                          <i class="fas fa-filter"></i>
-                        </button>
-                      </div>
-                      <div class="videos_sort-input">
-                        <form action="#" class="videos_sort-form">
-                          <input type="text" class="videos_sort-value" value="" placeholder="Lọc">
-                        </form>
-                      </div>
-                    </div>
-                  </div>
+
                  
                   <div class="videos-content">
                     <div class="videos-content-title">
