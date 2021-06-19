@@ -12,6 +12,8 @@
         <title>Admin</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon"
+        href="../img/icon_page/icon_page.png">
         <style>
             .box-content{
                 margin: 0 auto;
@@ -34,7 +36,7 @@
         Xin chào Admin<br/>
         <a href="./user_listing.php">Quản lý người dùng</a><br/>
         <a href="./video_listing.php">Quản lý video người dùng</a><br/>
-        <a href="./category_listing.php">Quản lý danh mục</a><br/>
+        <a href="./category_listing.php">Quản lý thể loại</a><br/>
         <a href="../pdf/data_user.php">Thông kê người dùng</a> <br/>
         <a href="logout.php">Đăng xuất</a>
     </div>

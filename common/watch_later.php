@@ -458,6 +458,24 @@ if (!empty($_SESSION['user'])) {
     </div>
 </div>
 
+<div class="modal_delete" id="deleteAll">
+
+    <div class="modal_delete_content">
+        <div class="modal_delete_text">
+          <h1>
+            Thông báo
+          </h1>
+        </div>
+        <div class="modal_delete_text" id="text_all">
+          Bạn có chắc chắn muốn xóa TẤT CẢ video khỏi Video đã lưu?
+        </div>
+        <div class="form_options">
+            <button type="submit" class="form_button close accept_btn" id="modal_delete_btn_all">Xác
+                nhận</button>
+            <button type="button" class="form_button close close_btn" id="modal_delete_close_all">Hủy</button>
+        </div>
+    </div>
+</div>
 <!-- advanced search modal -->
 <div id="advancedModal" class="advancedModal">
 
@@ -592,6 +610,7 @@ if (!empty($_SESSION['user'])) {
         var btn_open_delete_modal = document.querySelectorAll(".open_modal_btn");
         var btn_open_deleteAll_modal = document.querySelector("#modal_delete_all");
         var modal = document.getElementById('delete');
+        var modal_all = document.getElementById('deleteAll');
         var all = document.getElementById('text_all');
 
         [].forEach.call(btn_open_delete_modal, function(el) {
@@ -601,30 +620,39 @@ if (!empty($_SESSION['user'])) {
               let data = $(el);
               user_id = data.data('user_id');
               video_id = data.data('video_id');
+              middle_man.href = './../common/main/progressLater.php?user_id='+ user_id +'&video_id='+ video_id +'&type=delete';
           }
-            var btn_confirm_delete = document.getElementById('modal_delete_btn');
-            btn_confirm_delete.onclick = function () {
-                middle_man.href = './../common/main/progressLater.php?user_id='+ user_id +'&video_id='+ video_id +'&type=delete';
-                middle_man.click();
-            }
+          var btn_confirm_delete = document.getElementById('modal_delete_btn');
+          btn_confirm_delete.onclick = function () {
+            middle_man.click();
+          }
         })
+        
         btn_open_deleteAll_modal.onclick =function(){
-
-            all.innerText = "Bạn có chắc chắn muốn xóa TẤT CẢ video khỏi Video đã lưu?";
-            modal.style.display = "block";
-            var btn_confirm_delete = document.getElementById('modal_delete_btn');
-            btn_confirm_delete.onclick = function () {
-                middle_man_all.href = "./../common/main/progressLater.php?type=deleteAll" ;
-                middle_man_all.click();
-            }
+            // all.innerText = "Bạn có chắc chắn muốn xóa TẤT CẢ video khỏi Video đã lưu?";
+            modal_all.style.display = "block";
+            middle_man_all.href = "./../common/main/progressLater.php?type=deleteAll" ;
+          var btn_confirm_delete_all = document.getElementById('modal_delete_btn_all');
+            btn_confirm_delete_all.onclick = function () {
+            middle_man_all.click();
+          }
         }
+
         var modal_close_btn = document.getElementById('modal_delete_close');
         modal_close_btn.onclick = function(){
           modal.style.display = "none";
         }
+        var modal_close_btn_all = document.getElementById('modal_delete_close_all');
+        modal_close_btn_all.onclick = function(){
+          modal_all.style.display = "none";
+        }
+
         window.onclick = function(event) {
           if (event.target == modal) {
             modal.style.display = "none";
+          }
+          if (event.target == modal_all) {
+            modal_all.style.display = "none";
           }
           if (!event.target.matches('.dropbtn')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");

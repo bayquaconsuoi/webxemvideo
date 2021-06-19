@@ -123,8 +123,10 @@ if (empty($_SESSION['admin'])) {
                         <div>
                                 User Id: <?php echo $data_user['id']?><br/>
                                 <div>
-                                    <img src="../img/<?php echo $data_video['user_avatar']?>" class="user_avatar" alt="">
-                                    <?php echo $data_video['user_name']?> <br/>
+                                    <a href="editUser.php?user_id=<?php echo $data_video['user_id'] ?>">
+                                        <img src="../img/<?php echo $data_video['user_avatar']?>" class="user_avatar" alt="">
+                                        <?php echo $data_video['user_name']?> <br/>
+                                    </a>
                                 </div>
                                 Ngày tham gia: <?php echo $data_user['created_at']?><br/>
                                 Ngày cập nhật: <?php echo $data_user['updated_at']?><br/>

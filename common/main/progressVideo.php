@@ -27,7 +27,7 @@ require_once ('../../db/dbhelper.php');
                     header("location: ../../common/detail/detail_info_video_user_deleted.php");
                 }
                 if($type == "restore") {
-                    $sql = "update video set deleted_at = NULL WHERE id = '$video_id'";
+                    $sql = "update video set deleted_at = '' WHERE id = '$video_id'";
                     execute($sql);
                         
                     $_SESSION['success'] = 'Đã khôi phục video của bạn';

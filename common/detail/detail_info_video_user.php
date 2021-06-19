@@ -219,7 +219,7 @@ $userdetail = <<< EOD
                         echo $videos;
                         }
                     } else {
-                      echo "<div style='display: flex; justify-content: center;'> Bạn chưa đăng video nào!!! </div>";
+                      echo "<div style='display: flex; justify-content: center;'> Bạn chưa đăng video nào !!! </div>";
                     }
                   }
                 ?>

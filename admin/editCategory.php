@@ -42,7 +42,7 @@ if (empty($_SESSION['admin'])) {
                 </div>
             </div>
             <div class="main_container edit_video_container col-xl-10">
-                <form action="progressAdmin/category/editCategory.php?category_id={$data_category['id']}" method="post" id="edit_category" class="form_container">
+                <form action="progressAdmin/category/editCategory.php?category_id={$data_category['id']}&category_current_name={$data_category['category_name']}" method="post" id="edit_category" class="form_container">
                     <label for="category_name">Thể loại</label>    
                     <input type="text" id="category_name" name="category_name" value="{$data_category['category_name']}">
                     <button type="button" class="btn btn-secondary" id="back_button" onclick="window.history.go(-1); return false;" >Trở về</button>
