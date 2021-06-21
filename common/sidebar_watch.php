@@ -14,7 +14,7 @@ if (!empty($_SESSION['user'])) {
         <div class="sidebar-container">
             <div class="sidebar-options">
                 <ul class="sidebar-options-first">
-                    <li class="sidebar-options__item selected">
+                    <li class="sidebar-options__item  ">
                         <a href="../../main/" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="fas fa-home"></i>
@@ -63,7 +63,7 @@ if (!empty($_SESSION['user'])) {
                             </a>
                         </li>
 
-                        <li class="sidebar-options__item">
+                        <li class="sidebar-options__item  ">
                             <a href="../../common/history.php" class="sidebar-options__link">
                                 <span class="sidebar-options__icon">
                                     <i class="fas fa-history"></i>
@@ -81,7 +81,7 @@ if (!empty($_SESSION['user'])) {
                             </a>
                         </li>
 
-                        <li class="sidebar-options__item">
+                        <li class="sidebar-options__item  ">
                             <a href="../../common/playlist.php" class="sidebar-options__link">
                                 <span class="sidebar-options__icon">
                                     <i class="fas fa-thumbs-up"></i>
