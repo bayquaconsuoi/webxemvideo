@@ -255,7 +255,7 @@ $div =<<<EOD
 <div id="upload_modal" class="upload-modal">
 
   <!-- Modal content -->
-  <div class="upload-modal-content">
+  <div class="upload-modal-content" style="position:justify;">
     <div class="upload-modal-content_inner">
       <div class="upload-modal-top">
         <div class="upload-modal-title">
