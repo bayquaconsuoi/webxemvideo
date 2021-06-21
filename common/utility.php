@@ -4,8 +4,12 @@ function paginarion($number, $page, $addition) {
 	if ($number > 1) {
 		echo '<div class="pagination">';
 		if ($page > 1) {
-			echo '<a class="card-title" href="?page='.($page-1).''.$addition.'">Lùi trang</a>';
+			echo '<a class="fa fa-fast-backward" aria-hidden="true" href="?page='.($page-$page+1).''.$addition.'"></a>';
 		}
+		if ($page > 1) {
+			echo '<a class="fa fa-backward" aria-hidden="true" href="?page='.($page-1).''.$addition.'"></a>';
+		}
+		
 
 		$avaiablePage = [1, $page-1, $page, $page+1, $number];
 		$isFirst      = $isLast      = false;
@@ -30,8 +34,13 @@ function paginarion($number, $page, $addition) {
 			}
 		}
 		if ($page < ($number)) {
-			echo '<a class="card-title" href="?page='.($page+1).$addition.'">Trang kế</a>';
+			echo '
+			<a class="fa fa-step-forward" aria-hidden="true"  href="?page='.($page+1).$addition.'"></a>';
 		}
+		if ($page < ($number)) {
+			echo '<a class="fa fa-fast-forward" aria-hidden="true" href="?page='.(0+$number).$addition.'"></a>';
+		}
+		
 		echo '</div>';
 	}
 }
