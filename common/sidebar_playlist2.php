@@ -64,7 +64,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class="sidebar-options__item  ">
+                    <li class="sidebar-options__item selected ">
                         <a href="./../common/history.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-history"></i>
@@ -73,7 +73,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class="sidebar-options__item selected">
+                    <li class="sidebar-options__item ">
                         <a href="./../common/watch_later.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-clock"></i>
