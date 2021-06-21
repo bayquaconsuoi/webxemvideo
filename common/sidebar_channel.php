@@ -201,7 +201,7 @@ if (!empty($_SESSION['user'])) {
             if(isset($_SESSION['user'])){
                 $isUser = <<<EOD
                     <li class="sidebar-options__item">
-                        <a href="../../common/channel_user/channel.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                        <a href="../../common/channel_user/videos.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
                             </div>

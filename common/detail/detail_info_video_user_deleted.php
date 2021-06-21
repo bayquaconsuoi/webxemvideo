@@ -79,7 +79,7 @@ $userdetail = <<< EOD
                     </div>
                   </div>
                   <div class="up_dropdown-options">
-                    <a href="../../common/channel_user/channel.php?id=$id">
+                    <a href="../../common/channel_user/videos.php?id=$id">
                       <div class="up_icon">
                         <div>
                           <i class="up_dropdown-options-icon far fa-user-circle"></i>
@@ -125,7 +125,7 @@ $userdetail = <<< EOD
                 <div class="side-inner_container">
                   <div class="side-inner_userinfo">
                     <div class="user_avatar">
-                      <a href="../../common/channel_user/channel.php?id=$id"><img src="../../img/$useravatar" alt=""></a>
+                      <a href="../../common/channel_user/videos.php?id=$id"><img src="../../img/$useravatar" alt=""></a>
                     </div>
                     <div class="user_title">
                       Kênh của bạn
