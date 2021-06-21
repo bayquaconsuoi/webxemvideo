@@ -15,7 +15,7 @@ if (!empty($_SESSION['user'])) {
     <div class="sidebar-container">
         <div class="sidebar-options">
             <ul class="sidebar-options-first">
-                <li class="sidebar-options__item ">
+                <li class="sidebar-options__item">
                     <a href="./../main/" class="sidebar-options__link">
                         <span class="sidebar-options__icon">
                             <i class="bx fas fa-home"></i>
@@ -46,7 +46,7 @@ if (!empty($_SESSION['user'])) {
             if (isset($_SESSION['user'])) {
                 $user_sidebar = <<< EOD
                 <ul class="sidebar-options-second">
-                    <li class="sidebar-options__item ">
+                    <li class="sidebar-options__item">
                         <a href="./../common/channel_user/videos.php?id=$user" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
@@ -55,7 +55,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class="sidebar-options__item ">
+                    <li class="sidebar-options__item">
                         <a href="./../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-play-circle"></i>
@@ -64,7 +64,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class="sidebar-options__item  ">
+                    <li class="sidebar-options__item" id="sidebar-options_watch">
                         <a href="./../common/history.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-history"></i>
@@ -73,7 +73,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class="sidebar-options__item selected">
+                    <li class="sidebar-options__item" id="sidebar-options_save">
                         <a href="./../common/watch_later.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-clock"></i>
@@ -82,7 +82,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class="sidebar-options__item  ">
+                    <li class="sidebar-options__item" id="sidebar-options_like">
                         <a href="./../common/playlist.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-thumbs-up"></i>
@@ -190,7 +190,7 @@ if (!empty($_SESSION['user'])) {
 
 <section class="sidebar sidebar-small closed">
     <ul class="sidebar-options">
-        <li class="sidebar-options__item ">
+        <li class="sidebar-options__item">
             <a href="./../main/" class="sidebar-options__link" style="padding: 0!important;">
                 <div class="sidebar-options__icon">
                     <i class="bx fas fa-home"></i>
@@ -203,7 +203,7 @@ if (!empty($_SESSION['user'])) {
             if(isset($_SESSION['user'])){
                 $isUser = <<<EOD
                     <li class="sidebar-options__item">
-                        <a href="./../common/channel_user/videos.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                        <a href="../../common/channel_user/videos.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
                             </div>
@@ -212,7 +212,7 @@ if (!empty($_SESSION['user'])) {
                     </li>
                 
                     <li class="sidebar-options__item">
-                        <a href="./../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                        <a href="../../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="fas fa-play-circle"></i>
                             </div>
@@ -229,3 +229,20 @@ if (!empty($_SESSION['user'])) {
 
     </ul>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var current_location = window.location.href,
+        sidebar_watch = document.getElementById("sidebar-options_watch"),
+        sidebar_save = document.getElementById("sidebar-options_save"),
+        sidebar_like = document.getElementById("sidebar-options_like");
+        if(current_location == "http://localhost/webxemvideo-main/common/history.php") {
+            console.log(sidebar_watch);
+            sidebar_watch.classList.add("selected")
+        } else if(current_location == "http://localhost/webxemvideo-main/common/watch_later.php") {
+            sidebar_save.classList.add("selected")
+        } else {
+            sidebar_like.classList.add("selected")
+        }
+    })
+</script>
