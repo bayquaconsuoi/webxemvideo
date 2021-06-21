@@ -236,10 +236,10 @@ if (!empty($_SESSION['user'])) {
         sidebar_watch = document.getElementById("sidebar-options_watch"),
         sidebar_save = document.getElementById("sidebar-options_save"),
         sidebar_like = document.getElementById("sidebar-options_like");
-        if(current_location == "http://localhost/webxemvideo-main/common/history.php") {
+        if(current_location == "http://localhost/webxemvideo/common/history.php") {
             console.log(sidebar_watch);
             sidebar_watch.classList.add("selected")
-        } else if(current_location == "http://localhost/webxemvideo-main/common/watch_later.php") {
+        } else if(current_location == "http://localhost/webxemvideo/common/watch_later.php") {
             sidebar_save.classList.add("selected")
         } else {
             sidebar_like.classList.add("selected")
