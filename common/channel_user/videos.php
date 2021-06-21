@@ -186,7 +186,7 @@ if (!empty($_SESSION['user'])) {
                     <div class="user-container_2">
                         <div class="user_settings_container" style="padding-left: 84px;">
                             <div class="user_settings">
-                                <button><a href="../detail_info_page.php">Quản lý Video</a></button>
+                                <button><a href="../detail/detail_info_video_user.php">Quản lý Video</a></button>
                             </div>
                         </div>
 
