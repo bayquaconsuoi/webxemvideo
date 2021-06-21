@@ -4,10 +4,10 @@ function paginarion($number, $page, $addition) {
 	if ($number > 1) {
 		echo '<div class="pagination">';
 		if ($page > 1) {
-			echo '<a class="fa fa-fast-backward" aria-hidden="true" href="?page='.($page-$page+1).''.$addition.'"></a>';
+			echo '<a class="fa fa-fast-backward" style="color: var(--primary-text-color);" aria-hidden="true" href="?page='.($page-$page+1).''.$addition.'"></a>';
 		}
 		if ($page > 1) {
-			echo '<a class="fa fa-backward" aria-hidden="true" href="?page='.($page-1).''.$addition.'"></a>';
+			echo '<a class="fa fa-backward" style="color: var(--primary-text-color);"  aria-hidden="true" href="?page='.($page-1).''.$addition.'"></a>';
 		}
 		
 
@@ -35,10 +35,10 @@ function paginarion($number, $page, $addition) {
 		}
 		if ($page < ($number)) {
 			echo '
-			<a class="fa fa-step-forward" aria-hidden="true"  href="?page='.($page+1).$addition.'"></a>';
+			<a class="fa fa-step-forward" aria-hidden="true" style="color: var(--primary-text-color);"  href="?page='.($page+1).$addition.'"></a>';
 		}
 		if ($page < ($number)) {
-			echo '<a class="fa fa-fast-forward" aria-hidden="true" href="?page='.(0+$number).$addition.'"></a>';
+			echo '<a class="fa fa-fast-forward" style="color: var(--primary-text-color);" aria-hidden="true" href="?page='.(0+$number).$addition.'"></a>';
 		}
 		
 		echo '</div>';
