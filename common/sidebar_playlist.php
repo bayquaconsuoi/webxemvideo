@@ -32,7 +32,6 @@ if (!empty($_SESSION['user'])) {
                         <span class="sidebar-options__name">Khám phá</span>
                     </a>
                 </li>
-
                 <li class="sidebar-options__item">
                     <a href="#" class="sidebar-options__link">
                         <span class="sidebar-options__icon">
@@ -54,7 +53,6 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__name">Kênh của bạn</span>
                         </a>
                     </li>
-
                     <li class="sidebar-options__item">
                         <a href="./../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
@@ -63,7 +61,6 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__name">Video của bạn</span>
                         </a>
                     </li>
-
                     <li class="sidebar-options__item" id="sidebar-options_watch">
                         <a href="./../common/history.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
@@ -72,7 +69,6 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__name">Video đã xem</span>
                         </a>
                     </li>
-
                     <li class="sidebar-options__item" id="sidebar-options_save">
                         <a href="./../common/watch_later.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
@@ -81,7 +77,6 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__name">Video đã lưu</span>
                         </a>
                     </li>
-
                     <li class="sidebar-options__item" id="sidebar-options_like">
                         <a href="./../common/playlist.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
@@ -126,7 +121,6 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-more__name">Gaming</span>
                 </a>
             </li>
-
             <li class="sidebar-more">
                 <a href="#" class="sidebar-more-link">
                     <span class="sidebar-more__icon">
@@ -135,7 +129,6 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-more__name">Live</span>
                 </a>
             </li>
-
             <li class="sidebar-more">
                 <a href="#" class="sidebar-more-link">
                     <span class="sidebar-more__icon">
@@ -145,7 +138,6 @@ if (!empty($_SESSION['user'])) {
                 </a>
             </li>
         </ul>
-
         <ul class="sidebar-functions">
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
@@ -155,7 +147,6 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-function__name">Cài đặt</span>
                 </a>
             </li>
-
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
                     <span class="sidebar-function__icon">
@@ -164,7 +155,6 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-function__name">Báo cáo</span>
                 </a>
             </li>
-
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
                     <span class="sidebar-function__icon">
@@ -173,7 +163,6 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-function__name">Trợ giúp</span>
                 </a>
             </li>
-
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
                     <span class="sidebar-function__icon">
@@ -220,7 +209,6 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
             
-
                 EOD;
                 echo $isUser;
             }
@@ -237,7 +225,7 @@ if (!empty($_SESSION['user'])) {
         sidebar_save = document.getElementById("sidebar-options_save"),
         sidebar_like = document.getElementById("sidebar-options_like");
         if(current_location == "http://localhost/webxemvideo/common/history.php") {
-            console.log(sidebar_watch);
+            
             sidebar_watch.classList.add("selected")
         } else if(current_location == "http://localhost/webxemvideo/common/watch_later.php") {
             sidebar_save.classList.add("selected")
