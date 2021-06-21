@@ -155,7 +155,6 @@ if (!empty($_SESSION['user'])) {
                             <div class="user-name">
                                 <span>
                                     <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
-                                    65 người đăng ký
                                 </span>
                             </div>
                         </div>
