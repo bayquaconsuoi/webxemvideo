@@ -14,6 +14,8 @@ $id = '';
 if (isset($_GET['id'])) {
     $id      = $_GET['id'];
     $sql     = 'select * from account where id = '.$id;
+    $sql1= 'select sum(view_count)  as temp from video where user_id = '.$id;
+    $view = executeSingleResult($sql1);
     $account = executeSingleResult($sql);
 }
 include('../sidebar_channel.php'); 
@@ -155,7 +157,8 @@ if (!empty($_SESSION['user'])) {
                             <div class="user-name">
                                 <span>
                                     <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
-                                    65 người đăng ký
+                                    <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
+                                        
                                 </span>
                             </div>
                         </div>
@@ -201,6 +204,7 @@ if (!empty($_SESSION['user'])) {
                             <div class="user-name">
                                 <span>
                                     <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                
                                 </span>
                             </div>
                         </div>
@@ -218,6 +222,7 @@ if (!empty($_SESSION['user'])) {
                             <div class="user-name">
                                 <span>
                                     <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                          
                                 </span>
                             </div>
                         </div>
