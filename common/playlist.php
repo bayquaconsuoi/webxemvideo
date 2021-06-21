@@ -17,7 +17,7 @@ require_once ('../db/dbhelper.php');
 //     $account = executeSingleResult($sql);
 // }
 
-include('sidebar_playlist3.php');
+include('sidebar_playlist.php');
 
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
