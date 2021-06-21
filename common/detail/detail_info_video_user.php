@@ -80,7 +80,7 @@ $userdetail = <<< EOD
                     </div>
                   </div>
                   <div class="up_dropdown-options">
-                    <a href="../../common/channel_user/channel.php?id=$id">
+                    <a href="../../common/channel_user/videos.php?id=$id">
                       <div class="up_icon">
                         <div>
                           <i class="up_dropdown-options-icon far fa-user-circle"></i>
@@ -255,7 +255,7 @@ $div =<<<EOD
 <div id="upload_modal" class="upload-modal">
 
   <!-- Modal content -->
-  <div class="upload-modal-content">
+  <div class="upload-modal-content" style="position:justify;">
     <div class="upload-modal-content_inner">
       <div class="upload-modal-top">
         <div class="upload-modal-title">
@@ -575,6 +575,78 @@ $(document).ready(function(){
   }
  });
 });
+</script>
+<script>
+
+
+// create dark mode button
+function darkMode() {
+    const toggleSwitch = document.querySelector('.toggle input[type="checkbox"]');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            toggleSwitch.checked = true;
+        }
+    }
+
+    toggleSwitch.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
+
+darkMode();
+
+function slider() {
+
+function moveSidebar() {
+
+	let menuBtn = document.querySelector('.header-menu-btn'),
+		largeSidebar = document.querySelector('.sidebar-large'),
+		smallSidebar = document.querySelector('.sidebar-small'),
+		cardsCtn = document.querySelector('.cards');
+
+
+	var x = getCookie("sidebar");
+	if (x === "true") {
+		largeSidebar.classList.add('closed');
+		smallSidebar.classList.remove('closed');
+		cardsCtn.classList.add('cards-small');
+
+
+	} else {
+		largeSidebar.classList.remove('closed');
+		smallSidebar.classList.add('closed');
+		cardsCtn.classList.remove('cards-small');
+
+
+	}
+
+	menuBtn.addEventListener('click', () => {
+		largeSidebar.classList.toggle('closed');
+		smallSidebar.classList.toggle('closed');
+		cardsCtn.classList.toggle('cards-small');
+
+		if(cardsCtn.classList.contains("cards-small")){
+			setCookie("sidebar","true",1)
+		} else {
+			setCookie("sidebar","false",1)
+		}
+		
+	})
+}
+
+moveSidebar();
+}
+
+slider();
 </script>
 
 

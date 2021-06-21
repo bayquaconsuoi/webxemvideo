@@ -35,6 +35,7 @@ if (!empty($_SESSION['user'])) {
   header("location: ../../main/");
 }
 ?>
+<title>History</title>
 <header class="header">
   <div class="header-left">
     <button class="header-menu-btn btn-active">
@@ -99,7 +100,7 @@ if (!empty($_SESSION['user'])) {
                   </div>
                   <hr>
                   <div class="content_options">
-                    <a class="sidebar-options__link" href="./../common/channel_user/channel.php?id=$id">
+                    <a class="sidebar-options__link" href="./../common/channel_user/videos.php?id=$id">
                       <span class="sidebar-options__icon">
                         <i class="far fa-user-circle"></i>
                       </span>

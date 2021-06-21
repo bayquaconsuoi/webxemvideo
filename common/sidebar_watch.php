@@ -46,7 +46,7 @@ if (!empty($_SESSION['user'])) {
                     $user_sidebar = <<< EOD
                     <ul class="sidebar-options-second">
                         <li class="sidebar-options__item">
-                            <a href="../../common/channel_user/channel.php?id=$user" class="sidebar-options__link">
+                            <a href="../../common/channel_user/videos.php?id=$user" class="sidebar-options__link">
                                 <span class="sidebar-options__icon">
                                     <i class="fas fa-book-open"></i>
                                 </span>

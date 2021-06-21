@@ -7,7 +7,7 @@ if (!empty($_SESSION['user'])) {
 }
 ?>
 <head>
-<title>OFCS</title>
+
 <link rel="icon"
         href="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png">
 </head>
@@ -47,7 +47,7 @@ if (!empty($_SESSION['user'])) {
                 $user_sidebar = <<< EOD
                 <ul class="sidebar-options-second">
                     <li class="sidebar-options__item">
-                        <a href="./../common/channel_user/channel.php?id=$user" class="sidebar-options__link">
+                        <a href="./../common/channel_user/videos.php?id=$user" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
                             </span>
@@ -203,7 +203,7 @@ if (!empty($_SESSION['user'])) {
             if(isset($_SESSION['user'])){
                 $isUser = <<<EOD
                     <li class="sidebar-options__item">
-                        <a href="../../common/channel_user/channel.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                        <a href="../../common/channel_user/videos.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
                             </div>

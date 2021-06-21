@@ -48,7 +48,7 @@ foreach ($video as $item) {
 
     <div class="card-content">
         <div class="card-avatar">
-            <a href="./../common/main/watch_video.php?id={$item['id']}">
+        <a href="./../common/channel_user/channel.php?id={$item['user_id']}">
                 <img class="user-avatar circular_image" src="../img/{$item['user_avatar']}" loading="lazy" alt="">
             </a>
         </div>

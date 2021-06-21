@@ -79,7 +79,7 @@ if ($info_user != null) {
             </div>
           </div>
           <div class="up_dropdown-options">
-            <a href="../../common/channel_user/channel.php?id=$id">
+            <a href="../../common/channel_user/videos.php?id=$id">
               <div class="up_icon">
                 <div>
                   <i class="up_dropdown-options-icon far fa-user-circle"></i>
