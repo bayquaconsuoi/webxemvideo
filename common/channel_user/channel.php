@@ -157,8 +157,11 @@ if (!empty($_SESSION['user'])) {
                             <div class="user-name">
                                 <span>
                                     <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+<<<<<<< HEAD
+=======
                                     <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                                         
+>>>>>>> 4f99adad3395e7f65ea7030f6d45ecc1f7c6264a
                                 </span>
                             </div>
                         </div>
