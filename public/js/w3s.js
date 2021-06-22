@@ -205,20 +205,43 @@ $("div .crip_animate").click(function (e) {
 function slider() {
 
     function moveSidebar() {
-        let menuBtn = document.querySelector('.header-menu-btn'), // get element of menu button
-            largeSidebar = document.querySelector('.sidebar-large'), // get element of large sidebar
-            smallSidebar = document.querySelector('.sidebar-small'), // get element of small sidebar
-            cardsCtn = document.querySelector('.cards'); // get element of cards container
-
-
+    
+        let menuBtn = document.querySelector('.header-menu-btn'),
+            largeSidebar = document.querySelector('.sidebar-large'),
+            smallSidebar = document.querySelector('.sidebar-small'),
+            cardsCtn = document.querySelector('.cards');
+    
+    
+        var x = getCookie("sidebar");
+        if (x === "true") {
+            largeSidebar.classList.add('closed');
+            smallSidebar.classList.remove('closed');
+            cardsCtn.classList.add('cards-small');
+    
+    
+        } else {
+            largeSidebar.classList.remove('closed');
+            smallSidebar.classList.add('closed');
+            cardsCtn.classList.remove('cards-small');
+    
+    
+        }
+    
         menuBtn.addEventListener('click', () => {
             largeSidebar.classList.toggle('closed');
             smallSidebar.classList.toggle('closed');
             cardsCtn.classList.toggle('cards-small');
+    
+            if(cardsCtn.classList.contains("cards-small")){
+                setCookie("sidebar","true",1)
+            } else {
+                setCookie("sidebar","false",1)
+            }
+            
         })
     }
-
+    
     moveSidebar();
-}
-
-slider();
+    }
+    
+    slider();
