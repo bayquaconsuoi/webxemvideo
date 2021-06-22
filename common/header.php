@@ -81,7 +81,7 @@ if (!empty($_SESSION['user'])) {
                   </div>
                   <hr>
                   <div class="content_options">
-                    <a class="sidebar-options__link" href="../common/channel_user/videos.php?id=$id">
+                    <a class="sidebar-options__link" href="../common/channel_user/channel.php?id=$id">
                       <span class="sidebar-options__icon">
                         <i class="far fa-user-circle"></i>
                       </span>

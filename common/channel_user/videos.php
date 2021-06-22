@@ -14,6 +14,8 @@ $id = '';
 if (isset($_GET['id'])) {
     $id      = $_GET['id'];
     $sql     = 'select * from account where id = '.$id;
+    $sql1= 'select sum(view_count)  as temp from video where user_id = '.$id;
+    $view = executeSingleResult($sql1);
     $account = executeSingleResult($sql);
 }
 
@@ -158,7 +160,8 @@ if (!empty($_SESSION['user'])) {
                         <div class="user-name_container">
                             <div class="user-name">
                                 <span>
-                                    <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                                 </span>
                             </div>
                         </div>
@@ -179,14 +182,15 @@ if (!empty($_SESSION['user'])) {
                     <div class="user-name_container">
                         <div class="user-name">
                             <span>
-                                <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br
+                                <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
+                                <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                             </span>
                         </div>
                     </div>
                     <div class="user-container_2">
                         <div class="user_settings_container" style="padding-left: 84px;">
                             <div class="user_settings">
-                                <button><a href="../detail/detail_info_video_user.php">Quản lý Video</a></button>
+                                <button><a href="../detail/detail_info_video_user.php">Quản lý thông tin</a></button>
                             </div>
                         </div>
 
@@ -203,7 +207,8 @@ if (!empty($_SESSION['user'])) {
                         <div class="user-name_container">
                             <div class="user-name">
                                 <span>
-                                    <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                                 </span>
                             </div>
                         </div>
@@ -220,7 +225,8 @@ if (!empty($_SESSION['user'])) {
                         <div class="user-name_container">
                             <div class="user-name">
                                 <span>
-                                    <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                                 </span>
                             </div>
                         </div>

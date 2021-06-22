@@ -2,20 +2,18 @@
 // session_start();
 if (!empty($_SESSION['user'])) {
   $user = $_SESSION['user'];
-} else {
-    header("location: ../main/");
-}
+} 
 ?>
 <head>
-
+<title>Search</title>
 <link rel="icon"
-        href="https://64.media.tumblr.com/6c894cfef11f03c37c2688cedd03c508/tumblr_on8i9klcVA1uti1rro7_400.png">
+        href="./../img/icon_page/icon_page.png">
 </head>
 <section id="sidebar" class="sidebar sidebar-large ">
     <div class="sidebar-container">
         <div class="sidebar-options">
             <ul class="sidebar-options-first">
-                <li class="sidebar-options__item">
+                <li class="sidebar-options__item ">
                     <a href="./../main/" class="sidebar-options__link">
                         <span class="sidebar-options__icon">
                             <i class="bx fas fa-home"></i>
@@ -32,6 +30,7 @@ if (!empty($_SESSION['user'])) {
                         <span class="sidebar-options__name">Khám phá</span>
                     </a>
                 </li>
+
                 <li class="sidebar-options__item">
                     <a href="#" class="sidebar-options__link">
                         <span class="sidebar-options__icon">
@@ -63,7 +62,7 @@ if (!empty($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class="sidebar-options__item" id="sidebar-options_watch">
+                    <li class="sidebar-options__item ">
                         <a href="./../common/history.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-history"></i>
@@ -71,8 +70,8 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__name">Video đã xem</span>
                         </a>
                     </li>
-
-                    <li class="sidebar-options__item" id="sidebar-options_save">
+                    
+                    <li class="sidebar-options__item ">
                         <a href="./../common/watch_later.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-clock"></i>
@@ -80,8 +79,8 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__name">Video đã lưu</span>
                         </a>
                     </li>
-                    
-                    <li class="sidebar-options__item" id="sidebar-options_like">
+
+                    <li class="sidebar-options__item ">
                         <a href="./../common/playlist.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-thumbs-up"></i>
@@ -125,6 +124,7 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-more__name">Gaming</span>
                 </a>
             </li>
+
             <li class="sidebar-more">
                 <a href="#" class="sidebar-more-link">
                     <span class="sidebar-more__icon">
@@ -133,6 +133,7 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-more__name">Live</span>
                 </a>
             </li>
+
             <li class="sidebar-more">
                 <a href="#" class="sidebar-more-link">
                     <span class="sidebar-more__icon">
@@ -142,6 +143,7 @@ if (!empty($_SESSION['user'])) {
                 </a>
             </li>
         </ul>
+
         <ul class="sidebar-functions">
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
@@ -151,6 +153,7 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-function__name">Cài đặt</span>
                 </a>
             </li>
+
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
                     <span class="sidebar-function__icon">
@@ -159,6 +162,7 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-function__name">Báo cáo</span>
                 </a>
             </li>
+
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
                     <span class="sidebar-function__icon">
@@ -167,6 +171,7 @@ if (!empty($_SESSION['user'])) {
                     <span class="sidebar-function__name">Trợ giúp</span>
                 </a>
             </li>
+
             <li class="sidebar-function">
                 <a href="#" class="sidebar-function-link">
                     <span class="sidebar-function__icon">
@@ -183,7 +188,7 @@ if (!empty($_SESSION['user'])) {
 
 <section class="sidebar sidebar-small closed">
     <ul class="sidebar-options">
-        <li class="sidebar-options__item">
+        <li class="sidebar-options__item ">
             <a href="./../main/" class="sidebar-options__link" style="padding: 0!important;">
                 <div class="sidebar-options__icon">
                     <i class="bx fas fa-home"></i>
@@ -221,19 +226,3 @@ if (!empty($_SESSION['user'])) {
 
     </ul>
 </section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var current_location = window.location.href,
-        sidebar_watch = document.getElementById("sidebar-options_watch"),
-        sidebar_save = document.getElementById("sidebar-options_save"),
-        sidebar_like = document.getElementById("sidebar-options_like");
-        if(current_location == "http://localhost/webxemvideo/common/history.php") {
-            sidebar_watch.classList.add("selected")
-        } else if(current_location == "http://localhost/webxemvideo/common/watch_later.php") {
-            sidebar_save.classList.add("selected")
-        } else {
-            sidebar_like.classList.add("selected")
-        }
-    })
-</script>

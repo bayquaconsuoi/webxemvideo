@@ -58,7 +58,7 @@ if (isset($_SESSION['user'])) {
           <a href="./../main">
             <img src="../img/icon_page/icon_page.png"
               alt="" style="width: 48px; border-radius: 50%;">
-            <div class="up_logo-name">Clone Youtube</div>
+            <div class="up_logo-name">Trung's Youtube</div>
           </a>
         </div>
         <div class="col-md-auto">

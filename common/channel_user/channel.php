@@ -156,9 +156,8 @@ if (!empty($_SESSION['user'])) {
                         <div class="user-name_container">
                             <div class="user-name">
                                 <span>
-                                    <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
-                                    <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
-                                        
+                                    <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>     
                                 </span>
                             </div>
                         </div>
@@ -179,7 +178,7 @@ if (!empty($_SESSION['user'])) {
                     <div class="user-name_container">
                         <div class="user-name">
                             <span>
-                                <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
                                 <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                             </span>
                         </div>
@@ -204,7 +203,7 @@ if (!empty($_SESSION['user'])) {
                         <div class="user-name_container">
                             <div class="user-name">
                                 <span>
-                                    <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
                                     <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                                 </span>
                             </div>
@@ -222,7 +221,7 @@ if (!empty($_SESSION['user'])) {
                         <div class="user-name_container">
                             <div class="user-name">
                                 <span>
-                                    <span style="font-size: 2.9rem;">{$account['user_name']}</span> <br>
+                                    <span style="font-size: 2.2rem;">{$account['user_name']}</span> <br>
                                     <span style="font-size: 2rem;">Tổng số lượt xem: {$view['temp']}</span>
                                 </span>
                             </div>

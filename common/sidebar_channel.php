@@ -45,7 +45,7 @@ if (!empty($_SESSION['user'])) {
                 $user_sidebar = <<< EOD
                 <ul class="sidebar-options-second">
                     <li class="sidebar-options__item selected">
-                        <a href="../../common/channel_user/videos.php?id=$user" class="sidebar-options__link">
+                        <a href="../../common/channel_user/channel.php?id=$user" class="sidebar-options__link">
                             <span class="sidebar-options__icon ">
                                 <i class="bx fas fa-book-open"></i>
                             </span>
@@ -188,7 +188,7 @@ if (!empty($_SESSION['user'])) {
 
 <section class="sidebar sidebar-small closed">
     <ul class="sidebar-options">
-        <li class="sidebar-options__item selected">
+        <li class="sidebar-options__item">
             <a href="../../main/" class="sidebar-options__link" style="padding: 0!important;">
                 <div class="sidebar-options__icon">
                     <i class="bx fas fa-home"></i>
@@ -200,8 +200,8 @@ if (!empty($_SESSION['user'])) {
        <?php 
             if(isset($_SESSION['user'])){
                 $isUser = <<<EOD
-                    <li class="sidebar-options__item">
-                        <a href="./../common/channel_user/videos.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                    <li class="sidebar-options__item selected">
+                        <a href="../../common/channel_user/channel.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
                             </div>
@@ -210,7 +210,7 @@ if (!empty($_SESSION['user'])) {
                     </li>
                 
                     <li class="sidebar-options__item">
-                        <a href="./../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                        <a href="../../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="fas fa-play-circle"></i>
                             </div>

@@ -45,7 +45,7 @@ if (!empty($_SESSION['user'])) {
                 $user_sidebar = <<< EOD
                 <ul class="sidebar-options-second">
                     <li class="sidebar-options__item">
-                        <a href="../../common/channel_user/videos.php?id=$user" class="sidebar-options__link">
+                        <a href="../../common/channel_user/channel.php?id=$user" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
                             </span>
@@ -70,6 +70,7 @@ if (!empty($_SESSION['user'])) {
                             <span class="sidebar-options__name">Video đã xem</span>
                         </a>
                     </li>
+                    
                     <li class="sidebar-options__item ">
                         <a href="../../common/watch_later.php" class="sidebar-options__link">
                             <span class="sidebar-options__icon">
@@ -200,7 +201,7 @@ if (!empty($_SESSION['user'])) {
             if(isset($_SESSION['user'])){
                 $isUser = <<<EOD
                     <li class="sidebar-options__item">
-                        <a href="./../common/channel_user/videos.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                        <a href="../../common/channel_user/channel.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="bx fas fa-book-open"></i>
                             </div>
@@ -209,7 +210,7 @@ if (!empty($_SESSION['user'])) {
                     </li>
                 
                     <li class="sidebar-options__item">
-                        <a href="./../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
+                        <a href="../../common/detail/detail_info_video_user.php?id=$user" class="sidebar-options__link" style="padding: 0!important;">
                             <div class="sidebar-options__icon">
                                 <i class="fas fa-play-circle"></i>
                             </div>

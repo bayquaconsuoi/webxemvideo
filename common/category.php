@@ -22,7 +22,7 @@ if (!empty($_SESSION['user'])) {
 <link rel="stylesheet" href="../public/css/header.css">
 <link rel="stylesheet" href="../public/css/404.css">
 <link rel='stylesheet' href='https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css'>
-<?php include('sidebar_search.php'); ?>
+<?php include('sidebar_category.php'); ?>
 <!-- #Header -->
 <header class="header">
   <div class="header-left">
