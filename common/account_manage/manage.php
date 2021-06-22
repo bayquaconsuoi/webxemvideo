@@ -88,12 +88,12 @@ if (!empty($_SESSION['fail'])) {
             <div class="form__input-error-message"></div>
           </div>
         </div>
-        <div class="input-field">
+        <div class="input-field" id="email_error">
           <i class="fas fa-envelope"></i>
           <div style="position: relative;">
             <input type="email" id="email" name="email" placeholder="Địa chỉ email" />
             <label for="email">Địa chỉ email</label>
-            <div class="form__input-error-message"></div>
+            <div class="form__input-error-message" id="form__input-error-message_email"></div>
           </div>
         </div>
 
@@ -123,6 +123,8 @@ if (!empty($_SESSION['fail'])) {
 </div>
 
 <script src="../../public/js/validate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
   Validator({
     form: '#createAccount',
@@ -159,6 +161,48 @@ if (!empty($_SESSION['fail'])) {
 
   });
 </script>
+<!-- Check Email -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#email").blur(function(){
+        var email = $("#email").val();
+      if (email !== "") {
+            $.ajax({
+              url : "checkEmail.php",
+              type : "POST",
+              cache:false,
+              data : {email:email},
+              success:function(result){
+                if (result == 1) {
+                  $("#email_error").addClass('invalid');
+                  $("#form__input-error-message_email").text('Email này đã được sử dụng!');
+                }
+              }
+            });
+
+      }
+      });
+      $("#createAccount").on("submit",function(e){
+        var email = $("#email").val();
+      if (email !== "") {
+            $.ajax({
+              url : "checkEmail.php",
+              type : "POST",
+              cache:false,
+              data : {email:email},
+              success:function(result){
+                if (result == 1) {
+                  $("#email_error").addClass('invalid');
+                  $("#form__input-error-message_email").text('Email này đã được sử dụng!');
+                }
+              }
+            });
+
+      }
+      });
+  });
+</script>
+<!-- Check Email  -->
 
 <script>
 const sign_in_btn = document.querySelector("#sign-in-btn");
@@ -173,75 +217,6 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 </script>
+
 <script>
 
-
-// create dark mode button
-function darkMode() {
-    const toggleSwitch = document.querySelector('.toggle input[type="checkbox"]');
-    const currentTheme = localStorage.getItem('theme');
-
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        if (currentTheme === 'dark') {
-            toggleSwitch.checked = true;
-        }
-    }
-
-    toggleSwitch.addEventListener('change', (e) => {
-        if (e.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
-    });
-}
-
-darkMode();
-
-function slider() {
-
-function moveSidebar() {
-
-	let menuBtn = document.querySelector('.header-menu-btn'),
-		largeSidebar = document.querySelector('.sidebar-large'),
-		smallSidebar = document.querySelector('.sidebar-small'),
-		cardsCtn = document.querySelector('.cards');
-
-
-	var x = getCookie("sidebar");
-	if (x === "true") {
-		largeSidebar.classList.add('closed');
-		smallSidebar.classList.remove('closed');
-		cardsCtn.classList.add('cards-small');
-
-
-	} else {
-		largeSidebar.classList.remove('closed');
-		smallSidebar.classList.add('closed');
-		cardsCtn.classList.remove('cards-small');
-
-
-	}
-
-	menuBtn.addEventListener('click', () => {
-		largeSidebar.classList.toggle('closed');
-		smallSidebar.classList.toggle('closed');
-		cardsCtn.classList.toggle('cards-small');
-
-		if(cardsCtn.classList.contains("cards-small")){
-			setCookie("sidebar","true",1)
-		} else {
-			setCookie("sidebar","false",1)
-		}
-		
-	})
-}
-
-moveSidebar();
-}
-
-slider();
-</script>
