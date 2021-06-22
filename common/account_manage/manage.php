@@ -121,8 +121,6 @@ if (!empty($_SESSION['fail'])) {
     </div>
   </div>
 </div>
-<button class="g-recaptcha btn btn-primary" data-sitekey="YOUR_SITE_KEY" data-callback="submitForm">Submit</button>
-
 
 <script src="../../public/js/validate.js"></script>
 <script>
