@@ -13,6 +13,16 @@ if (!empty($_POST)) {
 	}
 	if (isset($_POST['email'])) {
 		$email = $_POST['email'];
+		
+		$db = mysqli_connect("localhost", "root", "", "cloneyoutube"); 
+		$sql = "SELECT * FROM account WHERE email = '$email'";
+
+		$rs = mysqli_query($db,$sql);
+
+		if (mysqli_num_rows($rs) > 0) {
+			$email = "null";
+		}
+
 		$email = str_replace('"', '\\"', $email);
 	}
 	if (isset($_POST['phone'])) {
@@ -21,7 +31,7 @@ if (!empty($_POST)) {
 	}
 
 	$user_avatar = "default_avatar.jpg";
-	if (!empty($user_name)) {
+	if (!empty($user_name)&&$email !== "null") {
 		date_default_timezone_set('Asia/Ho_Chi_Minh');
 		$created_at = $updated_at = date('Y-m-d H:s:i');
 		$password = md5($password);
@@ -30,6 +40,11 @@ if (!empty($_POST)) {
 
         session_start();
         $_SESSION['message'] = 'Đăng ký tài khoản thành công!';
+		header('Location: manage.php');
+		die();
+	} else {
+		session_start();
+        $_SESSION['fail'] = 'Đăng ký tài khoản không thành công!';
 		header('Location: manage.php');
 		die();
 	}
